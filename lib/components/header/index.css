@@ -1,14 +1,21 @@
 /* @define Header */
 
 .Header {
-
+  position: sticky;
 }
 
 .Header-container {
   display: flex;
   align-items: stretch;
   justify-content: space-between;
-  padding: 21px 32px;
+  padding: 14px 20px;
+  position: relative;
+}
+
+@media (min-width: 480px) {
+  .Header-container {
+    padding: 21px 32px;
+  }
 }
 
 .Header-home {
@@ -16,24 +23,52 @@
   align-items: center;
 }
 
+.Header-logo {
+  width: 20px;
+  height: auto;
+}
+
+@media (min-width: 786px) {
+  .Header-logo {
+    width: 31px;
+  }
+}
+
 .Header-text {
-  margin-left: 10px;
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .Header-text {
+    display: inline-block;
+    margin-left: 10px;
+  }
 }
 
 .Header-nav {
-  display: flex;
-  align-items: center;
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
+@media (min-width: 480px) {
+  .Header-nav {
+    left: 50%;
+    right: auto;
+    transform: translate(-50%, -50%);
+  }
+}
+
 .Header-link {
   display: block;
-  padding: 11px;
+  padding: 1em;
   position: relative;
   font-weight: bold;
-  font-size: 11px;
+  font-size: calc(9rem / 16);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
@@ -42,9 +77,9 @@
 .Header-link.is-active::after {
   content: "";
   height: 1px;
-  width: calc(100% - 22px);
+  width: calc(100% - 2em);
   position: absolute;
-  left: 11px;
+  left: 1em;
   bottom: 4px;
   background: currentColor;
 }

@@ -1,0 +1,24 @@
+/* @define Menu */
+
+.Menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.Menu-link {
+  white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+  .Menu {
+    padding: 1rem;
+    background-color: var(--color-divider);
+  }
+}
+
+@media (min-width: 768px) {
+  .Menu {
+
+  }
+}
