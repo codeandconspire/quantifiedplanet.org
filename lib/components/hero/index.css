@@ -1,5 +1,6 @@
 /* @define Hero */
 
 .Hero {
-
+  background: var(--color-space-blue);
+  color: var(--color-text-light);
 }

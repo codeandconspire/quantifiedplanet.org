@@ -16,6 +16,7 @@ app.state.routes = {
 app.route('/', require('./lib/views/home'))
 app.route('/:page', require('./lib/views/page'))
 app.route('/:page/:section', require('./lib/views/page'))
+app.use(require('./lib/stores/core'))
 app.use(require('./lib/stores/api'))
 app.use(require('./lib/stores/pages'))
 app.use(require('./lib/stores/error'))

@@ -1,0 +1,63 @@
+/* @define Text */
+
+.Text {
+  background: var(--color-document);
+}
+
+.Text-preamble {
+  font-size: 1.2rem;
+}
+
+.Text h1,
+.Text h2,
+.Text h3,
+.Text h4 {
+  font-weight: normal;
+  font-family: "Big Caslon", "Big Caslon Custom", Georgia, serif;
+  font-size: 4rem;
+  line-height: 1.25;
+  margin: 1rem 0;
+  letter-spacing: 0;
+}
+
+.Text h2 {
+  font-size: 3.2rem;
+}
+
+.Text h3 {
+  font-size: 2.4rem;
+}
+
+.Text h4 {
+  font-size: 1.6rem;
+}
+
+.Text p {
+  margin: 1rem 0;
+}
+
+.Text figure {
+  margin: 2rem 0;
+  display: block;
+}
+
+.Text figcaption {
+  color: var(--color-muted);
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  margin: 1rem 0 1.2rem;
+}
+
+.Text img {
+  display: block;
+  width: 100%;
+  margin: 0;
+}
+
+.Text hr {
+  height: 1px;
+  margin: 3rem 0 2.4rem;
+  border: 0;
+  background: var(--color-divider);
+  opacity: 1;
+}

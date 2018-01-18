@@ -1,5 +1,7 @@
 /* @define Footer */
 
 .Footer {
-
+  height: 10rem;
+  margin-top: 6.3rem;
+  background: var(--color-space-blue);
 }

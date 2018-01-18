@@ -1,0 +1,49 @@
+/* @define utilities */
+
+/**
+ * Display
+ */
+
+.u-hidden {
+  display: none !important;
+}
+
+.u-hiddenVisually {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+}
+
+@media print {
+  .u-printHidden {
+    display: none !important;
+  }
+}
+
+/**
+ * Color
+ */
+
+.u-colorSpaceBlue {
+  color: var(--color-space-blue);
+}
+
+.u-colorDataBlue {
+  color: var(--color-data-blue);
+}
+
+/**
+ * Background
+ */
+
+.u-bgSpaceBlue {
+  background: var(--color-space-blue);
+}
+
+.u-bgDataBlue {
+  background: var(--color-data-blue);
+}

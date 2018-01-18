@@ -1,21 +1,55 @@
+/**
+ * Colors
+ */
+
+:root {
+  --color-document: #fff;
+  --color-text: #010119;
+  --color-text-light: #fff;
+  --color-muted: #a8a8b0;
+  --color-divider: #d8d8d8;
+  --color-space-blue: #010119;
+  --color-dark-blue: #2f00de;
+  --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+/**
+ * Break points
+ */
+
+/* Later */
+
+/**
+ * Document styles
+ */
 
 :root {
   box-sizing: border-box;
   height: 100%;
   width: 100%;
   overflow-x: hidden;
-  font-family: var(--font-family-body);
-  cursor: default;
-  background: var(--color-document);
-  color: var(--color-text);
+  font-family: var(--font-family-base);
   font-size: 16px;
-  line-height: 1;
+  line-height: 1.5;
+  letter-spacing: 0.025em;
+  cursor: default;
+  color: var(--color-text);
+  background: var(--color-document);
   text-rendering: geometricPrecision;
   -webkit-tap-highlight-color: transparent;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-variant-ligatures: common-ligatures;
 }
 
-@custom-media --sm-viewport (min-width:320px) and (max-width:640px);
-@custom-media --md-viewport (min-width:640px) and (max-width:960px);
-@custom-media --lg-viewport (min-width:960px);
+@media (min-width: 1024px) {
+  :root {
+    font-size: 20px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}

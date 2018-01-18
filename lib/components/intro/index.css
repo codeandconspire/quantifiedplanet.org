@@ -1,5 +1,30 @@
 /* @define Intro */
 
 .Intro {
+}
 
+.Intro-text {
+  max-width: 31rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.Intro-banner {
+  height: 45vh;
+  min-height: 25vw;
+  overflow: hidden;
+  margin: 3.8rem -20px 4.9rem
+}
+
+@media (min-width: 768px) {
+  .Intro-banner {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.Intro-image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
