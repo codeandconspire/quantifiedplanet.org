@@ -1,0 +1,9 @@
+/* @define View */
+
+.View {
+  height: 100%;
+}
+
+.View:matches(.is-start) {
+  color: red;
+}

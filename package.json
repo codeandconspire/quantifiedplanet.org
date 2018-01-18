@@ -1,0 +1,54 @@
+{
+  "name": "quantifiedplanet.org",
+  "version": "1.0.0",
+  "description": "Website for Quantified Planet",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard",
+    "start": "bankai start index.js",
+    "build": "bankai build index.js"
+  },
+  "sheetify": {
+    "transform": [
+      "sheetify-cssnext"
+    ]
+  },
+  "browserify": {
+    "transform": [
+      "localenvify"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codeandconspire/quantifiedplanet.org.git"
+  },
+  "author": "codeandconspire",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/codeandconspire/quantifiedplanet.org/issues"
+  },
+  "homepage": "https://github.com/codeandconspire/quantifiedplanet.org#readme",
+  "devDependencies": {
+    "bankai": "^9.2.0",
+    "choo-devtools": "^2.3.3",
+    "localenvify": "^1.0.1",
+    "normalize.css": "^7.0.0",
+    "postcss-custom-media": "^6.0.0",
+    "postcss-custom-properties": "^6.2.0",
+    "postcss-import": "^11.0.0",
+    "postcss-selector-matches": "^3.0.1",
+    "postcss-url": "^7.3.0",
+    "sheetify-cssnext": "^1.0.7",
+    "sheetify-postcss": "^1.1.0",
+    "standard": "^10.0.3"
+  },
+  "dependencies": {
+    "choo": "^6.6.1",
+    "nanocache": "github:yoshuawuyts/nanocache",
+    "nanocomponent": "^6.5.0",
+    "prismic-element": "^0.7.0",
+    "prismic-javascript": "^1.5.0-beta.1",
+    "prismic-richtext": "^0.4.0",
+    "sheetify": "^7.0.0"
+  }
+}

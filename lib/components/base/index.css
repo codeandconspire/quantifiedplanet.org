@@ -1,0 +1,21 @@
+
+:root {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  font-family: var(--font-family-body);
+  cursor: default;
+  background: var(--color-document);
+  color: var(--color-text);
+  font-size: 16px;
+  line-height: 1;
+  text-rendering: geometricPrecision;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@custom-media --sm-viewport (min-width:320px) and (max-width:640px);
+@custom-media --md-viewport (min-width:640px) and (max-width:960px);
+@custom-media --lg-viewport (min-width:960px);
