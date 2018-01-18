@@ -49,6 +49,7 @@
     "prismic-element": "^0.7.0",
     "prismic-javascript": "^1.5.0-beta.1",
     "prismic-richtext": "^0.4.0",
+    "scroll-to-anchor": "^1.1.0",
     "sheetify": "^7.0.0"
   }
 }
