@@ -7,18 +7,17 @@
 }
 
 .Menu-link {
+  color: lightgray;
   white-space: nowrap;
+}
+
+.Menu-link.is-active {
+  color: black;
 }
 
 @media (max-width: 767px) {
   .Menu {
     padding: 1rem;
     background-color: var(--color-divider);
-  }
-}
-
-@media (min-width: 768px) {
-  .Menu {
-
   }
 }

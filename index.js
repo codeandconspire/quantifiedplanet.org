@@ -9,8 +9,8 @@ if (process.env.NODE_ENV === 'development') {
 // expose reverse route pattern on state (document -> route)
 app.state.routes = {
   homepage: '/',
-  page: '/:uid',
-  section: '/:uid/:section'
+  page: '/:page',
+  section: '/:page/:section'
 }
 
 app.route('/', require('./lib/views/home'))
