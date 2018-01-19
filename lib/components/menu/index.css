@@ -7,17 +7,47 @@
 }
 
 .Menu-link {
-  color: lightgray;
+  display: block;
   white-space: nowrap;
+  outline: none;
 }
 
+.Menu-link:hover,
 .Menu-link.is-active {
   color: black;
 }
 
 @media (max-width: 767px) {
   .Menu {
-    padding: 1rem;
-    background-color: var(--color-divider);
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--color-smoke);
+    overflow: hidden;
+  }
+
+  .Menu-item {
+    flex: 1 0 auto;
+    border-top: 1px solid var(--color-silver);
+    margin: -1px 2em;
+    padding-top: 1px;
+    text-align: center;
+    background-color: var(--color-smoke);
+  }
+
+  .Menu-link {
+    padding: 1em;
+    color: var(--color-silver);
+    font-size: calc(11rem / 16);
+  }
+}
+
+@media (min-width: 768px) {
+  .Menu {
+    padding: 0.7em 0 0;
+  }
+
+  .Menu-link {
+    padding: 0.5em 0.5em 0.5em 0;
+    color: var(--color-muted);
   }
 }
