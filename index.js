@@ -6,16 +6,16 @@ if (process.env.NODE_ENV === 'development') {
   app.use(require('choo-devtools')())
 }
 
-// expose reverse route pattern on state (document -> route)
-app.state.routes = {
+// expose route patterns on state for reverse engineering (document -> route)
+const routes = app.state.routes = {
   homepage: '/',
   page: '/:page',
   section: '/:page/:section'
 }
 
-app.route('/', require('./lib/views/home'))
-app.route('/:page', require('./lib/views/page'))
-app.route('/:page/:section', require('./lib/views/page'))
+app.route(routes.homepage, require('./lib/views/home'))
+app.route(routes.page, require('./lib/views/page'))
+app.route(routes.section, require('./lib/views/page'))
 app.use(require('./lib/stores/core'))
 app.use(require('./lib/stores/api'))
 app.use(require('./lib/stores/pages'))

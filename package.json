@@ -43,13 +43,14 @@
     "standard": "^10.0.3"
   },
   "dependencies": {
-    "choo": "^6.6.1",
+    "choo": "^6.7.0",
     "nanocache": "github:yoshuawuyts/nanocache",
     "nanocomponent": "^6.5.0",
+    "nanoraf": "^3.0.1",
+    "nanostate": "^1.1.0",
     "prismic-element": "^0.7.0",
     "prismic-javascript": "^1.5.0-beta.1",
     "prismic-richtext": "^0.4.0",
-    "scroll-to-anchor": "^1.1.0",
     "sheetify": "^7.0.0"
   }
 }
