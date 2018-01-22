@@ -3,6 +3,7 @@
 .View {
   margin: 0 20px;
   height: 100%;
+  min-width: 320px;
 }
 
 @media (min-width: 768px) {
@@ -60,6 +61,7 @@
 .View-menu {
   order: 0;
   align-self: stretch;
+  margin-top: 0.5rem;
 }
 
 .View-intro {
@@ -89,15 +91,18 @@
 
   .View-menu {
     order: 1;
-    flex: 0 0 0;
+    flex: 1 0 0;
     align-self: flex-start;
     position: sticky;
     top: 0;
+    margin-top: -2rem;
+    min-width: 170px;
+    padding-right: 3rem;
   }
 
   .View-body {
     order: 2;
-    flex: 1 0 0;
+    flex: 3 0 0;
     align-self: flex-end;
   }
 }
@@ -105,6 +110,8 @@
 @media (min-width: 1024px) {
   .View-menu {
     flex: 0 0 200px;
+    padding-right: 0;
+    margin-top: -4rem;
   }
 
   .View-social {
@@ -113,5 +120,8 @@
     display: block;
     position: sticky;
     top: 0;
+    margin-top: -4rem;
+    padding-top: 5rem;
+    text-align: right;
   }
 }

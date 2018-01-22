@@ -1,31 +1,49 @@
 /* @define Intro */
 
 .Intro {
-  margin-top: 7.2rem;
+  margin-top: 3.2rem;
 }
 
 .Intro-text {
   max-width: 31rem;
   margin: 0 auto;
   text-align: center;
+  padding: 0 1rem;
 }
 
 .Intro-banner {
   height: 45vh;
   min-height: 25vw;
   overflow: hidden;
-  margin: 3.8rem -20px 4.9rem
-}
-
-@media (min-width: 768px) {
-  .Intro-banner {
-    margin-left: 0;
-    margin-right: 0;
-  }
+  margin: 3rem -20px 1rem;
 }
 
 .Intro-image {
   object-fit: cover;
   width: 100%;
   height: 100%;
+}
+
+@media (min-width: 768px) {
+  .Intro {
+    margin-top: 6rem;
+  }
+
+  .Intro-text {
+    padding: 0;
+  }
+
+  .Intro-banner {
+    margin: 4rem 0 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .Intro {
+    margin-top: 7.2rem;
+  }
+
+  .Intro-banner {
+    margin: 3.8rem 0 4rem;
+  }
 }

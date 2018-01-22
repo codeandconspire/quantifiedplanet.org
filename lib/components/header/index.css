@@ -25,12 +25,13 @@
 
 .Header-logo {
   width: 20px;
-  height: auto;
+  height: 36px;
 }
 
-@media (min-width: 786px) {
+@media (min-width: 768px) {
   .Header-logo {
     width: 31px;
+    height: 54px;
   }
 }
 
@@ -68,7 +69,7 @@
   padding: 1em;
   position: relative;
   font-weight: bold;
-  font-size: calc(9rem / 16);
+  font-size: 9px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
@@ -82,4 +83,10 @@
   left: 1em;
   bottom: 4px;
   background: currentColor;
+}
+
+@media (min-width: 768px) {
+  .Header-link {
+    font-size: 11px;
+  }
 }
