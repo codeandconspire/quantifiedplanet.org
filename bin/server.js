@@ -2,6 +2,8 @@ const path = require('path')
 const http = require('http')
 const seveStatic = require('serve-static')
 const Prismic = require('prismic-javascript')
+const { asText } = require('prismic-richtext')
+const { friendlyUrl } = require('../lib/components/base')
 const Stack = require('./http')
 
 const ENDPOINT = 'https://quantifiedplanet.cdn.prismic.io/api/v2'
@@ -11,7 +13,7 @@ var stack = new Stack(path.resolve('index.js'), {
 })
 
 stack.use('/manifest.json', prismic, async function (req, res, state) {
-  state.pages.push(await req.prismic.getSingle('homepage'))
+  state.pages.push(await req.prismic.getSingle('website'))
 })
 
 stack.use('/', prismic, async function (req, res, state) {
@@ -27,11 +29,25 @@ stack.use('/:page/:section', prismic, async function (req, res, state) {
 })
 
 stack.use(async function (req, res, state) {
-  await req.prismic.query(
-    Prismic.Predicates.at('document.type', 'page')
-  ).then(function (response) {
-    state.pages.push(...response.results)
-  })
+  const website = await req.prismic.getSingle('website')
+  const ids = website.data.menu.map(item => item.link.id)
+  const docs = await req.prismic.getByIDs(ids).then(response => response.results)
+  state.menu = docs.map(doc => ({
+    label: website.data.menu.find(item => item.link.id === doc.id).label,
+    params: { page: doc.uid },
+    sections: doc.data.body
+      .filter(slice => slice.slice_type === 'heading')
+      .map(slice => {
+        const label = asText(slice.primary.heading).trim()
+        return {
+          label: label,
+          params: {
+            page: doc.uid,
+            section: friendlyUrl(label)
+          }
+        }
+      })
+  }))
 })
 
 async function prismic (req, res, next) {

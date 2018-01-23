@@ -47,6 +47,7 @@
 }
 
 .Header-nav {
+  display: flex;
   position: absolute;
   top: 50%;
   right: 14px;
@@ -70,6 +71,7 @@
   position: relative;
   font-weight: bold;
   font-size: 9px;
+  white-space: nowrap;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
