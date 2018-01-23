@@ -28,7 +28,7 @@
   height: 100%;
 }
 
-@media (min-width: 768px) {
+@media (--md-viewport), (--lg-viewport), (--xl-viewport) {
   .Intro {
     margin-top: 6rem;
   }
@@ -42,7 +42,7 @@
   }
 }
 
-@media (min-width: 1024px) {
+@media (--lg-viewport), (--xl-viewport) {
   .Intro {
     margin-top: 7.2rem;
   }

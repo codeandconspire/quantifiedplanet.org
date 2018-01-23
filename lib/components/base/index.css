@@ -4,6 +4,12 @@
 @import "./index.css";
 @import "./utils.css";
 
+@custom-media --no-viewport (max-width: 479px);
+@custom-media --sm-viewport (min-width: 480px) and (max-width: 767px);
+@custom-media --md-viewport (min-width: 768px) and (max-width: 1024px);
+@custom-media --lg-viewport (min-width: 1024px) and (max-width: 1279px);
+@custom-media --xl-viewport (min-width: 1280px);
+
 /**
  * Colors
  */
@@ -17,7 +23,7 @@
   --color-smoke: #f6f6f7;
   --color-silver: #8e8e96;
   --color-space-blue: #010119;
-  --color-dark-blue: #2f00de;
+  --color-data-blue: #2f00de;
   --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 
   height: 100%;
@@ -37,7 +43,7 @@
   font-variant-ligatures: common-ligatures;
 }
 
-@media (min-width: 1024px) {
+@media (--lg-viewport) {
   :root {
     font-size: 20px;
   }

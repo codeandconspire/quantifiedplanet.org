@@ -17,7 +17,7 @@
   color: var(--color-space-blue);
 }
 
-@media (max-width: 767px) {
+@media (--no-viewport), (--sm-viewport) {
   .Menu {
     display: flex;
     flex-wrap: wrap;
@@ -42,7 +42,7 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (--md-viewport), (--lg-viewport), (--xl-viewport) {
   .Menu {
     padding-top: 2.6rem;
   }
@@ -57,7 +57,7 @@
   }
 }
 
-@media (min-width: 1024px) {
+@media (--lg-viewport), (--xl-viewport) {
   .Menu {
     padding-top: 4.6rem;
   }

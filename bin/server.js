@@ -32,22 +32,34 @@ stack.use(async function (req, res, state) {
   const website = await req.prismic.getSingle('website')
   const ids = website.data.menu.map(item => item.link.id)
   const docs = await req.prismic.getByIDs(ids).then(response => response.results)
-  state.menu = docs.map(doc => ({
-    label: website.data.menu.find(item => item.link.id === doc.id).label,
-    params: { page: doc.uid },
-    sections: doc.data.body
-      .filter(slice => slice.slice_type === 'heading')
-      .map(slice => {
-        const label = asText(slice.primary.heading).trim()
-        return {
-          label: label,
-          params: {
-            page: doc.uid,
-            section: friendlyUrl(label)
+
+  state.meta = Object.assign(state.meta, {
+    contact: website.data.contact,
+    partners: website.data.partners,
+    social: [
+      'medium',
+      'facebook',
+      'twitter',
+      'instagram',
+      'linkedin'
+    ].map(type => ({ link: website.data[type], type: type })),
+    menu: docs.map(doc => ({
+      label: website.data.menu.find(item => item.link.id === doc.id).label,
+      params: { page: doc.uid },
+      sections: doc.data.body
+        .filter(slice => slice.slice_type === 'heading')
+        .map(slice => {
+          const label = asText(slice.primary.heading).trim()
+          return {
+            label: label,
+            params: {
+              page: doc.uid,
+              section: friendlyUrl(label)
+            }
           }
-        }
-      })
-  }))
+        })
+    }))
+  })
 })
 
 async function prismic (req, res, next) {

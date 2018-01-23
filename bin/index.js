@@ -28,8 +28,12 @@ function Stack (entry, opts) {
   this.main = scripts(entry)
   this.main.on('pending', function () {
     self._isBuilding = true
-    self.app = fresh(entry, require)
-    initialState = JSON.stringify(self.app.state)
+    try {
+      self.app = fresh(entry, require)
+      initialState = JSON.stringify(self.app.state)
+    } catch (err) {
+      self.emit('error', err)
+    }
   })
   this.main.on('update', function () {
     self._isBuilding = false
