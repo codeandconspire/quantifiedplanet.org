@@ -61,6 +61,7 @@ Server.prototype.middleware = function (req, res) {
       case '/manifest.json': {
         self.stack.manifest(state, function (err, data) {
           if (err) {
+            self.stack.emit('error', err)
             res.statusCode = 500
             return res.end()
           }
@@ -73,6 +74,7 @@ Server.prototype.middleware = function (req, res) {
       default: {
         self.stack.document(req.url, state, function (err, data) {
           if (err) {
+            self.stack.emit('error', err)
             res.statusCode = 500
             return res.end()
           }

@@ -1,5 +1,6 @@
 var assert = require('assert')
 var dotenv = require('dotenv')
+var EventEmitter = require('events')
 var fresh = require('fresh-require')
 var styles = require('./lib/styles')
 var scripts = require('./lib/scripts')
@@ -9,6 +10,8 @@ module.exports = Stack
 
 function Stack (entry, opts) {
   if (!(this instanceof Stack)) return new Stack(entry, opts)
+  EventEmitter.call(this)
+
   opts = this.opts = opts || {}
 
   if (opts.env !== false) dotenv.config({ env: opts.env })
@@ -34,7 +37,17 @@ function Stack (entry, opts) {
 
   if (opts.sw) this.sw = scripts(opts.sw)
   if (opts.css) this.styles = styles(opts.css)
+
+  this.on('log', function (data) {
+    console.log(data)
+  })
+  this.on('error', function (data) {
+    console.error(data)
+  })
 }
+
+Stack.prototype = Object.create(EventEmitter.prototype)
+Stack.prototype.constructor = Stack
 
 Stack.prototype.document = function (href, state, done) {
   assert(typeof href === 'string', 'stack: href must be a string')
