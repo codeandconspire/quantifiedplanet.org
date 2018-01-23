@@ -1,5 +1,8 @@
 /* @define Footer */
 
+@import "../base";
+@import "../text";
+
 .Footer {
   height: 10rem;
   margin-top: 6.3rem;

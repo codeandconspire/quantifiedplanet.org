@@ -1,5 +1,7 @@
 /* @define View */
 
+@import "../base";
+
 .View {
   margin: 0 20px;
   height: 100%;

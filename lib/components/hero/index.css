@@ -1,5 +1,8 @@
 /* @define Hero */
 
+@import "../base";
+@import "../text";
+
 .Hero {
   background: var(--color-space-blue);
   color: var(--color-text-light);

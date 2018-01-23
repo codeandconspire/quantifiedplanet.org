@@ -1,5 +1,9 @@
 /* @define Intro */
 
+@import "../base";
+@import "../text";
+@import "../view";
+
 .Intro {
   margin-top: 3.2rem;
 }

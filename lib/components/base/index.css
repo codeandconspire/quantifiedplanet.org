@@ -1,3 +1,9 @@
+@import "normalize.css";
+@import "./fonts.css";
+@import "./utils.css";
+@import "./index.css";
+@import "./utils.css";
+
 /**
  * Colors
  */

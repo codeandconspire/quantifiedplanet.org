@@ -1,5 +1,7 @@
 /* @define Text */
 
+@import "../base";
+
 .Text {
   background: var(--color-document);
 }

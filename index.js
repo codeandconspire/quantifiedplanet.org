@@ -13,11 +13,11 @@ const routes = app.state.routes = {
   section: '/:page/:section'
 }
 
-app.route(routes.homepage, require('./lib/views/home'))
 app.route(routes.page, require('./lib/views/page'))
 app.route(routes.section, require('./lib/views/page'))
-app.use(require('./lib/stores/core'))
+app.route(routes.homepage, require('./lib/views/home'))
 app.use(require('./lib/stores/api'))
+app.use(require('./lib/stores/core'))
 app.use(require('./lib/stores/pages'))
 app.use(require('./lib/stores/error'))
 
