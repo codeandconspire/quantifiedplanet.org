@@ -3,53 +3,42 @@
 @import "../base";
 
 .View {
-  margin: 0 20px;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
   min-width: 320px;
 }
 
-@media (min-width: 768px) {
-  .View {
-    margin: 0 32px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .View {
-    margin: 0 42px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .View {
-    margin: 0 80px;
-  }
+.View-main {
+  flex-grow: 1;
 }
 
 .View-container {
+  box-sizing: content-box;
   max-width: 1280px;
   margin: 0 auto;
-}
-
-.View-full {
-  margin: 0 -20px;
+  padding: 0 20px;
+  padding: 0 calc(20px + env(safe-area-inset-right)) 0 calc(20px + env(safe-area-inset-left));
 }
 
 @media (min-width: 768px) {
-  .View-full {
-    margin: 0 -32px;
+  .View-container {
+    padding: 0 32px;
+    padding: 0 calc(32px + env(safe-area-inset-right)) 0 calc(32px + env(safe-area-inset-left));
   }
 }
 
 @media (min-width: 1024px) {
-  .View-full {
-    margin: 0 -42px;
+  .View-container {
+    padding: 0 42px;
+    padding: 0 calc(42px + env(safe-area-inset-right)) 0 calc(42px + env(safe-area-inset-left));
   }
 }
 
 @media (min-width: 1280px) {
-  .View-full {
-    margin: 0 -80px;
+  .View-container {
+    padding: 0 80px;
+    padding: 0 calc(80px + env(safe-area-inset-right)) 0 calc(80px + env(safe-area-inset-left));
   }
 }
 
