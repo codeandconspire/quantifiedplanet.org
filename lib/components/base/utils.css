@@ -24,6 +24,12 @@
   }
 }
 
+.u-loading {
+  outline: 2px dashed var(--color-divider);
+  outline-offset: -0.1em;
+  color: transparent;
+}
+
 /**
  * Color
  */

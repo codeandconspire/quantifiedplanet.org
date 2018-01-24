@@ -22,6 +22,11 @@
   margin: 3rem -20px 1rem;
 }
 
+.Intro.is-loading .Intro-banner {
+  outline: 2px dashed var(--color-divider);
+  outline-offset: -2px;
+}
+
 .Intro-image {
   object-fit: cover;
   width: 100%;

@@ -9,15 +9,15 @@
  */
 
 :root {
-  --color-document: #fff;
-  --color-text: #010119;
-  --color-text-light: #fff;
-  --color-muted: #a8a8b0;
-  --color-divider: #d8d8d8;
   --color-smoke: #f6f6f7;
   --color-silver: #8e8e96;
   --color-space-blue: #010119;
-  --color-dark-blue: #2f00de;
+  --color-data-blue: #2f00de;
+  --color-root: #010119;
+  --color-text: #fff;
+  --color-text-light: #fff;
+  --color-muted: #a8a8b0;
+  --color-divider: #d8d8d8;
   --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 
   height: 100%;
@@ -28,8 +28,9 @@
   line-height: 1.5;
   letter-spacing: 0.025em;
   cursor: default;
+  user-select: none;
   color: var(--color-text);
-  background: var(--color-document);
+  background: var(--color-root);
   text-rendering: geometricPrecision;
   -webkit-tap-highlight-color: transparent;
   -webkit-font-smoothing: antialiased;
@@ -47,6 +48,11 @@
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+::selection {
+  color: #fff;
+  background: var(--color-data-blue);
 }
 
 a {

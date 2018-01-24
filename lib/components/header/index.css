@@ -1,7 +1,19 @@
 /* @define Header */
 
+@import "../base";
+
 .Header {
-  position: sticky;
+  width: 100%;
+}
+
+.Header--light {
+  background: #fff;
+  color: var(--color-space-blue);
+}
+
+
+.Header--collapse {
+  position: absolute;
 }
 
 .Header-container {
@@ -72,7 +84,7 @@
   font-weight: bold;
   font-size: 9px;
   white-space: nowrap;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   text-decoration: none;
 }

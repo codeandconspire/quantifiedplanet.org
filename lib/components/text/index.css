@@ -3,7 +3,8 @@
 @import "../base";
 
 .Text {
-  background: var(--color-document);
+  cursor: auto;
+  user-select: text;
 }
 
 .Text-preamble {
@@ -21,6 +22,7 @@
   line-height: 1.25;
   margin: 1rem 0;
   letter-spacing: 0;
+  cursor: default;
 }
 
 .Text h3 {
@@ -41,6 +43,14 @@
   .Text h2 {
     font-size: 3.2rem;
   }
+}
+
+.Text .Text-hero1 {
+  font-size: 2rem;
+}
+
+.Text .Text-hero2 {
+  font-size: 2rem;
 }
 
 .Text p {

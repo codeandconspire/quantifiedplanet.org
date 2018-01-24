@@ -13,6 +13,11 @@
   flex-grow: 1;
 }
 
+.View-main--light {
+  color: var(--color-space-blue);
+  background: #fff;
+}
+
 .View-container {
   box-sizing: content-box;
   max-width: 1280px;
