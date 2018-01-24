@@ -1,34 +1,32 @@
 const path = require('path')
-const http = require('http')
-const seveStatic = require('serve-static')
 const Prismic = require('prismic-javascript')
 const { asText } = require('prismic-richtext')
 const { friendlyUrl } = require('../lib/components/base')
-const Stack = require('./http')
+const Server = require('./http')
 
 const ENDPOINT = 'https://quantifiedplanet.cdn.prismic.io/api/v2'
 
-var stack = new Stack(path.resolve('index.js'), {
+const server = new Server(path.resolve('index.js'), {
   css: path.resolve('lib/index.css')
 })
 
-stack.use('/manifest.json', prismic, async function (req, res, state) {
+server.use('/manifest.json', prismic, async function (state, req, res) {
   state.pages.push(await req.prismic.getSingle('website'))
 })
 
-stack.use('/', prismic, async function (req, res, state) {
+server.use('/', prismic, async function (state, req, res) {
   state.pages.push(await req.prismic.getSingle('homepage'))
 })
 
-stack.use('/:page', prismic, async function (req, res, state) {
+server.use('/:page', prismic, async function (state, req, res) {
   state.pages.push(await req.prismic.getByUID('page', state.params.page))
 })
 
-stack.use('/:page/:section', prismic, async function (req, res, state) {
+server.use('/:page/:section', prismic, async function (state, req, res) {
   state.pages.push(await req.prismic.getByUID('page', state.params.page))
 })
 
-stack.use(async function (req, res, state) {
+server.use(async function (state, req, res) {
   const website = await req.prismic.getSingle('website')
   const ids = website.data.menu.map(item => item.link.id)
   const docs = await req.prismic.getByIDs(ids).then(response => response.results)
@@ -62,20 +60,8 @@ stack.use(async function (req, res, state) {
   })
 })
 
-async function prismic (req, res, next) {
+async function prismic (state, req, res) {
   req.prismic = await Prismic.api(ENDPOINT)
 }
 
-const serve = seveStatic(path.resolve('lib/assets'))
-const server = http.createServer(function (req, res) {
-  serve(req, res, function () {
-    stack.middleware(req, res, function () {
-      res.statusCode = 404
-      res.end()
-    })
-  })
-})
-
-server.listen(process.env.PORT, function () {
-  console.info(`> Server listening @ http://localhost:${process.env.PORT}`)
-})
+server.start()

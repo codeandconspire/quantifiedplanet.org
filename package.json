@@ -6,6 +6,7 @@
   "scripts": {
     "test": "standard",
     "start": "node bin/server.js",
+    "debug": "node --inspect bin/server.js",
     "build": "node bin/build.js"
   },
   "browserify": {

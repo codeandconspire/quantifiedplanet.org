@@ -1,33 +1,69 @@
+var fs = require('fs')
+var path = require('path')
 var http = require('http')
 var assert = require('assert')
 var wayfarer = require('wayfarer')
-var nanoquery = require('nanoquery')
+var serveStatic = require('serve-static')
 var Stack = require('./')
 
-var ASSET_REGEX = /^\/(\w+\/)?(bundle|sw)\.(js|css)$/
+var STATIC = ['assets', 'public', 'content']
+var ASSET_REGEX = /^\/(\w+\/)?(bundle|sw|service-worker)\.(js|css)$/
 
 module.exports = Server
 
 function Server (entry, opts) {
-  if (!(this instanceof Server)) return new Server(entry, opts)
-
-  this.stack = new Stack(entry, opts)
+  Stack.call(this, entry, opts)
   this.router = wayfarer()
-  this.catchall = []
 }
 
-Server.prototype.listen = function (port) {
-  var self = this
-  var server = http.createServer(function (req, res) {
-    self.middleware(req, res, function () {
-      res.statusCode = 404
-      res.end()
-    })
-  })
+Server.prototype = Object.create(Stack.prototype)
+Server.prototype.constructor = Server
 
-  server.listen = function (port) {
+Server.prototype.start = function (port, callback) {
+  callback = callback || function () {}
+  port = port || process.env.PORT || 8080
+
+  assert(!isNaN(+port), 'stack: port cannot be not a number 🤪')
+  assert(typeof callback === 'function', 'stack: callback must be a function')
+
+  var self = this
+  var dirs = []
+  var queue = STATIC.length - 1
+  for (var i = 0, len = STATIC.length; i < len; i++) {
+    lookup(path.resolve(path.dirname(this.opts.entry), STATIC[i]))
+  }
+
+  function lookup (dir) {
+    fs.lstat(dir, function (err, stats) {
+      if (!err && stats.isDirectory()) dirs.push(dir)
+      if (queue-- === 0) start()
+    })
+  }
+
+  function start () {
+    var serve = dirs.reduceRight(function (prev, dir) {
+      var middleware = serveStatic(dir)
+      return function (req, res, next) {
+        prev(req, res, function () {
+          middleware(req, res)
+        })
+      }
+    }, function (req, res, next) {
+      next(req, res)
+    })
+
+    var server = http.createServer(function (req, res) {
+      self.middleware(req, res, function () {
+        serve(req, res, function () {
+          res.statusCode = 404
+          res.end()
+        })
+      })
+    })
+
     server.listen(port, function () {
       console.info(`> Server listening @ http://localhost:${port}`)
+      callback()
     })
   }
 }
@@ -42,26 +78,25 @@ Server.prototype.middleware = function (req, res) {
     }
 
     if (asset[2] === 'bundle') {
-      if (asset[3] === 'js') return this.stack.main.middleware(req, res)
+      if (asset[3] === 'js') return this.main.middleware(req, res)
       if (asset[3] === 'css') {
-        if (!this.stack.styles) return end(400, 'stack: no css registered with stack')
-        return this.stack.styles.middleware(req, res)
+        if (!this.styles) return end(400, 'stack: no css registered with stack')
+        return this.styles.middleware(req, res)
       }
-    } else if (asset[2] === 'sw') {
-      if (!this.stack.sw) return end(400, 'stack: no service worker registered with stack')
-      return this.stack.sw.middleware(req, res)
+    } else if (asset[2] === 'sw' || asset[2] === 'service-worker') {
+      if (!this.sw) return end(400, 'stack: no service worker registered with stack')
+      return this.sw.middleware(req, res)
     }
 
     return end(400, 'stack: asset not recognized')
   }
 
-  var state = this.stack.getInitialState()
-  this.route(req, res, state).catch().then(function () {
+  this.resolve(req.url, req, res).then(function (state) {
     switch (req.url) {
       case '/manifest.json': {
-        self.stack.manifest(state, function (err, data) {
+        self.manifest(state, function (err, data) {
           if (err) {
-            self.stack.emit('error', err)
+            self.emit('error', err)
             res.statusCode = 500
             return res.end()
           }
@@ -72,17 +107,17 @@ Server.prototype.middleware = function (req, res) {
         break
       }
       default: {
-        self.stack.document(req.url, state, function (err, data) {
+        self.document(req.url, state, function (err, data) {
           if (err) {
-            self.stack.emit('error', err)
+            self.emit('error', err)
             res.statusCode = 500
             return res.end()
           }
           if (process.env.NODE_ENV !== 'development') {
-            var hex = this.stack.main.hash.slice(0, 16)
+            var hex = this.main.hash.slice(0, 16)
             res.setHeader('Link', [
               `</${hex}/bundle.js>; rel=preload; as=script`,
-              this.stack.css ? `</${hex}/bundle.css>; rel=preload; as=style` : null
+              this.css ? `</${hex}/bundle.css>; rel=preload; as=style` : null
             ].filter(Boolean).join(', '))
           }
           res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate')
@@ -99,41 +134,4 @@ Server.prototype.middleware = function (req, res) {
     res.statusMessage = message
     res.end()
   }
-}
-
-Server.prototype.use = function (route) {
-  var middlewares = []
-  for (var i = 1, len = arguments.length; i < len; i++) {
-    assert(typeof arguments[i] === 'function', 'stack: middleware must be a function')
-    middlewares.push(arguments[i])
-  }
-
-  if (typeof route === 'function') {
-    middlewares.unshift(route)
-    this.catchall.push.apply(this.catchall, middlewares)
-  } else {
-    assert(typeof route === 'string', 'stack: route must be a string')
-    this.router.on(route, function (params, req, res, state) {
-      state.route = route
-      state.params = params
-      return middlewares.reduce(function (prev, next) {
-        return prev.then(function () {
-          return next(req, res, state)
-        })
-      }, Promise.resolve())
-    })
-  }
-}
-
-Server.prototype.route = function (req, res, state) {
-  var self = this
-  state.href = req.url.replace(/\?.+$/, '')
-  state.query = nanoquery(req.url)
-  return this.router.emit(req.url, req, res, state).catch().then(function () {
-    return self.catchall.reduce(function (prev, next) {
-      return prev.then(function () {
-        return next(req, res, state)
-      })
-    }, Promise.resolve())
-  })
 }
