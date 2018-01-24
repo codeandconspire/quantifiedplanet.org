@@ -45,7 +45,7 @@ Server.prototype.start = function (port, callback) {
       var middleware = serveStatic(dir)
       return function (req, res, next) {
         prev(req, res, function () {
-          middleware(req, res)
+          middleware(req, res, next)
         })
       }
     }, function (req, res, next) {
@@ -53,8 +53,8 @@ Server.prototype.start = function (port, callback) {
     })
 
     var server = http.createServer(function (req, res) {
-      self.middleware(req, res, function () {
-        serve(req, res, function () {
+      serve(req, res, function () {
+        self.middleware(req, res, function () {
           res.statusCode = 404
           res.end()
         })
