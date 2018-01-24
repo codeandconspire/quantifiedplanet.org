@@ -4,6 +4,8 @@
 
 .Header {
   width: 100%;
+  position: relative;
+  z-index: 5;
 }
 
 .Header--light {
@@ -13,7 +15,7 @@
 
 
 .Header--collapse {
-  position: absolute;
+  position: fixed;
 }
 
 .Header-container {
