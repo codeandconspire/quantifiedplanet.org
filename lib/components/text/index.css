@@ -33,13 +33,13 @@
   font-size: 1.6rem;
 }
 
-@media (min-width: 768px) {
+@media (--md-viewport), (--lg-viewport), (--xl-viewport) {
   .Text h1 {
     font-size: 4rem;
   }
 }
 
-@media (min-width: 1024px) {
+@media (--lg-viewport), (--xl-viewport) {
   .Text h2 {
     font-size: 3.2rem;
   }

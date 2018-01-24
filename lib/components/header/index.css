@@ -26,7 +26,7 @@
   position: relative;
 }
 
-@media (min-width: 480px) {
+@media (--sm-viewport), (--md-viewport), (--lg-viewport), (--xl-viewport) {
   .Header-container {
     padding: 21px 32px;
   }
@@ -42,7 +42,7 @@
   height: 36px;
 }
 
-@media (min-width: 768px) {
+@media (--md-viewport), (--lg-viewport), (--xl-viewport) {
   .Header-logo {
     width: 31px;
     height: 54px;
@@ -53,7 +53,7 @@
   display: none;
 }
 
-@media (min-width: 1024px) {
+@media (--lg-viewport), (--xl-viewport) {
   .Header-text {
     display: inline-block;
     margin-left: 10px;
@@ -71,7 +71,7 @@
   list-style: none;
 }
 
-@media (min-width: 480px) {
+@media (--sm-viewport), (--md-viewport), (--lg-viewport), (--xl-viewport) {
   .Header-nav {
     left: 50%;
     right: auto;
@@ -101,7 +101,7 @@
   background: currentColor;
 }
 
-@media (min-width: 768px) {
+@media (--md-viewport), (--lg-viewport), (--xl-viewport) {
   .Header-link {
     font-size: 11px;
   }

@@ -65,15 +65,15 @@ function stylesheet (stack) {
 
 function polyfill (stack) {
   if (process.env.NODE_ENV === 'development') return ''
-  var polyfills = stack.opts.polyfill
-  if (!polyfills && polyfills !== false) {
-    polyfills = [
+  var fills = stack.opts.polyfill
+  if (!fills && fills !== false) {
+    fills = [
       'Array.prototype.includes',
       'Array.prototype.find',
       'Array.prototype.findIndex'
     ]
   }
-  return `<script src="https://cdn.polyfill.io/v2/polyfill.min.js${polyfills ? `?features=default,${polyfills.join(',')}` : ''}"></script>`
+  return `<script src="https://cdn.polyfill.io/v2/polyfill.min.js${fills ? `?features=default,${fills.join(',')}` : ''}"></script>`
 }
 
 // clean up borked JSON

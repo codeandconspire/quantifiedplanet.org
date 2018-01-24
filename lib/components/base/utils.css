@@ -34,22 +34,46 @@
  * Color
  */
 
+.u-colorMuted {
+  background-color: var(--color-muted) !important;
+}
+
+.u-colorSmoke {
+  background-color: var(--color-smoke) !important;
+}
+
+.u-colorSilver {
+  background-color: var(--color-silver) !important;
+}
+
 .u-colorSpaceBlue {
-  color: var(--color-space-blue);
+  color: var(--color-space-blue) !important;
 }
 
 .u-colorDataBlue {
-  color: var(--color-data-blue);
+  color: var(--color-data-blue) !important;
 }
 
 /**
- * Background
+ * Backgrounds
  */
 
+.u-bgMuted {
+  background-color: var(--color-muted) !important;
+}
+
+.u-bgSmoke {
+  background-color: var(--color-smoke) !important;
+}
+
+.u-bgSilver {
+  background-color: var(--color-silver) !important;
+}
+
 .u-bgSpaceBlue {
-  background: var(--color-space-blue);
+  background-color: var(--color-space-blue) !important;
 }
 
 .u-bgDataBlue {
-  background: var(--color-data-blue);
+  background: var(--color-data-blue) !important;
 }

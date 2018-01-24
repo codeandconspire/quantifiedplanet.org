@@ -4,6 +4,12 @@
 @import "./index.css";
 @import "./utils.css";
 
+@custom-media --no-viewport (max-width: 479px);
+@custom-media --sm-viewport (min-width: 480px) and (max-width: 767px);
+@custom-media --md-viewport (min-width: 768px) and (max-width: 1024px);
+@custom-media --lg-viewport (min-width: 1024px) and (max-width: 1279px);
+@custom-media --xl-viewport (min-width: 1280px);
+
 /**
  * Colors
  */
@@ -38,7 +44,7 @@
   font-variant-ligatures: common-ligatures;
 }
 
-@media (min-width: 1024px) {
+@media (--lg-viewport) {
   :root {
     font-size: 20px;
   }
