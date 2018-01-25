@@ -2,26 +2,30 @@
 
 @import "../base";
 @import "../text";
+@import "../system";
 
 .Story {
+  position: relative;
+  z-index: 0;
+  background-color: var(--color-data-blue);
 }
 
 .Story-intro {
-  text-align: center;
-  height: 100vh;
-  padding-bottom: 50px;
   box-sizing: content-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: var(--color-space-blue);
-}
+  height: 100vh;
+  padding-bottom: 50px;
 
-.Story-intro.is-fixed {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  z-index: -1;
+
+  text-align: center;
+  background: var(--color-space-blue);
 }
 
 .Story-planet {
@@ -69,21 +73,31 @@
 .Story-overlay {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 100vw;
   z-index: 1;
   height: 100%;
   width: 100%;
   background-color: var(--color-data-blue);
-  background-image: url("/planet-blueprint.png");
+  overflow: hidden;
+  will-change: transform;
+}
+
+.Story-blueprint {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  background-image: url("/planet-blueprint.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 130% auto;
-  -webkit-clip-path: inset(0 0 0 100vw);
-  will-change: -webkit-clip-path;
+  will-change: transform;
 }
 
 @media (--md-viewport), (--lg-viewport), (--xl-viewport) {
-  .Story-overlay {
+  .Story-blueprint {
     background-size: 42% auto;
   }
 }
@@ -105,8 +119,6 @@
 }
 
 .Story-content {
-  position: relative;
-  z-index: 4;
   overflow: hidden;
   padding-top: 100vh;
   margin-top: 100vw;
