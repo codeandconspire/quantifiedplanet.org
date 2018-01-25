@@ -35,6 +35,7 @@
   opacity: 0;
   animation: Story-planet--appear 1000ms 100ms ease-out forwards;
   will-change: transform;
+  pointer-events: none;
 }
 
 @keyframes Story-planet--appear {
@@ -44,16 +45,25 @@
   }
 }
 
+@media (--md-viewport), (--lg-viewport), (--xl-viewport) {
+  .Story-planet {
+    width: 42%;
+  }
+}
+
 .Story-body {
-  padding: 0 1.6rem;
   position: absolute;
-  opacity: 0;
   z-index: 2;
+  padding: 0 1.6rem;
+  width: 100%;
+  opacity: 0;
   animation: Story-body--appear 1000ms 1500ms ease-out forwards;
 }
 
 @keyframes Story-body--appear {
-  to { opacity: 1; }
+  to {
+    opacity: 1;
+  }
 }
 
 .Story-overlay {
@@ -64,12 +74,18 @@
   height: 100%;
   width: 100%;
   background-color: var(--color-data-blue);
-  background-image: url("https://i.imgur.com/sfXv6mB.png");
+  background-image: url("/planet-blueprint.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 130% auto;
   -webkit-clip-path: inset(0 0 0 100vw);
   will-change: -webkit-clip-path;
+}
+
+@media (--md-viewport), (--lg-viewport), (--xl-viewport) {
+  .Story-overlay {
+    background-size: 42% auto;
+  }
 }
 
 /**
@@ -85,6 +101,7 @@
   height: 100%;
   background-color: var(--color-data-blue);
   opacity: 0;
+  pointer-events: none;
 }
 
 .Story-content {
