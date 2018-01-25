@@ -1,0 +1,18 @@
+/* @define System */
+
+.System {
+  width: 100%;
+}
+
+.System-machine {
+  width: calc(25px * 12);
+  height: calc(25px * 12);
+  border: 5px solid #fff;
+  overflow: hidden;
+}
+
+.System-cell {
+  float: left;
+  width: 25px;
+  height: 25px;
+}
