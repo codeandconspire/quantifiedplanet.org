@@ -7,7 +7,7 @@ var serveStatic = require('serve-static')
 var Stack = require('./')
 
 var STATIC = ['assets', 'public', 'content']
-var ASSET_REGEX = /^\/(\w+\/)?(bundle|sw|service-worker)\.(js|css)$/
+var ASSET_REGEX = /^\/(\w+\/)?(bundle|service-worker)\.(js|css)$/
 
 module.exports = Server
 
@@ -83,7 +83,7 @@ Server.prototype.middleware = function (req, res) {
         if (!this.styles) return end(400, 'stack: no css registered with stack')
         return this.styles.middleware(req, res)
       }
-    } else if (asset[2] === 'sw' || asset[2] === 'service-worker') {
+    } else if (asset[2] === 'service-worker') {
       if (!this.sw) return end(400, 'stack: no service worker registered with stack')
       return this.sw.middleware(req, res)
     }
@@ -92,41 +92,24 @@ Server.prototype.middleware = function (req, res) {
   }
 
   this.resolve(req.url, req, res).then(function (state) {
-    switch (req.url) {
-      case '/manifest.json': {
-        self.manifest(state, function (err, data) {
-          if (err) {
-            self.emit('error', err)
-            res.statusCode = 500
-            return res.end()
-          }
-          res.setHeader('Content-Type', 'application/json')
-          res.setHeader('Content-Length', data.length)
-          res.end(data)
-        })
-        break
+    self.document(req.url, state, function (err, buff) {
+      if (err) {
+        self.emit('error', err)
+        res.statusCode = 500
+        return res.end()
       }
-      default: {
-        self.document(req.url, state, function (err, data) {
-          if (err) {
-            self.emit('error', err)
-            res.statusCode = 500
-            return res.end()
-          }
-          if (process.env.NODE_ENV !== 'development') {
-            var hex = this.main.hash.slice(0, 16)
-            res.setHeader('Link', [
-              `</${hex}/bundle.js>; rel=preload; as=script`,
-              this.css ? `</${hex}/bundle.css>; rel=preload; as=style` : null
-            ].filter(Boolean).join(', '))
-          }
-          res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate')
-          res.setHeader('Content-Type', 'text/html')
-          res.setHeader('Content-Length', data.length)
-          res.end(data)
-        })
+      if (process.env.NODE_ENV !== 'development') {
+        var hex = this.main.hash.slice(0, 16)
+        res.setHeader('Link', [
+          `</${hex}/bundle.js>; rel=preload; as=script`,
+          this.css ? `</${hex}/bundle.css>; rel=preload; as=style` : null
+        ].filter(Boolean).join(', '))
       }
-    }
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate')
+      res.setHeader('Content-Type', 'text/html')
+      res.setHeader('Content-Length', buff.length)
+      res.end(buff)
+    })
   })
 
   function end (status, message) {

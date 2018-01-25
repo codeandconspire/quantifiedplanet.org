@@ -41,7 +41,7 @@ function script (stack) {
   if (process.env.NODE_ENV === 'development') {
     return `<script src="/bundle.js" defer></script>`
   }
-  var hex = stack.main.hash.toString('hex').slice(0, 16)
+  var hex = stack.main.hash.slice(0, 16)
   var base64 = `sha512-${stack.main.hash.toString('base64')}`
   var src = `/${hex}/bundle.js`
   return `<script src="${src}" defer integrity="${base64}"></script>`
@@ -52,7 +52,7 @@ function stylesheet (stack) {
     return '<link rel="stylesheet" href="/bundle.css">'
   }
 
-  var hex = stack.main.hash.toString('hex').slice(0, 16)
+  var hex = stack.main.hash.slice(0, 16)
   var link = `/${hex}/bundle.css`
   return `
     <style>

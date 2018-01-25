@@ -1,9 +1,13 @@
+var fs = require('fs')
+var path = require('path')
 var assert = require('assert')
 var dotenv = require('dotenv')
+var mkdirp = require('mkdirp')
 var fresh = require('fresh-require')
 var styles = require('./lib/styles')
 var nanoquery = require('nanoquery')
 var EventEmitter = require('events')
+var getAllRoutes = require('wayfarer/get-all-routes')
 var scripts = require('./lib/scripts')
 var document = require('./lib/document')
 
@@ -101,6 +105,83 @@ Stack.prototype.resolve = function (url) {
   })
 }
 
+Stack.prototype.build = function (dir, done) {
+  var self = this
+
+  this.main.once('update', function (buff) {
+    write(path.join(self.main.hash.substr(0, 16), 'bundle.js'), buff, build)
+  })
+  self.main.bundle()
+
+  function build () {
+    var routes = Object.keys(getAllRoutes(self.app.router.router))
+    var queue = routes.length
+
+    if (self.styles) queue += 1
+    if (self.sw) queue += 1
+
+    routes.forEach(function (route, index) {
+      var href = route.split(/:$/)[0] // remove wayfarer trailing wildcard
+
+      self.emit('build', href, function (err, paths) {
+        if (err) return self.emit('error', err)
+        if (!paths) return
+        assert(Array.isArray(paths), 'stack: paths must be an array')
+        queue += paths.length
+        paths.forEach(function (path) {
+          self.resolve(path).then(function (state) {
+            self.document(path, state, function (err, buff) {
+              if (err) return self.emit('error', err)
+              write(path.join(path, 'index.html'), buff, next)
+            })
+          })
+        })
+      })
+
+      if (/\/:/.test(href)) {
+        queue -= 1 // can't render unresolved routes
+      } else {
+        self.resolve(href).then(function (state) {
+          self.document(href, state, function (err, buff) {
+            if (err) return self.emit('error', err)
+            write(path.join(href, 'index.html'), buff, next)
+          })
+        })
+      }
+    })
+
+    if (self.styles) {
+      self.styles.once('update', function (buff) {
+        write(path.join(self.main.hash.substr(0, 16), 'bundle.css'), buff, next)
+      })
+      self.styles.bundle()
+    }
+
+    if (self.sw) {
+      self.sw.once('update', function (buff) {
+        write('service-worker.js', buff, next)
+      })
+      self.sw.bundle()
+    }
+
+    function next (file, data) {
+      queue -= 1
+      if (queue === 0) done(null)
+    }
+  }
+
+  function write (file, buff, callback) {
+    file = path.resolve(dir, file)
+    mkdirp(path.dirname(file), function (err) {
+      if (err) return self.emit('error', err)
+      fs.writeFile(file, buff, function (err) {
+        if (err) return self.emit('error', err)
+        if (callback) callback()
+      })
+    })
+  }
+}
+
 Stack.prototype.document = function (href, state, done) {
   assert(typeof href === 'string', 'stack: href must be a string')
   assert(typeof state === 'object', 'stack: state must be an object')
@@ -109,22 +190,7 @@ Stack.prototype.document = function (href, state, done) {
   try {
     var body = this.app.toString(href, state)
     state = Object.assign({}, state, this.app.state)
-    done(null, document(state, body, this))
-  } catch (err) {
-    done(err)
-  }
-}
-
-Stack.prototype.manifest = function (state, done) {
-  try {
-    done(null, Buffer.from(JSON.stringify({
-      name: state.meta.site_name,
-      short_name: state.meta.short_name || state.meta.site_name,
-      start_url: '/',
-      display: 'minimal-ui',
-      background_color: state.meta.color || '#fff',
-      theme_color: state.meta.color || '#fff'
-    })))
+    done(null, Buffer.from(document(state, body, this)))
   } catch (err) {
     done(err)
   }

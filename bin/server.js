@@ -10,8 +10,36 @@ const server = new Server(path.resolve('index.js'), {
   css: path.resolve('lib/index.css')
 })
 
-server.use('/manifest.json', prismic, async function (state, req, res) {
-  state.pages.push(await req.prismic.getSingle('website'))
+server.on('build', function (route, callback) {
+  switch (route) {
+    case '/:page': {
+      Prismic.api(ENDPOINT).then(function (api) {
+        api.query(
+          Prismic.Predicates.at('document.type', 'page')
+        ).then(function (response) {
+          callback(null, response.results.map(doc => `/${doc.uid}`))
+        }).catch(callback)
+      })
+      break
+    }
+    case '/:page/:section': {
+      Prismic.api(ENDPOINT).then(function (api) {
+        api.query(
+          Prismic.Predicates.at('document.type', 'page')
+        ).then(function (response) {
+          callback(null, response.results.reduce(function (routes, doc) {
+            const headings = doc.data.body.filter(slice => slice.slice_type === 'heading')
+            return routes.concat(headings.map(slice => {
+              const text = asText(slice.primary.heading).trim()
+              return `/${doc.uid}/${friendlyUrl(text)}`
+            }))
+          }, []))
+        }).catch(callback)
+      })
+      break
+    }
+    default: callback(null)
+  }
 })
 
 server.use('/', prismic, async function (state, req, res) {
@@ -67,4 +95,5 @@ async function prismic (state, req, res) {
   req.prismic = await Prismic.api(ENDPOINT)
 }
 
-server.start()
+// server.start()
+server.build('dist')

@@ -32,6 +32,7 @@
     "fresh-require": "^1.0.3",
     "inline-source-map-comment": "^1.0.5",
     "localenvify": "^1.0.1",
+    "mkdirp": "^0.5.1",
     "nanoquery": "^1.2.0",
     "normalize.css": "^7.0.0",
     "postcss": "^6.0.16",
