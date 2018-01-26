@@ -1,4 +1,5 @@
 var fs = require('fs')
+var zlib = require('zlib')
 var path = require('path')
 var assert = require('assert')
 var dotenv = require('dotenv')
@@ -155,15 +156,29 @@ Stack.prototype.build = function (dir, done) {
     }
   }
 
-  function write (file, buff, callback) {
-    file = path.resolve(dir, file.replace(/^\//, ''))
-    mkdirp(path.dirname(file), function (err) {
+  function write (filename, buff, callback) {
+    filename = path.resolve(dir, filename.replace(/^\//, ''))
+
+    mkdirp(path.dirname(filename), function (err) {
       if (err) return self.emit('error', err)
-      fs.writeFile(file, buff, function (err) {
+
+      var ops = 2
+
+      fs.writeFile(filename, buff, onwrite(filename))
+      zlib.gzip(buff, function (err, compressed) {
         if (err) return self.emit('error', err)
-        self.emit('log', `write file: ${file}`)
-        if (callback) callback()
+        var outfile = filename + '.gz'
+        fs.writeFile(outfile, compressed, onwrite(outfile))
       })
+
+      function onwrite (filename) {
+        return function (err) {
+          if (err) return self.emit('error', err)
+          self.emit('log', `write file: ${filename}`)
+          ops -= 1
+          if (ops === 0) callback()
+        }
+      }
     })
   }
 }
