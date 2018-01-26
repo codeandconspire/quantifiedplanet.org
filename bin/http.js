@@ -24,7 +24,7 @@ Server.prototype.start = function (port, callback) {
   port = port || process.env.PORT || 8080
 
   assert(!isNaN(+port), 'stack: port cannot be not a number 🤪')
-  assert(typeof callback === 'function', 'stack: callback must be a function')
+  assert(typeof callback === 'function', 'stack: callback should be a function')
 
   var self = this
   var dirs = []
@@ -91,47 +91,21 @@ Server.prototype.middleware = function (req, res) {
     return end(400, 'stack: asset not recognized')
   }
 
-  try {
-    // try and get handler for route
-    var handler = this.app.router.match(req.url).cb
-
-    // populate state with route params and whatnot
-    var props = this.app._matchRoute(req.url)
-
-    var ctx = {
-      req: req,
-      res: res,
-      href: props.href,
-      query: props.query,
-      route: props.route,
-      params: props.params
+  var ctx = { req: req, res: res }
+  this.getInitialState(req.url, ctx, function (err, state) {
+    if (err) {
+      self.emit('error', err)
+      return end(500, err.message)
     }
 
-    if (typeof handler.getInitialState === 'function') {
-      handler.getInitialState(ctx, function (err, state) {
-        if (err) {
-          self.emit('error', err)
-          end(500, err.message)
-        } else {
-          render(Object.assign(self.getInitialState(), state))
-        }
-      })
-    } else {
-      render(self.getInitialState())
-    }
-  } catch (err) {
-    end(404, err.message)
-  }
-
-  function render (state) {
-    self.document(req.url, state, function (err, buff) {
+    self.toString(req.url, state, function (err, buff) {
       if (err) {
         self.emit('error', err)
         return end(500, err.message)
       }
 
       if (process.env.NODE_ENV !== 'development') {
-        var hex = this.main.hash.slice(0, 16)
+        var hex = this.main.hash.toString('hex').slice(0, 16)
         res.setHeader('Link', [
           `</${hex}/bundle.js>; rel=preload; as=script`,
           this.css ? `</${hex}/bundle.css>; rel=preload; as=style` : null
@@ -143,7 +117,7 @@ Server.prototype.middleware = function (req, res) {
       res.setHeader('Content-Length', buff.length)
       res.end(buff)
     })
-  }
+  })
 
   function end (status, message) {
     res.statusCode = status

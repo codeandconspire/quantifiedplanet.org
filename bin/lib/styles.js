@@ -13,7 +13,7 @@ var readFile = util.promisify(fs.readFile)
 module.exports = styles
 
 function styles (entry) {
-  assert(typeof entry === 'string', 'stack: css entry path must be a string')
+  assert(typeof entry === 'string', 'stack: css entry path should be a string')
 
   var from = path.resolve(entry)
   var watcher = new Watcher()
@@ -24,7 +24,7 @@ function styles (entry) {
     build = bundle()
   })
   watcher.on('update', function (buff) {
-    watcher.hash = crypto.createHash('sha256').update(buff).digest('hex')
+    watcher.hash = crypto.createHash('sha512').update(buff).digest('buffer')
   })
   watcher.middleware = function (req, res) {
     build.then(function (buff) {

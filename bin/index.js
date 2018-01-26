@@ -5,7 +5,6 @@ var dotenv = require('dotenv')
 var mkdirp = require('mkdirp')
 var fresh = require('fresh-require')
 var styles = require('./lib/styles')
-var nanoquery = require('nanoquery')
 var EventEmitter = require('events')
 var getAllRoutes = require('wayfarer/get-all-routes')
 var scripts = require('./lib/scripts')
@@ -21,13 +20,7 @@ function Stack (entry, opts) {
   if (opts.env !== false) dotenv.config({ env: opts.env })
 
   var self = this
-  this.catchall = []
   this.app = fresh(entry, require)
-
-  var initialState = JSON.stringify(this.app.state)
-  this.getInitialState = function () {
-    return Object.assign({meta: {}}, JSON.parse(initialState))
-  }
 
   this._isBuilding = false
   this.main = scripts(entry)
@@ -35,7 +28,6 @@ function Stack (entry, opts) {
     self._isBuilding = true
     try {
       self.app = fresh(entry, require)
-      initialState = JSON.stringify(self.app.state)
     } catch (err) {
       self.emit('error', err)
     }
@@ -58,58 +50,47 @@ function Stack (entry, opts) {
 Stack.prototype = Object.create(EventEmitter.prototype)
 Stack.prototype.constructor = Stack
 
-Stack.prototype.use = function (route) {
-  var middlewares = []
-  for (var i = 1, len = arguments.length; i < len; i++) {
-    assert(typeof arguments[i] === 'function', 'stack: middleware must be a function')
-    middlewares.push(arguments[i])
+Stack.prototype.getInitialState = function (href, ctx, done) {
+  if (typeof ctx === 'function') {
+    done = ctx
+    ctx = {}
   }
 
-  if (typeof route === 'function') {
-    middlewares.unshift(route)
-    this.catchall.push.apply(this.catchall, middlewares)
-  } else {
-    assert(typeof route === 'string', 'stack: route must be a string')
-    this.router.on(route, function (params, state, req, res) {
-      state.route = route
-      state.params = params
-      return middlewares.reduce(function (prev, next) {
-        return prev.then(function () {
-          return next(state, req, res)
-        })
-      }, Promise.resolve())
-    })
-  }
-}
+  try {
+    // try and get handler for route
+    var handler = this.app.router.match(href).cb
 
-Stack.prototype.resolve = function (url) {
-  var self = this
-  var state = this.getInitialState()
+    // populate state with route params and whatnot
+    var props = this.app._matchRoute(href)
 
-  var args = [state]
-  for (var i = 1, len = arguments.length; i < len; i++) {
-    args.push(arguments[i])
-  }
+    // pluck out route specific props form app state
+    ctx.href = props.href
+    ctx.query = props.query
+    ctx.route = props.route
+    ctx.params = props.params
 
-  state.href = url.replace(/\?.+$/, '')
-  state.query = nanoquery(url)
-
-  return this.router.emit.apply(this.router, [url].concat(args)).catch().then(function () {
-    return self.catchall.reduce(function (prev, next) {
-      return prev.then(function () {
-        return next.apply(this, args)
+    if (typeof handler.getInitialState === 'function') {
+      handler.getInitialState(ctx, function (err, state) {
+        if (err) return done(err)
+        done(null, state)
       })
-    }, Promise.resolve())
-  }).then(function () {
-    return state
-  })
+    } else {
+      done(null, {})
+    }
+  } catch (err) {
+    done(err)
+  }
 }
 
 Stack.prototype.build = function (dir, done) {
   var self = this
+  var hash = ''
 
   this.main.once('update', function (buff) {
-    write(path.join(self.main.hash.substr(0, 16), 'bundle.js'), buff, build)
+    if (process.env.NODE_ENV !== 'development') {
+      hash = self.main.hash.toString('hex').substr(0, 16)
+    }
+    write(path.join(hash, 'bundle.js'), buff, build)
   })
   self.main.bundle()
 
@@ -123,26 +104,30 @@ Stack.prototype.build = function (dir, done) {
     routes.forEach(function (route, index) {
       var href = route.split(/:$/)[0] // remove wayfarer trailing wildcard
 
-      self.emit('build', href, function (err, paths) {
+      self.emit('build', href, function (err, urls) {
         if (err) return self.emit('error', err)
-        if (!paths) return
-        assert(Array.isArray(paths), 'stack: paths must be an array')
-        queue += paths.length
-        paths.forEach(function (path) {
-          self.resolve(path).then(function (state) {
-            self.document(path, state, function (err, buff) {
+        if (!urls) return
+
+        assert(Array.isArray(urls), 'stack: urls should be an array')
+
+        queue += urls.length
+        urls.forEach(function (url) {
+          self.getInitialState(url, function (err, state) {
+            if (err) return self.emit('error', err)
+            self.toString(url, state, function (err, buff) {
               if (err) return self.emit('error', err)
-              write(path.join(path, 'index.html'), buff, next)
+              write(path.join(url, 'index.html'), buff, next)
             })
           })
         })
       })
 
       if (/\/:/.test(href)) {
-        queue -= 1 // can't render unresolved routes
+        queue -= 1 // can't render partials
       } else {
-        self.resolve(href).then(function (state) {
-          self.document(href, state, function (err, buff) {
+        self.getInitialState(href, function (err, state) {
+          if (err) return self.emit('error', err)
+          self.toString(href, state, function (err, buff) {
             if (err) return self.emit('error', err)
             write(path.join(href, 'index.html'), buff, next)
           })
@@ -152,7 +137,7 @@ Stack.prototype.build = function (dir, done) {
 
     if (self.styles) {
       self.styles.once('update', function (buff) {
-        write(path.join(self.main.hash.substr(0, 16), 'bundle.css'), buff, next)
+        write(path.join(hash, 'bundle.css'), buff, next)
       })
       self.styles.bundle()
     }
@@ -171,21 +156,22 @@ Stack.prototype.build = function (dir, done) {
   }
 
   function write (file, buff, callback) {
-    file = path.resolve(dir, file)
+    file = path.resolve(dir, file.replace(/^\//, ''))
     mkdirp(path.dirname(file), function (err) {
       if (err) return self.emit('error', err)
       fs.writeFile(file, buff, function (err) {
         if (err) return self.emit('error', err)
+        self.emit('log', `write file: ${file}`)
         if (callback) callback()
       })
     })
   }
 }
 
-Stack.prototype.document = function (href, state, done) {
-  assert(typeof href === 'string', 'stack: href must be a string')
-  assert(typeof state === 'object', 'stack: state must be an object')
-  assert(typeof done === 'function', 'stack: done must be a function')
+Stack.prototype.toString = function (href, state, done) {
+  assert(typeof href === 'string', 'stack: href should be a string')
+  assert(typeof state === 'object', 'stack: state should be an object')
+  assert(typeof done === 'function', 'stack: done should be a function')
 
   try {
     var body = this.app.toString(href, state)

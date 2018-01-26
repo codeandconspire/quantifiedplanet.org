@@ -23,18 +23,18 @@
   },
   "homepage": "https://github.com/codeandconspire/quantifiedplanet.org#readme",
   "devDependencies": {
+    "autoprefixer": "^7.2.5",
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babelify": "^8.0.0",
     "browserify": "^15.2.0",
     "choo-devtools": "^2.3.3",
+    "cssnano": "^3.10.0",
     "dotenv": "^4.0.0",
+    "envify": "^4.1.0",
     "fresh-require": "^1.0.3",
     "inline-source-map-comment": "^1.0.5",
-    "localenvify": "^1.0.1",
     "mkdirp": "^0.5.1",
-    "nanoquery": "^1.2.0",
-    "nanotiming": "^7.2.0",
     "normalize.css": "^7.0.0",
     "postcss": "^6.0.16",
     "postcss-color-function": "^4.0.1",
@@ -45,12 +45,10 @@
     "postcss-selector-matches": "^3.0.1",
     "postcss-url": "^7.3.0",
     "postcss-watcher": "^1.0.4",
-    "prismic-element": "^0.7.0",
-    "prismic-javascript": "^1.5.0-beta.1",
-    "prismic-richtext": "^0.4.0",
     "serve-static": "^1.13.1",
     "source-map-support": "^0.5.2",
     "standard": "^10.0.3",
+    "tinyify": "^2.4.0",
     "watchify-middleware": "^1.6.0",
     "wayfarer": "^6.6.3",
     "yo-yoify": "^4.3.0"
@@ -61,6 +59,10 @@
     "nanobus": "^4.3.2",
     "nanocomponent": "^6.5.0",
     "nanoraf": "^3.0.1",
-    "nanostate": "^1.1.0"
+    "nanostate": "^1.1.0",
+    "nanotiming": "^7.2.0",
+    "prismic-element": "^0.7.0",
+    "prismic-javascript": "^1.5.0-beta.1",
+    "prismic-richtext": "^0.2.7"
   }
 }

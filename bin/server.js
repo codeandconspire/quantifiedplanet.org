@@ -42,5 +42,7 @@ server.on('build', function (route, callback) {
   }
 })
 
-server.start()
-// server.build('dist')
+// server.start()
+server.build('dist', function () {
+  console.log('DONE!')
+})

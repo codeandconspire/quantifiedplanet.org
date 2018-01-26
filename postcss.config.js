@@ -18,9 +18,7 @@ function config (ctx) {
 
   if (ctx.env !== 'development') {
     plugins.push(
-      require('autoprefixer')({
-        browsers: [ 'last 2 versions', 'ie >= 9', 'Firefox ESR' ]
-      }),
+      require('autoprefixer')(),
       require('cssnano')({ preset: 'default' })
     )
   }
