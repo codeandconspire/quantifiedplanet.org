@@ -2,6 +2,7 @@ var fs = require('fs')
 var zlib = require('zlib')
 var path = require('path')
 var http = require('http')
+var ncp = require('ncp')
 var assert = require('assert')
 var dotenv = require('dotenv')
 var mkdirp = require('mkdirp')
@@ -155,7 +156,14 @@ Stack.prototype.build = function (dir, done) {
       self.sw.bundle()
     }
 
-    function next (file, data) {
+    queue += STATIC.length
+    STATIC.forEach(function (name) {
+      var from = path.resolve(path.dirname(self.opts.entry), name)
+      var to = path.resolve(dir)
+      ncp(from, to, next)
+    })
+
+    function next () {
       queue -= 1
       if (queue === 0) done(null)
     }
