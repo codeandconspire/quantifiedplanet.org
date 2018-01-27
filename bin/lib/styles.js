@@ -12,7 +12,7 @@ var readFile = util.promisify(fs.readFile)
 
 module.exports = styles
 
-function styles (entry) {
+function styles (entry, opts) {
   assert(typeof entry === 'string', 'stack: css entry path should be a string')
 
   var from = path.resolve(entry)

@@ -10,11 +10,11 @@ var watchify = require('watchify-middleware')
 
 module.exports = scripts
 
-function scripts (entry) {
+function scripts (entry, opts) {
   assert(typeof entry === 'string', 'stack: script entry path should be a string')
 
   var bundle = browserify(entry, {
-    fullPaths: true,
+    fullPaths: opts.fullPaths || process.env.NODE_ENV === 'development',
     debug: process.env.NODE_ENV === 'development'
   })
 
