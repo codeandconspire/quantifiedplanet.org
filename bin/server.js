@@ -2,15 +2,15 @@ const path = require('path')
 const Prismic = require('prismic-javascript')
 const { asText } = require('prismic-richtext')
 const { friendlyUrl } = require('../lib/components/base')
-const Server = require('./http')
+const Stack = require('./index')
 
 const ENDPOINT = 'https://quantifiedplanet.cdn.prismic.io/api/v2'
 
-const server = new Server(path.resolve('index.js'), {
+const stack = new Stack(path.resolve('index.js'), {
   css: path.resolve('lib/index.css')
 })
 
-server.on('build', function (route, callback) {
+stack.on('build', function (route, callback) {
   switch (route) {
     case '/:page': {
       Prismic.api(ENDPOINT).then(function (api) {
@@ -43,6 +43,6 @@ server.on('build', function (route, callback) {
 })
 
 // server.start()
-server.build('dist', function () {
+stack.build('dist', function () {
   console.log('DONE!')
 })

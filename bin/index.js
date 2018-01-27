@@ -1,15 +1,20 @@
 var fs = require('fs')
 var zlib = require('zlib')
 var path = require('path')
+var http = require('http')
 var assert = require('assert')
 var dotenv = require('dotenv')
 var mkdirp = require('mkdirp')
 var fresh = require('fresh-require')
 var styles = require('./lib/styles')
 var EventEmitter = require('events')
+var serveStatic = require('serve-static')
 var getAllRoutes = require('wayfarer/get-all-routes')
 var scripts = require('./lib/scripts')
 var document = require('./lib/document')
+
+var STATIC = ['assets', 'public', 'content']
+var ASSET_REGEX = /^\/(\w+\/)?(bundle|service-worker)\.(js|css)$/
 
 module.exports = Stack
 
@@ -24,7 +29,7 @@ function Stack (entry, opts) {
   this.app = fresh(entry, require)
 
   this._isBuilding = false
-  this.main = scripts(entry)
+  this.main = scripts(entry, opts)
   this.main.on('pending', function () {
     self._isBuilding = true
     try {
@@ -37,8 +42,8 @@ function Stack (entry, opts) {
     self._isBuilding = false
   })
 
-  if (opts.sw) this.sw = scripts(opts.sw)
-  if (opts.css) this.styles = styles(opts.css)
+  if (opts.sw) this.sw = scripts(opts.sw, opts)
+  if (opts.css) this.styles = styles(opts.css, opts)
 
   this.on('log', function (data) {
     console.log(data)
@@ -180,6 +185,113 @@ Stack.prototype.build = function (dir, done) {
         }
       }
     })
+  }
+}
+
+Stack.prototype.start = function (port, callback) {
+  callback = callback || function () {}
+  port = port || process.env.PORT || 8080
+
+  assert(!isNaN(+port), 'stack: port cannot be not a number 🤪')
+  assert(typeof callback === 'function', 'stack: callback should be a function')
+
+  var self = this
+  var dirs = []
+  var queue = STATIC.length - 1
+  for (var i = 0, len = STATIC.length; i < len; i++) {
+    lookup(path.resolve(path.dirname(this.opts.entry), STATIC[i]))
+  }
+
+  function lookup (dir) {
+    fs.lstat(dir, function (err, stats) {
+      if (!err && stats.isDirectory()) dirs.push(dir)
+      if (queue-- === 0) start()
+    })
+  }
+
+  function start () {
+    var serve = dirs.reduceRight(function (prev, dir) {
+      var middleware = serveStatic(dir)
+      return function (req, res, next) {
+        prev(req, res, function () {
+          middleware(req, res, next)
+        })
+      }
+    }, function (req, res, next) {
+      next(req, res)
+    })
+
+    var server = http.createServer(function (req, res) {
+      serve(req, res, function () {
+        self.middleware(req, res, function () {
+          res.statusCode = 404
+          res.end()
+        })
+      })
+    })
+
+    server.listen(port, function () {
+      console.info(`> Server listening @ http://localhost:${port}`)
+      callback()
+    })
+  }
+}
+
+Stack.prototype.middleware = function (req, res) {
+  var self = this
+  var asset = req.url.match(ASSET_REGEX)
+
+  if (asset) {
+    if (asset[1] && process.env.NODE_ENV === 'development') {
+      return end(400, 'stack: hashed assets not available during development')
+    }
+
+    if (asset[2] === 'bundle') {
+      if (asset[3] === 'js') return this.main.middleware(req, res)
+      if (asset[3] === 'css') {
+        if (!this.styles) return end(400, 'stack: no css registered with stack')
+        return this.styles.middleware(req, res)
+      }
+    } else if (asset[2] === 'service-worker') {
+      if (!this.sw) return end(400, 'stack: no service worker registered with stack')
+      return this.sw.middleware(req, res)
+    }
+
+    return end(400, 'stack: asset not recognized')
+  }
+
+  var ctx = { req: req, res: res }
+  this.getInitialState(req.url, ctx, function (err, state) {
+    if (err) {
+      self.emit('error', err)
+      return end(500, err.message)
+    }
+
+    self.toString(req.url, state, function (err, buff) {
+      if (err) {
+        self.emit('error', err)
+        return end(500, err.message)
+      }
+
+      if (process.env.NODE_ENV !== 'development') {
+        var hex = this.main.hash.toString('hex').slice(0, 16)
+        res.setHeader('Link', [
+          `</${hex}/bundle.js>; rel=preload; as=script`,
+          this.css ? `</${hex}/bundle.css>; rel=preload; as=style` : null
+        ].filter(Boolean).join(', '))
+      }
+
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate')
+      res.setHeader('Content-Type', 'text/html')
+      res.setHeader('Content-Length', buff.length)
+      res.end(buff)
+    })
+  })
+
+  function end (status, message) {
+    res.statusCode = status
+    res.statusMessage = message
+    res.end()
   }
 }
 
