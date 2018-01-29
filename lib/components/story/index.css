@@ -121,7 +121,7 @@
 .Story-content {
   overflow: hidden;
   padding-top: 100vh;
-  margin-top: 100vw;
+  border-top: 100vw solid tranparent;
 }
 
 /**
@@ -161,13 +161,4 @@
   z-index: 3;
   overflow: hidden;
   padding: 6rem 0;
-}
-
-.Story-block--dark {
-  background-color: var(--color-space-blue);
-  text-align: center;
-}
-
-.Story-logo {
-  margin: 0 auto 3rem;
 }

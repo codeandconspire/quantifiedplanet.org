@@ -1,0 +1,43 @@
+/* @define Goals */
+
+.Goals {
+  position: relative;
+  z-index: 3;
+  background-color: var(--color-space-blue);
+  text-align: center;
+}
+
+.Goals-grid {
+  position: relative;
+  width: 100%;
+  background-color: var(--color-data-blue);
+}
+
+.Goals-item {
+  width: 50%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.Goals-item--11 {
+  top: 100%;
+  background: #FD9D24;
+}
+
+.Goals-item--13 {
+  left: 50%;
+  top: 50%;
+  background: #3F7E44;
+}
+
+.Goals-item--15 {
+  position: relative;
+  display: block;
+  background: #56C02B;
+}
+
+.Goals-logo {
+  margin: 10rem auto 3rem;
+}
