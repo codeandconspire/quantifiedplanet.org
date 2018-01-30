@@ -15,14 +15,17 @@ server.use('/manifest.json', prismic, async function (state, req, res) {
 })
 
 server.use('/', prismic, async function (state, req, res) {
+  state.routeName = 'homepage'
   state.pages.push(await req.prismic.getSingle('homepage'))
 })
 
 server.use('/:page', prismic, async function (state, req, res) {
+  state.routeName = 'page'
   state.pages.push(await req.prismic.getByUID('page', state.params.page))
 })
 
 server.use('/:page/:section', prismic, async function (state, req, res) {
+  state.routeName = 'page'
   state.pages.push(await req.prismic.getByUID('page', state.params.page))
 })
 

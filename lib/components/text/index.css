@@ -12,6 +12,32 @@
   letter-spacing: 0.03em;
 }
 
+.Text small {
+  font-size: 1rem;
+}
+
+.Text :link {
+  text-decoration: underline;
+}
+
+@supports (background-color: var(--color-background)) {
+  .Text :link {
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 2px solid currentColor;
+    line-height: 0.95;
+    text-shadow:
+      1.5px 1.5px var(--color-background),
+      1.5px -1.5px var(--color-background),
+      -1.5px 1.5px var(--color-background),
+      -1.5px -1.5px var(--color-background);
+  }
+}
+
+.Text--lg {
+  font-size: calc(20rem / 16);
+}
+
 .Text h1,
 .Text h2,
 .Text h3,

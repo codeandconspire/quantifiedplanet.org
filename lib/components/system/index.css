@@ -1,19 +1,64 @@
 /* @define System */
 
+@import "../base";
+@import "../text";
+
 .System {
+  display: flex;
+  flex-wrap: wrap;
   width: 100%;
-  padding: 25rem 0;
+  margin-top: -50vh;
+}
+
+.System-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 0 1 calc(100% / 5);
+  height: 100vh;
+}
+
+.System-col--machine {
+  flex: 1 0 calc((100% / 5) * 3);
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+.System-col--z1 {
+  z-index: 1;
+}
+
+.System-col--z2 {
+  z-index: 2;
+}
+
+.System-col--z3 {
+  z-index: 3;
 }
 
 .System-machine {
-  width: calc(25px * 12);
-  height: calc(25px * 12);
-  border: 5px solid #fff;
+  box-sizing: content-box;
+  width: calc(35px * 12);
+  height: calc(35px * 12);
+  padding: calc(35px / 2);
   overflow: hidden;
 }
 
+.System-machine--numbers {
+  border: 5px solid #fff;
+}
+
 .System-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   float: left;
-  width: 25px;
-  height: 25px;
+  width: 35px;
+  height: 35px;
+  font-family: monospace;
+  font-size: 14px;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: none;
 }

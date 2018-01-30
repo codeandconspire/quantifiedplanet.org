@@ -8,7 +8,7 @@
   height: calc(40rem / 16);
   padding: calc(11rem / 16);
 
-  color: var(--color-document);
+  color: var(--color-text);
   background-color: currentColor;
   border-radius: calc(20rem / 16);
   transform-origin: 50% 50%;

@@ -5,9 +5,11 @@
 @import "../system";
 
 .Story {
+  --color-background: var(--color-data-blue);
+
   position: relative;
   z-index: 0;
-  background-color: var(--color-data-blue);
+  background-color: var(--color-background);
 }
 
 .Story-intro {
@@ -119,9 +121,7 @@
 }
 
 .Story-content {
-  overflow: hidden;
   padding-top: 100vh;
-  border-top: 100vw solid tranparent;
 }
 
 /**
