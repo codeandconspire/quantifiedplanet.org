@@ -2,15 +2,9 @@
 
 .Goals {
   position: relative;
-  z-index: 3;
-  background-color: var(--color-space-blue);
-  text-align: center;
-}
-
-.Goals-grid {
-  position: relative;
   width: 100%;
   background-color: var(--color-data-blue);
+  z-index: 4;
 }
 
 .Goals-item {
@@ -19,6 +13,12 @@
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.Goals-icon {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .Goals-item--11 {
@@ -38,6 +38,49 @@
   background: #56C02B;
 }
 
-.Goals-logo {
-  margin: 10rem auto 3rem;
+.Goal-desc {
+  display: none;
+}
+
+@media (--md-viewport), (--lg-viewport), (--xl-viewport) {
+  .Goals-item {
+    overflow: hidden;
+    height: 0;
+    padding-bottom: 70%;
+  }
+
+  .Goal-desc {
+    display: block;
+    padding: 4rem 2.4rem;
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    max-width: 22rem;
+  }
+
+  .Goals-icon {
+    width: 70%;
+    max-width: 340px;
+    margin: 0.8rem;
+  }
+}
+
+@media (--lg-viewport), (--xl-viewport) {
+  .Goals-item {
+    width: calc(100% / 3);
+    padding-bottom: 50%;
+  }
+
+  .Goals-item--11 {
+    left: 0;
+  }
+
+  .Goals-item--13 {
+    left: calc(100% / 3);
+  }
+
+  .Goals-item--15 {
+    left: calc((100% / 3) * 2);
+  }
 }

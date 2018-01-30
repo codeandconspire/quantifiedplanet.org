@@ -162,3 +162,12 @@
   overflow: hidden;
   padding: 6rem 0;
 }
+
+.Story-block--dark {
+  background-color: var(--color-space-blue);
+  text-align: center;
+}
+
+.Story-logo {
+  margin: 10rem auto 3rem;
+}

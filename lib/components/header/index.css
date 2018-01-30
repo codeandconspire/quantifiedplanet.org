@@ -94,11 +94,10 @@
 .Header-link.is-active::after {
   content: "";
   height: 1px;
-  width: calc(100% - 2em);
-  position: absolute;
-  left: 1em;
-  bottom: 4px;
+  position: relative;
+  bottom: -6px;
   background: currentColor;
+  display: block;
 }
 
 @media (--md-viewport), (--lg-viewport), (--xl-viewport) {
