@@ -15,14 +15,12 @@ module.exports = styles
 function styles (entry, opts) {
   assert(typeof entry === 'string', 'stack: css entry path should be a string')
 
-  var from = path.resolve(entry)
+  var build
   var watcher = new Watcher()
-  var build = bundle()
+  var from = path.resolve(entry)
 
   watcher.bundle = bundle
-  watcher.on('change', function () {
-    build = bundle()
-  })
+  watcher.on('change', bundle)
   watcher.on('update', function (buff) {
     watcher.hash = crypto.createHash('sha512').update(buff).digest('buffer')
   })
@@ -38,18 +36,19 @@ function styles (entry, opts) {
     })
   }
 
+  bundle()
+
   return watcher
 
-  function bundle () {
-    return postcssrc({
+  function bundle (to) {
+    build = postcssrc({
       from: from,
       map: process.env.NODE_ENV === 'development' ? 'inline' : false
     }).then(function (config) {
       var processor = postcss(config.plugins.concat(watcher.plugin()))
+      var opts = Object.assign({ from: from, to: to }, config.options)
 
       return readFile(from, 'utf8').then(function (src) {
-        var opts = Object.assign({ from: from }, config.options)
-
         return processor.process(src, opts).then(function (result) {
           var css = result.css
 
