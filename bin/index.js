@@ -106,6 +106,9 @@ Stack.prototype.resolve = function (route, callback) {
 }
 
 Stack.prototype.build = function (dir, done) {
+  assert(typeof dir === 'string', 'stack: build dir should be a string')
+  assert(!done || typeof done === 'function', 'stack: done sohuld be a function')
+
   var self = this
   var hash = ''
 
@@ -194,9 +197,10 @@ Stack.prototype.build = function (dir, done) {
       })
 
       function onwrite (filename) {
+        var short = filename.replace(new RegExp(`^.*?\\/${dir}`), 'dir')
         return function (err) {
           if (err) return self.emit('error', err)
-          self.emit('log', `write file: ${filename}`)
+          self.emit('log', `write file: ${short}`)
           ops -= 1
           if (ops === 0) callback()
         }

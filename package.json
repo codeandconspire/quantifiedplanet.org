@@ -5,12 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "standard",
-    "start": "node bin/server.js",
-    "debug": "node --inspect bin/server.js",
-    "build": "node bin/build.js"
+    "start": "./bin/bin.js start index.js",
+    "build": "./bin/bin.js build index.js --dir dist"
   },
-  "browserify": {
-    "transform": []
+  "bin": {
+    "stack": "bin/bin.js"
   },
   "repository": {
     "type": "git",
@@ -28,12 +27,15 @@
     "babel-preset-env": "^1.6.1",
     "babelify": "^8.0.0",
     "browserify": "^15.2.0",
+    "chalk": "^2.3.0",
     "choo-devtools": "^2.3.3",
     "cssnano": "^3.10.0",
+    "dedent": "^0.7.0",
     "dotenv": "^4.0.0",
     "envify": "^4.1.0",
     "fresh-require": "^1.0.3",
     "inline-source-map-comment": "^1.0.5",
+    "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
     "ncp": "^2.0.0",
     "normalize.css": "^7.0.0",

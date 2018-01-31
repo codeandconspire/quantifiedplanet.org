@@ -36,8 +36,4 @@ stack.resolve('/:page/:section', function (callback) {
   })
 })
 
-stack.start()
-// stack.build('dist', function () {
-//   console.log('DONE!')
-//   stack.close()
-// })
+module.exports = stack
