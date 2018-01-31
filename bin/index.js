@@ -245,7 +245,7 @@ Stack.prototype.start = function (port, callback) {
   }
 }
 
-Stack.prototype.middleware = function (req, res) {
+Stack.prototype.middleware = function (req, res, next) {
   var self = this
   var asset = req.url.match(ASSET_REGEX)
 
@@ -297,6 +297,7 @@ Stack.prototype.middleware = function (req, res) {
   })
 
   function end (status, message) {
+    if (typeof next === 'function') return next()
     res.statusCode = status
     res.statusMessage = message
     res.end()

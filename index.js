@@ -1,25 +1,48 @@
-const App = require('./lib/app')
+const path = require('path')
+const Prismic = require('prismic-javascript')
+const { asText } = require('prismic-richtext')
+const { friendlyUrl } = require('../lib/components/base')
+const Stack = require('./index')
 
-const app = new App()
+const ENDPOINT = 'https://quantifiedplanet.cdn.prismic.io/api/v2'
 
-if (process.env.NODE_ENV === 'development') {
-  app.use(require('choo-devtools')())
-}
+const stack = new Stack(path.resolve('index.js'), {
+  css: path.resolve('lib/index.css')
+})
 
-// expose route patterns on state for reverse engineering (document -> route)
-const routes = app.state.routes = {
-  homepage: '/',
-  page: '/:page',
-  section: '/:page/:section'
-}
+stack.on('build', function (route, callback) {
+  switch (route) {
+    case '/:page': {
+      Prismic.api(ENDPOINT).then(function (api) {
+        api.query(
+          Prismic.Predicates.at('document.type', 'page')
+        ).then(function (response) {
+          callback(null, response.results.map(doc => `/${doc.uid}`))
+        }).catch(callback)
+      })
+      break
+    }
+    case '/:page/:section': {
+      Prismic.api(ENDPOINT).then(function (api) {
+        api.query(
+          Prismic.Predicates.at('document.type', 'page')
+        ).then(function (response) {
+          callback(null, response.results.reduce(function (routes, doc) {
+            const headings = doc.data.body.filter(slice => slice.slice_type === 'heading')
+            return routes.concat(headings.map(slice => {
+              const text = asText(slice.primary.heading).trim()
+              return `/${doc.uid}/${friendlyUrl(text)}`
+            }))
+          }, []))
+        }).catch(callback)
+      })
+      break
+    }
+    default: callback(null)
+  }
+})
 
-app.route(routes.page, require('./lib/views/page'))
-app.route(routes.section, require('./lib/views/page'))
-app.route(routes.homepage, require('./lib/views/home'))
-app.use(require('./lib/stores/api'))
-app.use(require('./lib/stores/core'))
-app.use(require('./lib/stores/pages'))
-app.use(require('./lib/stores/error'))
-
-if (module.parent) module.exports = app
-else app.mount('body')
+// server.start()
+stack.build('dist', function () {
+  console.log('DONE!')
+})
