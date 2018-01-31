@@ -89,6 +89,12 @@ Stack.prototype.getInitialState = function (href, ctx, done) {
   }
 }
 
+Stack.prototype.close = function () {
+  this.main.close()
+  if (this.styles) this.styles.close()
+  if (this.sw) this.sw.close()
+}
+
 Stack.prototype.build = function (dir, done) {
   var self = this
   var hash = ''
