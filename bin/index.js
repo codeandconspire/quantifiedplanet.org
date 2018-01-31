@@ -295,10 +295,10 @@ Stack.prototype.middleware = function (req, res, next) {
       }
 
       if (process.env.NODE_ENV !== 'development') {
-        var hex = this.main.hash.toString('hex').slice(0, 16)
+        var hex = self.main.hash.toString('hex').slice(0, 16)
         res.setHeader('Link', [
           `</${hex}/bundle.js>; rel=preload; as=script`,
-          this.css ? `</${hex}/bundle.css>; rel=preload; as=style` : null
+          self.css ? `</${hex}/bundle.css>; rel=preload; as=style` : null
         ].filter(Boolean).join(', '))
       }
 
