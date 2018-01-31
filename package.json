@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "standard",
-    "start": "./bin/bin.js start index.js",
+    "start": "node lib/server.js",
     "build": "./bin/bin.js build index.js --dir dist"
   },
   "bin": {
