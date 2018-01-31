@@ -27,6 +27,7 @@ function Stack (entry, opts) {
   if (opts.env !== false) dotenv.config({ env: opts.env })
 
   var self = this
+  this.routes = {}
   this.app = fresh(entry, require)
 
   this._isBuilding = false
@@ -48,6 +49,9 @@ function Stack (entry, opts) {
 
   this.on('log', function (data) {
     console.log(data)
+  })
+  this.on('warning', function (data) {
+    console.warn(data)
   })
   this.on('error', function (data) {
     console.error(data)
@@ -95,6 +99,12 @@ Stack.prototype.close = function () {
   if (this.sw) this.sw.close()
 }
 
+Stack.prototype.resolve = function (route, callback) {
+  assert(typeof route === 'string', 'stack: route should be a string')
+  assert(typeof callback === 'function', 'stack: callback should be a function')
+  this.routes[route] = callback
+}
+
 Stack.prototype.build = function (dir, done) {
   var self = this
   var hash = ''
@@ -103,7 +113,7 @@ Stack.prototype.build = function (dir, done) {
     if (process.env.NODE_ENV !== 'development') {
       hash = self.main.hash.toString('hex').substr(0, 16)
     }
-    write(path.join(hash, 'bundle.js'), buff, build)
+    writeFile(path.join(hash, 'bundle.js'), buff, build)
   })
   self.main.bundle()
 
@@ -111,55 +121,38 @@ Stack.prototype.build = function (dir, done) {
     var routes = Object.keys(getAllRoutes(self.app.router.router))
     var queue = routes.length
 
-    if (self.styles) queue += 1
-    if (self.sw) queue += 1
-
-    routes.forEach(function (route, index) {
-      var href = route.split(/:$/)[0] // remove wayfarer trailing wildcard
-
-      self.emit('build', href, function (err, urls) {
-        if (err) return self.emit('error', err)
-        if (!urls) return
-
-        assert(Array.isArray(urls), 'stack: urls should be an array')
-
-        queue += urls.length
-        urls.forEach(function (url) {
-          self.getInitialState(url, function (err, state) {
-            if (err) return self.emit('error', err)
-            self.toString(url, state, function (err, buff) {
-              if (err) return self.emit('error', err)
-              write(path.join(url, 'index.html'), buff, next)
-            })
-          })
-        })
-      })
-
-      if (/\/:/.test(href)) {
-        queue -= 1 // can't render partials
-      } else {
-        self.getInitialState(href, function (err, state) {
-          if (err) return self.emit('error', err)
-          self.toString(href, state, function (err, buff) {
-            if (err) return self.emit('error', err)
-            write(path.join(href, 'index.html'), buff, next)
-          })
-        })
-      }
-    })
-
     if (self.styles) {
+      queue += 1
       self.styles.once('update', function (buff) {
-        write(path.join(hash, 'bundle.css'), buff, next)
+        writeFile(path.join(hash, 'bundle.css'), buff, next)
       })
-      self.styles.bundle()
+      self.styles.bundle(path.resolve(dir, path.join(hash, 'bundle.css')))
     }
 
     if (self.sw) {
+      queue += 1
       self.sw.once('update', function (buff) {
-        write('service-worker.js', buff, next)
+        writeFile('service-worker.js', buff, next)
       })
-      self.sw.bundle()
+      self.sw.bundle('service-worker.js')
+    }
+
+    for (var i = 0, len = routes.length, route; i < len; i++) {
+      route = routes[i]
+
+      if (route.indexOf('/:') === -1) {
+        writeDocument(route)
+      } else if (route in self.routes) {
+        self.routes[route](function (err, routes) {
+          if (err) return self.emit('error', err)
+          assert(Array.isArray(routes), 'stack: routes must be an array')
+          queue += routes.length - 1 // account for route partial already queued
+          routes.forEach(writeDocument)
+        })
+      } else {
+        self.emit('warning', `Could not resolve route "${route}"`)
+        queue -= 1 // can't render unresolved partials
+      }
     }
 
     queue += STATIC.length
@@ -173,9 +166,19 @@ Stack.prototype.build = function (dir, done) {
       queue -= 1
       if (queue === 0) done(null)
     }
+
+    function writeDocument (route) {
+      self.getInitialState(route, function (err, state) {
+        if (err) return self.emit('error', err)
+        self.toString(route, state, function (err, buff) {
+          if (err) return self.emit('error', err)
+          writeFile(path.join(route, 'index.html'), buff, next)
+        })
+      })
+    }
   }
 
-  function write (filename, buff, callback) {
+  function writeFile (filename, buff, callback) {
     filename = path.resolve(dir, filename.replace(/^\//, ''))
 
     mkdirp(path.dirname(filename), function (err) {
