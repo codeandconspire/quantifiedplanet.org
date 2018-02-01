@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Website for Quantified Planet",
   "main": "index.js",
+  "engines" : {
+    "node" : ">=8.0.0"
+  },
   "scripts": {
     "test": "standard",
     "start": "node lib/server.js",
