@@ -57,7 +57,7 @@
     "postcss": "^6.0.16",
     "prismic-element": "^0.7.0",
     "prismic-javascript": "^1.5.0-beta.1",
-    "prismic-richtext": "^0.2.7"
+    "prismic-richtext": "^0.2.7",
     "serve-static": "^1.13.1",
     "source-map-support": "^0.5.2",
     "standard": "^10.0.3",
