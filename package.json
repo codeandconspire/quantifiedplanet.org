@@ -64,6 +64,6 @@
     "tinyify": "^2.4.0",
     "watchify-middleware": "^1.6.0",
     "wayfarer": "^6.6.3",
-    "yo-yoify": "^4.3.0",
+    "yo-yoify": "^4.3.0"
   }
 }
