@@ -4,36 +4,37 @@ function document (state, body, stack) {
   return `
     <!doctype html>
     <html lang="${state.lang || 'en'}" dir="${state.meta.dir || 'ltr'}">
-    <head>
-      <meta charset="utf-8">
-      <meta http-equiv="x-ua-compatible" content="ie=edge">
-      <meta name="description" content="${state.meta.description}">
-      <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-      <meta property="theme" name="theme-color" content="${state.meta.color}">
-      <meta property="og:title" content="${state.title}">
-      <meta property="og:description" content="${state.meta.description}">
-      ${state.meta.image ? `
-        <meta property="og:image" content="${state.meta.image.url}">
-        <meta property="og:image:width" content="${state.meta.image.width}">
-        <meta property="og:image:height" content="${state.meta.image.height}">
-      ` : ''}
-      <meta property="og:url" content="${state.meta.url}">
-      <meta property="og:site_name" content="${state.meta.site_name}">
-      ${state.meta.twitter_name ? `<meta name="twitter:site" content="@${state.meta.twitter_name}">` : ''}
-      ${state.meta.facebook_id ? `<meta property="fb:app_id" content="${state.meta.facebook_id}">` : ''}
-      <title>${state.title}</title>
-      <link rel="manifest" href="/manifest.json">
-      <link rel="apple-touch-icon" href="/icon.png">
-      <link rel="mask-icon" href="/icon.svg" color="${state.meta.color}">
-      <script>document.documentElement.classList.add('has-js')</script>
-      ${script(stack)}
-      ${stack.styles ? stylesheet(stack) : ''}
+      <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="description" content="${state.meta.description}">
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+        <meta property="theme" name="theme-color" content="${state.meta.color}">
+        <meta property="og:title" content="${state.title}">
+        <meta property="og:description" content="${state.meta.description}">
+        ${state.meta.image ? `
+          <meta property="og:image" content="${state.meta.image.url}">
+          <meta property="og:image:width" content="${state.meta.image.width}">
+          <meta property="og:image:height" content="${state.meta.image.height}">
+        ` : ''}
+        <meta property="og:url" content="${state.meta.url}">
+        <meta property="og:site_name" content="${state.meta.site_name}">
+        ${state.meta.twitter_name ? `<meta name="twitter:site" content="@${state.meta.twitter_name}">` : ''}
+        ${state.meta.facebook_id ? `<meta property="fb:app_id" content="${state.meta.facebook_id}">` : ''}
+        <title>${state.title}</title>
+        <link rel="manifest" href="/manifest.json">
+        <link rel="apple-touch-icon" href="/icon.png">
+        <link rel="mask-icon" href="/icon.svg" color="${state.meta.color}">
+        <script>document.documentElement.classList.add('has-js')</script>
+        ${script(stack)}
+        ${stack.styles ? stylesheet(stack) : ''}
+      </head>
       ${body.replace(/<\/body>\s*$/, `
         ${polyfill(stack)}
         <script>window.initialState = ${JSON.stringify(state, replacer)}</script>
       </body>
       `)}
-    </head>
+    </html>
   `
 }
 
