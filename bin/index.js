@@ -6,11 +6,11 @@ var ncp = require('ncp')
 var assert = require('assert')
 var dotenv = require('dotenv')
 var mkdirp = require('mkdirp')
-var fresh = require('fresh-require')
 var styles = require('./lib/styles')
 var EventEmitter = require('events')
 var serveStatic = require('serve-static')
 var getAllRoutes = require('wayfarer/get-all-routes')
+var freshRequire = require('./lib/fresh-require')
 var scripts = require('./lib/scripts')
 var document = require('./lib/document')
 
@@ -28,14 +28,14 @@ function Stack (entry, opts) {
 
   var self = this
   this.routes = {}
-  this.app = fresh(entry, require)
+  this.app = require(entry)
 
   this._isBuilding = false
   this.main = scripts(entry, opts)
   this.main.on('pending', function () {
     self._isBuilding = true
     try {
-      self.app = fresh(entry, require)
+      self.app = freshRequire(entry)
     } catch (err) {
       self.emit('error', err)
     }
