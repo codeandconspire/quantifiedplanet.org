@@ -44,10 +44,30 @@
   height: calc(35px * 12);
   padding: calc(35px / 2);
   overflow: hidden;
+  transition: border-radius 600ms linear;
 }
 
-.System-machine--numbers {
-  border: 5px solid #fff;
+.System--vizmode .System-machine {
+  border-radius: 100%;
+}
+
+.System-frame {
+  border: 10px solid #fff;
+  transition: border-radius 600ms linear;
+}
+
+.System--vizmode .System-frame {
+  border-radius: 100%;
+}
+
+.System-cells {
+  overflow: hidden;
+  transition: transform 600ms linear, opacity 600ms linear;
+}
+
+.System--vizmode .System-cells {
+  opacity: 0;
+  transform: translateY(120%);
 }
 
 .System-cell {
