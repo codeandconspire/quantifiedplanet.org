@@ -60,7 +60,7 @@ function stylesheet (stack) {
       :root { visibility: hidden; animation: appear-${hex} 0s 4s forwards; }
       @keyframes appear-${hex} { to { visibility: visible; } }
     </style>
-    <link rel="preload" as="style" href="${link}" onload="this.rel='stylesheet'">
+    <link rel="stylesheet" href="${link}">
   `
 }
 
