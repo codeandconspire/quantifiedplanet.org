@@ -1,0 +1,63 @@
+/* @define StormWater */
+
+.StormWater {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: calc(35px * 12);
+  height: calc(35px * 12);
+  padding: 10%;
+
+  position: relative;
+  z-index: 0;
+}
+
+.StormWater-icon {
+  flex: 0 0 auto;
+}
+
+.StormWater-description {
+  text-align: center;
+}
+
+.StormWater-text {
+  display: block;
+  max-width: 240px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.StormWater-value {
+  display: block;
+  font-size: calc(144rem / 16);
+  font-weight: bold;
+  letter-spacing: -4.5px;
+  line-height: 1.3;
+}
+
+.StormWater-evaluation {
+  display: inline-block;
+  padding: 1em 2em;
+  border: 1px solid currentColor;
+
+  font-size: 11px;
+  font-weight: bold;
+  border-radius: 2em;
+  text-transform: uppercase;
+}
+
+.StormWater-waves {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.StormWater-background {
+}
+
+.StormWater-foreground {
+}

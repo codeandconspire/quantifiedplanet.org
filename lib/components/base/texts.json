@@ -1,5 +1,8 @@
 {
   "Something went wrong": "Something went wrong",
   "LOADING_SHORT": "Loading",
-  "LOADING_LONG": "This part of the website is now being fetched to your device. If it takes too long, make sure you are connected to the Internet."
+  "LOADING_LONG": "This part of the website is now being fetched to your device. If it takes too long, make sure you are connected to the Internet.",
+  "high": "high",
+  "winter": "winter",
+  "%s for %s": "%s for %s"
 }
