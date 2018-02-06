@@ -44,7 +44,7 @@
   font-variant-ligatures: common-ligatures;
 }
 
-@media (--lg-viewport) {
+@media (--lg-viewport), (--xl-viewport) {
   :root {
     font-size: 20px;
   }

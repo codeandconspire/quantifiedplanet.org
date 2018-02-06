@@ -71,66 +71,6 @@
   }
 }
 
-.Text .Text-story1 {
-  font-size: 2rem;
-  max-width: 39rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.Text .Text-story2 {
-  font-size: 2rem;
-}
-
-.Text .Text-story3 {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 31rem;
-}
-
-@media (--sm-viewport), (--md-viewport), (--lg-viewport), (--xl-viewport) {
-  .Text .Text-story1 {
-    font-size: 3rem;
-  }
-
-  .Text .Text-story2 {
-    font-size: 2.5rem;
-  }
-
-  .Text .Text-story3 {
-  }
-}
-
-@media (--md-viewport), (--lg-viewport), (--xl-viewport) {
-  .Text .Text-story1 {
-    font-size: 4rem;
-  }
-
-  .Text .Text-story2 {
-    font-size: 3rem;
-  }
-
-  .Text .Text-story3 {
-  }
-}
-
-@media (--xl-viewport) {
-  .Text .Text-story1 {
-    font-size: 5rem;
-    max-width: 62rem;
-  }
-
-  .Text .Text-story2 {
-    font-size: 3.2rem;
-  }
-
-  .Text .Text-story3 {
-    font-size: 1.2rem;
-    letter-spacing: 0.03em;
-    max-width: 37rem;
-  }
-}
-
 .Text p {
   margin: 1rem 0;
 }
@@ -166,4 +106,78 @@
   opacity: 1;
   position: relative;
   top: -2px; /* 1 */
+}
+
+/**
+ * Story Typography
+ */
+
+.Text .Text-story {
+  max-width: 30rem;
+}
+
+.Text .Text-story--center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (--md-viewport), (--lg-viewport), (--xl-viewport) {
+  .Text .Text-story--end {
+    text-align: right;
+    margin-left: auto;
+  }
+}
+
+.Text .Text-story1 {
+  font-size: 2rem;
+  max-width: 39rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Text .Text-story2 {
+  font-size: 2rem;
+}
+
+.Text .Text-story3 {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 31rem;
+}
+
+@media (--sm-viewport), (--md-viewport), (--lg-viewport), (--xl-viewport) {
+  .Text .Text-story1 {
+    font-size: 3rem;
+  }
+
+  .Text .Text-story2 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (--md-viewport), (--lg-viewport), (--xl-viewport) {
+  .Text .Text-story1 {
+    font-size: 4rem;
+  }
+
+  .Text .Text-story2 {
+    font-size: 3rem;
+  }
+}
+
+@media (--xl-viewport) {
+  .Text .Text-story1 {
+    font-size: 5rem;
+    max-width: 62rem;
+  }
+
+  .Text .Text-story2 {
+    font-size: 3.2rem;
+  }
+
+  .Text .Text-story3 {
+    font-size: 1.2rem;
+    letter-spacing: 0.03em;
+    max-width: 37rem;
+  }
 }

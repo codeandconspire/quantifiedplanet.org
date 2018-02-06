@@ -163,11 +163,47 @@
   padding: 6rem 0;
 }
 
+.Story-copy {
+  max-width: 38rem;
+}
+
 .Story-block--dark {
   background-color: var(--color-space-blue);
+}
+
+.Story-block--dark .Story-copy {
   text-align: center;
+  margin: 0 auto;
 }
 
 .Story-logo {
-  margin: 10rem auto 3rem;
+  margin: 4rem auto 2rem;
+}
+
+@media (--md-viewport), (--lg-viewport), (--xl-viewport) {
+  .Story-block {
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+
+  .Story-block--end {
+    text-align: right;
+    margin-left: auto;
+  }
+
+  .Story-block--end .Story-copy {
+    margin-left: auto;
+  }
+
+  .Story-logo {
+    width: 192px;
+    height: 193px;
+  }
+}
+
+@media (--md-viewport) {
+  .Story-logo {
+    width: 148px;
+    height: 149px;
+  }
 }
