@@ -24,6 +24,24 @@
   }
 }
 
+/**
+ * Layout
+ */
+
+.u-cf::before,
+.u-cf::after {
+  content: " ";
+  display: table;
+}
+
+.u-cf::after {
+  clear: both;
+}
+
+/**
+ * Loading
+ */
+
 .u-loading {
   outline: 2px dashed var(--color-divider);
   outline-offset: -0.1em;
