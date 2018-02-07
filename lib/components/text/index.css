@@ -34,10 +34,6 @@
   }
 }
 
-.Text--lg {
-  font-size: calc(20rem / 16);
-}
-
 .Text h1,
 .Text h2,
 .Text h3,

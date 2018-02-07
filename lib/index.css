@@ -1,11 +1,12 @@
 @import "./components/base";
 @import "./components/error";
 @import "./components/footer";
+@import "./components/goals";
 @import "./components/header";
-@import "./components/story";
 @import "./components/icon";
 @import "./components/intro";
 @import "./components/menu";
-@import "./components/goals";
+@import "./components/story";
+@import "./components/summary";
 @import "./components/text";
 @import "./components/view";

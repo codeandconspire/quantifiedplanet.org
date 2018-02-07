@@ -10,6 +10,10 @@
   width: 100%;
 }
 
+.System ::selection {
+  background: var(--color-space-blue);
+}
+
 .System-col {
   flex: 1 1 100%;
   display: flex;
@@ -20,6 +24,15 @@
 .System-col--machine {
   align-items: center;
   margin: 10vh 0 20vh;
+}
+
+.System-title {
+  font-size: calc(20rem / 16);
+  margin: 0;
+}
+
+.System-title--muted {
+  color: var(--color-data-blue-muted);
 }
 
 @media (--md-viewport) {
@@ -219,4 +232,8 @@
   to {
     transform: translateY(0%);
   }
+}
+
+.System-col:last-child {
+  margin-bottom: 0;
 }

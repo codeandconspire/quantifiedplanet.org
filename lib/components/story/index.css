@@ -168,7 +168,11 @@
   position: relative;
   z-index: 3;
   overflow: hidden;
-  padding: 6rem 0;
+  padding: 12rem 0;
+}
+
+.Story-block:not(.Story-block--dark) ::selection {
+  background: var(--color-space-blue);
 }
 
 .Story-copy {
