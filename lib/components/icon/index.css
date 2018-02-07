@@ -4,6 +4,9 @@
 
 .Icon {
   display: inline-block;
+}
+
+.Icon--social {
   width: calc(40rem / 16);
   height: calc(40rem / 16);
   padding: calc(11rem / 16);
@@ -16,7 +19,7 @@
   will-change: transform;
 }
 
-.Icon:hover {
+.Icon--social:hover {
   transform: scale(1.15);
 }
 

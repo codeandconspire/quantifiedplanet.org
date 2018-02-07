@@ -34,10 +34,25 @@
   }
 }
 
+.Text--lg {
+  font-size: calc(20rem / 16);
+}
+
+.Text-serif {
+  font-weight: normal;
+  font-family: "Big Caslon", "Big Caslon Custom", Georgia, serif;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
 .Text h1,
 .Text h2,
 .Text h3,
-.Text h4 {
+.Text h4,
+.Text .Text-h1,
+.Text .Text-h2,
+.Text .Text-h3,
+.Text .Text-h4 {
   font-weight: normal;
   font-family: "Big Caslon", "Big Caslon Custom", Georgia, serif;
   font-size: 3rem;
@@ -47,22 +62,26 @@
   cursor: default;
 }
 
-.Text h3 {
+.Text h3,
+.Text .Text-h3 {
   font-size: 2.4rem;
 }
 
-.Text h4 {
+.Text h4,
+.Text .Text-h4 {
   font-size: 1.6rem;
 }
 
 @media (--md-viewport), (--lg-viewport), (--xl-viewport) {
-  .Text h1 {
+  .Text h1,
+  .Text .Text-h1 {
     font-size: 4rem;
   }
 }
 
 @media (--lg-viewport), (--xl-viewport) {
-  .Text h2 {
+  .Text h2,
+  .Text .Text-h2 {
     font-size: 3.2rem;
   }
 }

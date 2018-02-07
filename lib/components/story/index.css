@@ -3,6 +3,7 @@
 @import "../base";
 @import "../text";
 @import "../system";
+@import "../gallery";
 
 .Story {
   --color-background: var(--color-data-blue);

@@ -4,14 +4,14 @@ const { asText } = require('prismic-richtext')
 const { friendlyUrl } = require('./lib/components/base')
 const Stack = require('./bin')
 
-const ENDPOINT = 'https://quantifiedplanet.cdn.prismic.io/api/v2'
+const PRISMIC_ENDPOINT = 'https://quantifiedplanet.cdn.prismic.io/api/v2'
 
 const stack = new Stack(path.resolve(__dirname, 'lib/index.js'), {
   css: path.resolve(__dirname, 'lib/index.css')
 })
 
 stack.resolve('/:page', function (callback) {
-  Prismic.api(ENDPOINT).then(function (api) {
+  Prismic.api(PRISMIC_ENDPOINT).then(function (api) {
     api.query(
       Prismic.Predicates.at('document.type', 'page')
     ).then(function (response) {
@@ -21,7 +21,7 @@ stack.resolve('/:page', function (callback) {
 })
 
 stack.resolve('/:page/:section', function (callback) {
-  Prismic.api(ENDPOINT).then(function (api) {
+  Prismic.api(PRISMIC_ENDPOINT).then(function (api) {
     api.query(
       Prismic.Predicates.at('document.type', 'page')
     ).then(function (response) {

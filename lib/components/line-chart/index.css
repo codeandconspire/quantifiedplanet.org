@@ -1,0 +1,77 @@
+/* @define LineChart */
+
+@import "../base";
+@import "chartist";
+
+:root {
+  --LineChart-background-color: var(--color-night-sky);
+}
+
+/**
+ * 1. Fill any flex container this is put inside
+ */
+
+.LineChart {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto; /* 1 */
+  background-color: var(--LineChart-background-color);
+}
+
+.LineChart-wrapper {
+  flex: 1 0 100%;
+  position: relative;
+}
+
+.LineChart-canvas {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/**
+ * 1. Overwrite Chartist specificity
+ */
+
+.LineChart-label {
+  justify-content: flex-start !important; /* 1 */
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.4);
+  fill: rgba(255, 255, 255, 0.4);
+  position: relative;
+  top: 4px;
+}
+
+.LineChart-grid {
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 1px;
+  stroke-dasharray: 0;
+}
+
+.LineChart-line {
+  stroke-width: 4px;
+}
+
+.LineChart-area {
+  fill-opacity: 1;
+}
+
+.LineChart--humidity .LineChart-stroke--start {
+  stop-color: #45CD90;
+}
+
+.LineChart--humidity .LineChart-stroke--end {
+  stop-color: #5ABDE4;
+}
+
+.LineChart--humidity .LineChart-background--start {
+  stop-color: #010119;
+  stop-opacity: 0.6;
+}
+
+.LineChart--humidity .LineChart-background--end {
+  stop-color: #010119;
+  stop-opacity: 0;
+}
