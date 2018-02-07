@@ -8,6 +8,7 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  font-size: 16px;
 }
 
 .System ::selection {
@@ -27,7 +28,7 @@
 }
 
 .System-title {
-  font-size: calc(20rem / 16);
+  font-size: 20px;
   margin: 0;
 }
 
@@ -69,7 +70,6 @@
 @media (--lg-viewport), (--xl-viewport) {
   .System-col {
     flex: 0 1 calc(100% / 5);
-    align-items: center;
     height: 100vh;
     margin: 0;
   }
@@ -99,7 +99,7 @@
 
 @media (--lg-viewport), (--xl-viewport) {
   .System {
-    padding-bottom: 20vh;
+    /* padding-bottom: 20vh; */
   }
 
   .System-col--expander {
@@ -122,7 +122,7 @@
 .System-machine {
   width: 100%;
   height: 100%;
-  padding: 15px;
+  /* padding: 15px; */
   position: absolute;
   left: 0;
   top: 0;
@@ -130,81 +130,143 @@
 
 @media (--lg-viewport), (--xl-viewport) {
   .System-machine {
-    padding: 35px;
+    /* padding: 35px; */
   }
 }
 
 @media (--no-viewport), (--sm-viewport) {
-  .System-cell:nth-child(49) ~ .System-cell {
+  /* .System-cell:nth-child(49) ~ .System-cell {
     display: none;
-  }
+  } */
 }
 
 @media (--md-viewport) {
-  .System-cell:nth-child(81) ~ .System-cell {
+  /* .System-cell:nth-child(81) ~ .System-cell {
     display: none;
-  }
+  } */
 }
 
 .System-frame {
   box-sizing: content-box;
-  width: calc(35px * 7 + (15px * 2));
-  height: calc(35px * 7 + (15px * 2));
+  width: 100%;
   border: 6px solid #fff;
   position: relative;
   overflow: hidden;
-  transition: border-radius 1120ms cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-@media (--md-viewport) {
+.System-frame--vizmode {
+  transition: 1120ms cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition-property: border-radius, box-shadow;
+}
+
+.System-frame::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-data-blue-highlight);
+  opacity: 0;
+  background-image: radial-gradient(rgba(43, 67, 255, 1) 0%, rgba(43, 67, 255, 0) 60%);
+  background-position: 150px -250px;
+  background-repeat: no-repeat;
+}
+
+.System-frame--vizmode::before {
+  transition: opacity 1120ms cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.System-frame::after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+@media (--sm-viewport) {
   .System-frame {
-    width: calc(35px * 9 + (15px * 2));
-    height: calc(35px * 9 + (15px * 2));
+    max-width: 335px;
+    max-height: 335px;
   }
 }
 
-@media (--lg-viewport), (--xl-viewport) {
+@media (--lg-viewport) {
   .System-frame {
-    width: calc(35px * 12 + (35px * 2));
-    height: calc(35px * 12 + (35px * 2));
+    max-width: 420px;
+    max-height: 420px;
   }
 }
 
-.System-frame--faux {
-  border: 0;
+@media (--xl-viewport) {
+  .System-frame {
+    max-width: 500px;
+    max-height: 500px;
+    border-width: 10px;
+  }
 }
 
 .System-frame--vizmode {
   border-radius: 100%;
+  box-shadow: 8px 16px 32px 0 rgba(0, 0, 0, 0.15);
+}
+
+.System-frame--vizmode::before {
+  opacity: 1;
+}
+
+.System-frame--faux {
+  border: 0;
+  box-shadow: none;
+}
+
+.System-frame--faux::before {
+  content: none;
 }
 
 .System-cells {
+  padding: 2%;
   overflow: hidden;
-  transition: transform 1120ms cubic-bezier(0.645, 0.045, 0.355, 1), opacity 1120ms cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .System--vizmode .System-cells {
   opacity: 0;
+  transition: transform 1120ms cubic-bezier(0.645, 0.045, 0.355, 1), opacity 1120ms cubic-bezier(0.645, 0.045, 0.355, 1);
   transform: translateY(120%);
 }
 
 .System-cell {
+  position: relative;
+  float: left;
+  width: calc(100% / 12);
+  pointer-events: none;
+}
+
+.System-cell::after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.System-item {
+  position: absolute;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  float: left;
-  width: 35px;
-  height: 35px;
-  font-family: monospace;
-  font-size: 14px;
-  pointer-events: none;
   -webkit-font-smoothing: none;
   -moz-osx-font-smoothing: none;
+  font-family: monospace;
+  font-size: 14px;
+}
+
+.System-drop {
+
 }
 
 .System-visualization {
-  width: calc(35px * 6);
-  height: calc(35px * 6);
+  width: 100%;
+  height: 100%;
   padding: 35px;
 
   position: relative;
@@ -214,13 +276,13 @@
 }
 
 @media (--md-viewport), (--lg-viewport), (--xl-viewport) {
-  .System-visualization {
+  /* .System-visualization {
     width: calc(35px * 12);
     height: calc(35px * 12);
-  }
+  } */
 }
 
-.System.has-js .System-visualization {
+.System-visualization {
   position: absolute;
   left: 0;
   top: 0;

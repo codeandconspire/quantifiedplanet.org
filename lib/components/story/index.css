@@ -55,7 +55,19 @@
   }
 }
 
-@media (--md-viewport), (--lg-viewport), (--xl-viewport) {
+@media (--sm-viewport), (--md-viewport) {
+  .Story-planet {
+    width: 68%;
+  }
+}
+
+@media (--lg-viewport) {
+  .Story-planet {
+    width: 50%;
+  }
+}
+
+@media (--xl-viewport) {
   .Story-planet {
     width: 42%;
   }
@@ -102,7 +114,19 @@
   will-change: transform;
 }
 
-@media (--md-viewport), (--lg-viewport), (--xl-viewport) {
+@media (--sm-viewport), (--md-viewport) {
+  .Story-blueprint {
+    background-size: 68% auto;
+  }
+}
+
+@media (--lg-viewport) {
+  .Story-blueprint {
+    background-size: 50% auto;
+  }
+}
+
+@media (--xl-viewport) {
   .Story-blueprint {
     background-size: 42% auto;
   }
@@ -193,6 +217,10 @@
 }
 
 @media (--md-viewport), (--lg-viewport), (--xl-viewport) {
+  .Story-block--first {
+    padding-top: 0;
+  }
+
   .Story-block {
     padding-right: 2rem;
     padding-left: 2rem;
