@@ -1,10 +1,15 @@
 /* @define Thermometer */
 
+/**
+ * 1. Fill any flex container this is put inside
+ */
+
 .Thermometer {
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  flex: 1 0 auto; /* 1 */
   position: relative;
 }
 
@@ -25,6 +30,7 @@
   flex: 1 1 100%;
   height: 100%;
   width: auto;
+  position: absolute;
 }
 
 .Thermometer-point {
