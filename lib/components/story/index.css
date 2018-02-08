@@ -41,12 +41,13 @@
   left: 50%;
   width: 130%;
   height: auto;
-  transform: scale(0.8) translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   transform-origin: top left;
-  opacity: 0;
-  animation: Story-planet--appear 1000ms 100ms ease-out forwards;
-  will-change: transform;
   pointer-events: none;
+  transform: scale(0.8) translate(-50%, -50%);
+  opacity: 0;
+  will-change: transform;
+  animation: Story-planet--appear 1000ms 100ms ease-out forwards;
 }
 
 @keyframes Story-planet--appear {
@@ -79,8 +80,12 @@
   z-index: 2;
   padding: 0 1.6rem;
   width: 100%;
-  opacity: 0;
+}
+
+.Story.is-appearing .Story-body {
   animation: Story-body--appear 1000ms 1500ms ease-out forwards;
+  opacity: 0;
+  will-change: opacity;
 }
 
 @keyframes Story-body--appear {
@@ -201,7 +206,7 @@
 }
 
 .Story-copy {
-  max-width: 38rem;
+  max-width: 39rem;
 }
 
 .Story-block--dark {

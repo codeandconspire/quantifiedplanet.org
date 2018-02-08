@@ -66,7 +66,7 @@
 .StormWater-evaluation {
   display: inline-block;
   padding: 1em 2em;
-  border: 1px solid currentColor;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 
   font-size: 7px;
   font-weight: bold;

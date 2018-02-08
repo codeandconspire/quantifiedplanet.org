@@ -173,6 +173,7 @@
 @media (--md-viewport), (--lg-viewport), (--xl-viewport) {
   .Text .Text-story1 {
     font-size: 4rem;
+    max-width: 49rem;
   }
 
   .Text .Text-story2 {
@@ -180,19 +181,8 @@
   }
 }
 
-@media (--xl-viewport) {
-  .Text .Text-story1 {
-    font-size: 5rem;
-    max-width: 62rem;
-  }
-
+@media (--lg-viewport), (--xl-viewport) {
   .Text .Text-story2 {
     font-size: 3.2rem;
-  }
-
-  .Text .Text-story3 {
-    font-size: 1.2rem;
-    letter-spacing: 0.03em;
-    max-width: 37rem;
   }
 }
