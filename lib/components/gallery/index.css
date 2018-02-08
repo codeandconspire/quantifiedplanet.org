@@ -4,6 +4,7 @@
 @import "../view";
 @import "../text";
 @import "../line-chart";
+@import "../thermometer";
 
 :root {
   --Gallery-background-color: var(--color-space-blue);

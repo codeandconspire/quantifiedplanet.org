@@ -18,6 +18,11 @@
   background-color: var(--LineChart-background-color);
 }
 
+.LineChart.is-loading {
+  justify-content: center;
+  align-items: center;
+}
+
 .LineChart-wrapper {
   flex: 1 0 100%;
   position: relative;

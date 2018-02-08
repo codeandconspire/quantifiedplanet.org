@@ -1,0 +1,71 @@
+/* @define Thermometer */
+
+.Thermometer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.Thermometer-background {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 35;
+  stroke-opacity: 0.05;
+}
+
+.Thermometer-mask {
+  fill: none;
+  stroke: #fff;
+  stroke-linecap: round;
+}
+
+.Thermometer-graph {
+  flex: 1 1 100%;
+  height: 100%;
+  width: auto;
+}
+
+.Thermometer-point {
+  fill: #fff;
+}
+
+.Thermometer-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: calc(35px + 2em);
+  margin: 0;
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  text-align: center;
+}
+
+.Thermometer-description::after {
+  content: "";
+  width: 0;
+  height: 100%;
+  padding-right: 100%;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.Thermometer-text {
+  font-size: 11px;
+}
+
+.Thermometer-value {
+  font-size: 96px;
+  line-height: 1.3;
+  font-weight: bold;
+  text-indent: 0.25em;
+}
