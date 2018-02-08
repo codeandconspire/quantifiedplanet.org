@@ -5,6 +5,7 @@
 @import "../text";
 @import "../line-chart";
 @import "../thermometer";
+@import "../bubble-chart";
 
 :root {
   --Gallery-background-color: var(--color-space-blue);

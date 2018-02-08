@@ -1,0 +1,141 @@
+/* @define BubbleChart */
+
+/**
+ * 1. Fill any flex container this is put inside
+ */
+
+.BubbleChart {
+  flex: 1 0 auto; /* 1 */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.BubbleChart-value {
+  font-size: 16px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.BubbleChart-name {
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.BubbleChart-canvas {
+  flex: 1 1 100%;
+  height: 100%;
+  width: auto;
+  position: absolute;
+}
+
+.BubbleChart-box {
+  height: 100%;
+  width: auto;
+}
+
+.BubbleChart-wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.BubbleChart-bubble {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 125px;
+  min-height: 125px;
+  padding: 0 10px;
+
+  position: absolute;
+
+  color: #fff;
+  opacity: 0.91;
+  line-height: 1.2;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.BubbleChart-bubble:first-child {
+  top: 7.2%;
+  left: 10%;
+  width: 73.8%;
+  height: 73.8%;
+  background-image: linear-gradient(-134deg, #F7C0CC 0%, #6C32C6 85%, #BD68D4 93%, #C86DD7 100%);
+  box-shadow: 0 3px 9px 9px rgba(0, 34, 59, 0.08);
+  animation: rotate-cw 8s -.2s linear infinite;
+}
+
+.BubbleChart-bubble:nth-child(2) {
+  top: 0;
+  right: 0;
+  width: 46%;
+  height: 46%;
+  background-image: linear-gradient(50deg, #AE237D 0%, #FFCDCD 100%);
+  box-shadow: 0 3px 3px 1px rgba(0, 34, 59, 0.08);
+  animation: rotate-ccw 10s -.4s linear infinite;
+}
+
+.BubbleChart-bubble:nth-child(3) {
+  top: 50%;
+  right: 12%;
+  width: 33.1%;
+  height: 33.1%;
+  background-image: linear-gradient(50deg, #23779C 0%, #E9E4FF 100%);
+  box-shadow: 0 3px 3px 1px rgba(0, 34, 59, 0.08);
+  animation: rotate-cw 6s -.6s linear infinite;
+}
+
+.BubbleChart-bubble:nth-child(4) {
+  bottom: 0;
+  left: 26%;
+  width: 22.9%;
+  height: 22.9%;
+  background-image: linear-gradient(-156deg, #FFA632 0%, #CD0095 100%);
+  box-shadow: 0 3px 3px 1px rgba(0, 34, 59, 0.08);
+  animation: rotate-cw 8s -.8s linear infinite;
+}
+
+.BubbleChart-bubble:nth-child(5) {
+  bottom: 15%;
+  left: 1%;
+  width: 27.6%;
+  height: 27.6%;
+  background-image: linear-gradient(-180deg, #D8FFD6 0%, #559584 97%);
+  box-shadow: 0 3px 3px 1px rgba(0, 34, 59, 0.08);
+  animation: rotate-ccw 7s -1s linear infinite;
+}
+
+.BubbleChart-bubble:nth-child(6) {
+  top: 0;
+  left: 0;
+  width: 36.5%;
+  height: 36.5%;
+  background: linear-gradient(to right bottom, #ffa632, #cd0095);
+  animation: rotate-cw 8s -1.2s linear infinite;
+}
+
+@keyframes rotate-cw {
+  0% {
+      transform: rotate(0deg) translate(-1.8%) rotate(0deg);
+  }
+
+  to {
+      transform: rotate(1turn) translate(-1.8%) rotate(-1turn);
+  }
+}
+
+@keyframes rotate-ccw {
+  0% {
+      transform: rotate(1turn) translate(-1.8%) rotate(-1turn);
+  }
+
+  to {
+      transform: rotate(0deg) translate(-1.8%) rotate(0deg);
+  }
+}
