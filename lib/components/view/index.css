@@ -17,6 +17,13 @@
   background: #fff;
 }
 
+.View-loading {
+  height: 100vh;
+  color: transparent;
+  font-size: 0;
+  display: block;
+}
+
 .View-container {
   box-sizing: content-box;
   max-width: 1280px;
@@ -51,6 +58,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
+  margin-bottom: 3rem;
 }
 
 .View-menu {
@@ -77,6 +85,7 @@
   .View-switcheroo {
     flex-wrap: wrap;
     flex-direction: row;
+    margin-bottom: 6rem;
   }
 
   .View-intro {
@@ -103,6 +112,10 @@
 }
 
 @media (--lg-viewport), (--xl-viewport) {
+  .View-switcheroo {
+    margin-bottom: 6rem;
+  }
+
   .View-menu {
     flex: 0 0 200px;
     padding-right: 0;
@@ -119,5 +132,11 @@
     padding-top: 5rem;
     text-align: right;
     color: var(--color-silver);
+  }
+
+  .View-socialIcon {
+    display: block;
+    float: right;
+    margin-left: 16px;
   }
 }

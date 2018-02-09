@@ -26,7 +26,7 @@
 
 .System-col--machine {
   align-items: center;
-  margin: 10vh 0 20vh;
+  margin: 9vh 0 21vh;
 }
 
 .System-title {
@@ -233,10 +233,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  -webkit-font-smoothing: none;
-  -moz-osx-font-smoothing: none;
   font-family: monospace;
-  font-size: 14px;
+  font-size: 0.8rem;
 }
 
 .System-drop {
@@ -270,4 +268,25 @@
 
 .System-col:last-child {
   margin-bottom: 0;
+}
+
+
+.System-col--machine.System-col--z1:not(.System-col--expander) {
+  z-index: 100;
+}
+
+.System-machine--numbers.System-machine--cursor1 {
+  cursor: help;
+}
+
+.System-machine--numbers.System-machine--cursor2 {
+  cursor: cell;
+}
+
+.System-machine--numbers.System-machine--cursor3 {
+  cursor: help;
+}
+
+.System-machine--numbers.System-machine--cursor4 {
+  cursor: cell;
 }

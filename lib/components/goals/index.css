@@ -54,10 +54,15 @@
 }
 
 @media (--md-viewport), (--lg-viewport), (--xl-viewport) {
+
   .Goals-item {
     overflow: hidden;
     height: 0;
-    padding-bottom: 70%;
+    padding-bottom: 60%;
+  }
+
+  .Goals-item--11 {
+    top: calc(60% - 1px);
   }
 
   .Goal-desc {
@@ -71,7 +76,7 @@
   }
 
   .Goals-icon {
-    width: 70%;
+    width: 60%;
     max-width: 340px;
     margin: 0.8rem;
   }
@@ -80,18 +85,33 @@
 @media (--lg-viewport), (--xl-viewport) {
   .Goals-item {
     width: calc(100% / 3);
-    padding-bottom: 50%;
+    padding-bottom: 55%;
+  }
+
+  .Goals-icon {
+    width: 70%;
   }
 
   .Goals-item--11 {
-    left: 0;
+    top: 0;
+    position: relative;
+    display: block;
   }
 
   .Goals-item--13 {
     left: calc(100% / 3);
+    top: 16%;
   }
 
   .Goals-item--15 {
+    position: absolute;
+    top: 32%;
     left: calc((100% / 3) * 2);
+  }
+}
+
+@media (--xl-viewport) {
+  .Goals-item {
+    padding-bottom: 50%;
   }
 }

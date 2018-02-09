@@ -38,13 +38,6 @@
   font-size: calc(20rem / 16);
 }
 
-.Text-serif {
-  font-weight: normal;
-  font-family: "Big Caslon", "Big Caslon Custom", Georgia, serif;
-  line-height: 1.25;
-  letter-spacing: 0;
-}
-
 .Text h1,
 .Text h2,
 .Text h3,
@@ -160,6 +153,22 @@
   max-width: 31rem;
 }
 
+.Text .Text-story4 {
+  margin: 8px 0 0;
+  font-size: 2rem;
+}
+
+.Text .Text-label {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #fff;
+  opacity: 0.4;
+  font-weight: normal;
+  font-family: "Big Caslon", "Big Caslon Custom", Georgia, serif;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
 @media (--sm-viewport), (--md-viewport), (--lg-viewport), (--xl-viewport) {
   .Text .Text-story1 {
     font-size: 3rem;
@@ -184,5 +193,10 @@
 @media (--lg-viewport), (--xl-viewport) {
   .Text .Text-story2 {
     font-size: 3.2rem;
+  }
+
+  .Text .Text-story4 {
+    margin: 12px 0 0;
+    font-size: 2.4rem;
   }
 }

@@ -30,7 +30,7 @@
 
 @media (--md-viewport), (--lg-viewport), (--xl-viewport) {
   .Summary {
-    margin: 0 2rem;
+    margin: 3rem 2rem 4rem;
     padding: 32px 0;
   }
 

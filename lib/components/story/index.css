@@ -7,7 +7,6 @@
 
 .Story {
   --color-background: var(--color-data-blue);
-
   position: relative;
   z-index: 0;
   background-color: var(--color-background);
@@ -21,10 +20,8 @@
   height: 100vh;
   width: 100%;
   padding-bottom: 50px;
-
   position: relative;
   z-index: -1;
-
   text-align: center;
   background: var(--color-space-blue);
 }
@@ -80,12 +77,9 @@
   z-index: 2;
   padding: 0 1.6rem;
   width: 100%;
-}
-
-.Story.is-appearing .Story-body {
-  animation: Story-body--appear 1000ms 1500ms ease-out forwards;
   opacity: 0;
   will-change: opacity;
+  animation: Story-body--appear 1000ms 1500ms ease-out forwards;
 }
 
 @keyframes Story-body--appear {
@@ -198,7 +192,7 @@
   position: relative;
   z-index: 3;
   overflow: hidden;
-  padding: 12rem 0;
+  padding: 9rem 0;
 }
 
 .Story-block:not(.Story-block--dark) ::selection {
@@ -218,18 +212,25 @@
   margin: 0 auto;
 }
 
+.Story-block--outro {
+  padding: 8rem 0 0;
+}
+
 .Story-logo {
-  margin: 4rem auto 2rem;
+  margin: 0 auto 2rem;
 }
 
 @media (--md-viewport), (--lg-viewport), (--xl-viewport) {
-  .Story-block--first {
-    padding-top: 0;
+  .Story-block {
+    padding: 9rem 2rem;
   }
 
-  .Story-block {
-    padding-right: 2rem;
-    padding-left: 2rem;
+  .Story-block--outro {
+    padding: 10rem 0 0;
+  }
+
+  .Story-block--first {
+    padding-top: 0;
   }
 
   .Story-block--end {
@@ -251,5 +252,55 @@
   .Story-logo {
     width: 148px;
     height: 149px;
+    margin: 5rem auto 2rem;
   }
+}
+
+@media (--md-viewport) {
+  .Story-block--outro {
+    padding: 11rem 0 0;
+  }
+}
+
+.Story-link {
+  text-align: right;
+  position: relative;
+  padding-bottom: 2.5rem;
+  max-width: 10rem;
+  width: 100%;
+  display: block;
+  font-size: 1.3rem;
+  margin: 6rem 0 0 auto;
+  line-height: 1.35;
+}
+
+.Story-link::before {
+  content: "";
+  height: 3px;
+  width: 45px;
+  background: currentColor;
+  position: absolute;
+  bottom: 10px;
+  right: 4px;
+}
+
+.Story-link::after {
+  content: "";
+  height: 19px;
+  width: 19px;
+  border: 3px solid;
+  border-width: 3px 3px 0 0;
+  position: absolute;
+  bottom: 2px;
+  right: 5px;
+  transform: rotate(45deg);
+}
+
+.Story-block--dark .Story-link {
+  opacity: 0.3;
+  transition: opacity 90ms ease-out;
+}
+
+.Story-block--dark .Story-link:hover {
+  opacity: 0.6;
 }
