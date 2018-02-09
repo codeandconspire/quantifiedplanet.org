@@ -27,7 +27,6 @@
   transform-origin: right;
 }
 
-
 @media (--md-viewport), (--lg-viewport), (--xl-viewport) {
   .Summary {
     margin: 3rem 2rem 4rem;

@@ -105,7 +105,6 @@
 .Footer-link {
   display: block;
   text-align: center;
-  transition: color 90ms ease-out;
   margin: -5px;
   padding: 5px;
 }
@@ -178,11 +177,11 @@
   margin: 25px 0 0;
   text-align: center;
   font-style: normal;
-  color: color(var(--color-document) alpha(40%));
+  user-select: auto;
 }
 
 .Footer-contact :link:hover {
-  color: var(--color-document);
+  color: #fff;
 }
 
 .Footer-partner {

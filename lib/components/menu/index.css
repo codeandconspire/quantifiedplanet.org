@@ -61,6 +61,11 @@
 @media (--lg-viewport), (--xl-viewport) {
   .Menu {
     padding-top: 4.6rem;
+  }
+}
+
+@media (--xl-viewport) {
+  .Menu-link {
     font-size: 1rem;
   }
 }

@@ -24,6 +24,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  will-change: transform;
 }
 
 .Goals-icon {
@@ -61,11 +62,16 @@
     padding-bottom: 60%;
   }
 
+  .Goals-item ::selection {
+    background: rgba(0, 0, 0, 0.3);
+  }
+
   .Goals-item--11 {
     top: calc(60% - 1px);
   }
 
   .Goal-desc {
+    user-select: auto;
     display: block;
     padding: 4rem 2.4rem;
     margin: 0;
@@ -83,6 +89,12 @@
 }
 
 @media (--lg-viewport), (--xl-viewport) {
+  .Goals {
+    height: auto;
+    margin-top: -100px;
+    padding-bottom: 20%;
+  }
+
   .Goals-item {
     width: calc(100% / 3);
     padding-bottom: 55%;

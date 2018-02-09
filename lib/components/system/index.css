@@ -22,11 +22,13 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  user-select: auto;
 }
 
 .System-col--machine {
   align-items: center;
   margin: 9vh 0 21vh;
+  user-select: none;
 }
 
 .System-title {
