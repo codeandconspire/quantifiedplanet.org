@@ -49,17 +49,13 @@
 }
 
 .Gallery-grid {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
   margin: 0 -4px;
+  overflow: hidden;
 }
 
 .Gallery-cell {
-  display: flex;
-  flex-direction: column;
+  width: 100%;
   height: 0;
-  flex: 0 1 100%;
   padding-bottom: 100%;
   border: solid var(--Gallery-background-color);
   border-width: 4px;
@@ -69,14 +65,10 @@
 
 @media (--lg-viewport), (--xl-viewport) {
   .Gallery-cell {
-    flex: 0 1 50%;
-    padding-bottom: 50%;
+    float: left;
+    width: 50%;
+    padding-bottom: 48%;
   }
-}
-
-.Gallery-cell--auto {
-  height: auto;
-  padding: 0;
 }
 
 .Gallery-content {
@@ -115,13 +107,13 @@
 .Gallery-text {
   margin: 0;
   font-size: calc(12rem / 16);
+  max-width: 260px;
 }
 
 .Gallery-content--accent {
   justify-content: center;
   align-items: center;
-  padding: 8%;
-  position: relative;
+  padding: 8% 12%;
   text-align: center;
   font-size: 16px;
   background: var(--Gallery-accent-color);
@@ -132,7 +124,7 @@
 }
 
 .Gallery-content--accent .Gallery-icon {
-  margin: 0 0 2rem;
+  margin: 0 0 3%;
 }
 
 .Gallery-button {
