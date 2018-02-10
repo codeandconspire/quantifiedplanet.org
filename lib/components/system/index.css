@@ -22,13 +22,13 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  user-select: auto;
 }
 
 .System-col--machine {
   align-items: center;
   margin: 9vh 0 21vh;
   user-select: none;
+  pointer-events: none;
 }
 
 .System-title {
@@ -275,23 +275,17 @@
   margin-bottom: 0;
 }
 
-
-.System-col--machine.System-col--z1:not(.System-col--expander) {
-  z-index: 100;
-}
-
 .System-machine--numbers.System-machine--cursor1 {
   cursor: help;
+  pointer-events: auto;
 }
 
 .System-machine--numbers.System-machine--cursor2 {
   cursor: cell;
+  pointer-events: auto;
 }
 
-.System-machine--numbers.System-machine--cursor3 {
-  cursor: help;
-}
-
-.System-machine--numbers.System-machine--cursor4 {
-  cursor: cell;
+.System-frame--vizmode .System-machine--numbers.System-machine--cursor1,
+.System-frame--vizmode .System-machine--numbers.System-machine--cursor2 {
+  pointer-events: none;
 }
