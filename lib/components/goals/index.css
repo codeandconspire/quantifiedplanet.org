@@ -31,23 +31,24 @@
   display: block;
   width: 100%;
   height: auto;
+  user-select: none;
 }
 
 .Goals-item--11 {
   top: 50%;
-  background: #FD9D24;
+  background: #fd9d24;
 }
 
 .Goals-item--13 {
   left: 50%;
   top: 25%;
-  background: #3F7E44;
+  background: #3f7e44;
 }
 
 .Goals-item--15 {
   position: relative;
   display: block;
-  background: #56C02B;
+  background: #56c02b;
 }
 
 .Goal-desc {
@@ -55,7 +56,6 @@
 }
 
 @media (--md-viewport), (--lg-viewport), (--xl-viewport) {
-
   .Goals-item {
     overflow: hidden;
     height: 0;
@@ -63,7 +63,7 @@
   }
 
   .Goals-item ::selection {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.6);
   }
 
   .Goals-item--11 {
@@ -71,12 +71,12 @@
   }
 
   .Goal-desc {
-    user-select: auto;
     display: block;
     padding: 4rem 2.4rem;
     margin: 0;
     position: absolute;
     bottom: 0;
+    font-size: 16px;
     left: 0;
     max-width: 22rem;
   }
@@ -125,5 +125,9 @@
 @media (--xl-viewport) {
   .Goals-item {
     padding-bottom: 50%;
+  }
+
+  .Goal-desc {
+    font-size: 1rem;
   }
 }

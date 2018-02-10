@@ -4,7 +4,6 @@
 
 .Text {
   cursor: auto;
-  user-select: text;
 }
 
 .Text-preamble {
@@ -158,6 +157,11 @@
   font-size: 2rem;
 }
 
+.Text .Text-story5 {
+  margin: 0 0 12px;
+  font-size: 20px;
+}
+
 .Text .Text-label {
   margin: 0;
   font-size: 1.5rem;
@@ -176,6 +180,11 @@
 
   .Text .Text-story2 {
     font-size: 2.5rem;
+  }
+
+  .Text .Text-story5 {
+    font-size: 32px;
+    margin-bottom: 16px;
   }
 }
 
