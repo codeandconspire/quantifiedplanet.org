@@ -71,6 +71,20 @@
   list-style: none;
 }
 
+.Header-page--fallback {
+  display: none;
+}
+
+@media (--xs-viewport) {
+  .Header-page {
+    display: none;
+  }
+
+  .Header-page--fallback {
+    display: block;
+  }
+}
+
 @media (--sm-viewport), (--md-viewport), (--lg-viewport), (--xl-viewport) {
   .Header-nav {
     left: 50%;

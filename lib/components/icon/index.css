@@ -7,9 +7,9 @@
 }
 
 .Icon--social {
-  width: 2rem;
-  height: 2rem;
-  padding: 0.5rem;
+  width: 40px;
+  height: 40px;
+  padding: 11px;
   position: relative;
 
   color: var(--color-text);
@@ -31,12 +31,12 @@
 }
 
 .Icon--linkedin {
-  padding: 0.55rem 0.6rem 0.65rem 0.6rem;
+  padding: 10px 11px 12px 11px;
   right: -1px;
 }
 
 .Icon--twitter {
-  padding: 0.5rem 0.45rem 0.5rem 0.55rem;
+  padding: 11px 10px 11px 12px;
 }
 
 .Icon--blue {

@@ -86,7 +86,7 @@
 
 .Gallery-icon {
   display: inline-block;
-  margin: 24px 24px 48px 24px;
+  margin: 16px 10px 0;
 }
 
 .Gallery-graph {
@@ -94,8 +94,26 @@
 }
 
 .Gallery-description {
-  margin: 8px auto 32px 40px;
+  margin: 20px;
   user-select: auto;
+}
+
+@media (--sm-viewport) {
+  .Gallery-icon {
+    margin: 24px 24px 0;
+  }
+
+  .Gallery-description {
+    margin: 32px;
+    user-select: auto;
+  }
+}
+
+@media (--lg-viewport) {
+  .Gallery-description {
+    margin: 32px 40px;
+    user-select: auto;
+  }
 }
 
 .Gallery-heading {
@@ -113,7 +131,7 @@
 .Gallery-content--accent {
   justify-content: center;
   align-items: center;
-  padding: 8% 12%;
+  padding: 32px 20px;
   text-align: center;
   font-size: 16px;
   background: var(--Gallery-accent-color);
@@ -127,12 +145,17 @@
   margin: 0 0 3%;
 }
 
+.Gallery-contentWrap {
+  max-width: 430px;
+}
+
 .Gallery-button {
   display: inline-block;
-  padding: 20px 32px;
+  padding: 18px 32px;
   margin: 2rem 0 1em;
   border: 1px solid #fff;
   font-size: 12px;
+  letter-spacing: 1.2px;
   font-weight: bold;
   border-radius: 40px;
   color: var(--Gallery-accent-color);

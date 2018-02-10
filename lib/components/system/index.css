@@ -239,8 +239,11 @@
   font-size: 0.8rem;
 }
 
-.System-drop {
-
+@media (--xs-viewport) {
+  .System-drop {
+    width: 13px;
+    height: 17px;
+  }
 }
 
 .System-visualization {
