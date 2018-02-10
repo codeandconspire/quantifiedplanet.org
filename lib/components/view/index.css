@@ -59,6 +59,7 @@
   align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 3rem;
+  --color-link: var(--color-data-blue);
 }
 
 .View-menu {
@@ -117,14 +118,14 @@
   }
 
   .View-menu {
-    flex: 0 0 200px;
+    flex: 0 0 230px;
     padding-right: 0;
     margin-top: -4rem;
   }
 
   .View-social {
     order: 3;
-    flex: 0 0 200px;
+    flex: 0 0 230px;
     display: block;
     position: sticky;
     top: 0;
@@ -138,5 +139,12 @@
     display: block;
     float: right;
     margin-left: 16px;
+  }
+}
+
+@media (--xl-viewport) {
+  .View-social,
+  .View-menu {
+    flex: 0 0 250px;
   }
 }

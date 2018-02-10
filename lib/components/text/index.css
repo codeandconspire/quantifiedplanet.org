@@ -15,14 +15,15 @@
   font-size: 1rem;
 }
 
-.Text :link {
+.Text a {
   text-decoration: underline;
 }
 
 @supports (background-color: var(--color-background)) {
-  .Text :link {
+  .Text a {
     display: inline-block;
     text-decoration: none;
+    color: var(--color-link);
     border-bottom: 2px solid currentColor;
     line-height: 0.95;
     text-shadow:
@@ -30,6 +31,10 @@
       1.5px -1.5px var(--color-background),
       -1.5px 1.5px var(--color-background),
       -1.5px -1.5px var(--color-background);
+  }
+
+  .Text a:hover {
+    opacity: 0.8;
   }
 }
 
@@ -113,6 +118,74 @@
   opacity: 1;
   position: relative;
   top: -2px; /* 1 */
+}
+
+/**
+ * Blockquote
+ */
+
+.Text blockquote {
+  padding-left: 2rem;
+  border-left: 8px solid var(--color-data-blue);
+  margin: 2rem 0;
+  font-family: "Big Caslon", "Big Caslon Custom", Georgia, serif;
+  line-height: 1.25;
+  letter-spacing: 0;
+  font-size: 1.2rem;
+  color: var(--color-silver);
+}
+
+.Text blockquote p {
+  display: inline;
+  margin: 0;
+}
+
+.Text blockquote p + p {
+  display: block;
+}
+
+.Text cite {
+  font-style: normal;
+}
+
+.Text cite::after {
+  content: ": ";
+}
+
+/**
+ * Lists
+ */
+
+.Text ul,
+.Text ol {
+  margin: 2rem 0;
+  padding-left: 1.6rem;
+}
+
+.Text li {
+  position: relative;
+  margin: 0.5rem 0;
+}
+
+.Text ul {
+  list-style: none;
+}
+
+.Text ul li::before {
+  content: "";
+  position: absolute;
+  left: -1.6rem;
+  top: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-data-blue);
+}
+
+@media (--lg-viewport), (--xl-viewport) {
+  .Text ul li::before {
+    top: 12px;
+  }
 }
 
 /**
