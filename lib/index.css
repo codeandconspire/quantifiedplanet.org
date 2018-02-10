@@ -9,4 +9,5 @@
 @import "./components/story";
 @import "./components/summary";
 @import "./components/text";
+@import "./components/vcard";
 @import "./components/view";

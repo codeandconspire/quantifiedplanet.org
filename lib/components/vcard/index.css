@@ -1,0 +1,35 @@
+/* @define Footer */
+
+@import "../base";
+
+.Vcard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 0 -8px -8px;
+}
+
+.Vcard ::selection {
+  background: var(--color-space-blue);
+}
+
+.Vcard-item {
+  flex: 1 0 calc(50% - 8px);
+  padding: 20px 24px 28px;
+  margin: 0 0 8px 8px;
+  color: #fff;
+  font-style: normal;
+  font-size: 16px;
+  background: var(--color-data-blue);
+}
+
+.Vcard-name {
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+@media (--xs-viewport), (--sm-viewport) {
+  .Vcard-item {
+    width: 100%;
+  }
+}
