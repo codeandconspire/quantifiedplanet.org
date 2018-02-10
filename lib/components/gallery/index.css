@@ -18,7 +18,7 @@
 }
 
 .Gallery-prequel {
-  height: 100vh;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,6 +33,7 @@
 }
 
 .Gallery-intro {
+  padding-top: 20vh;
   margin-bottom: 10vh;
   text-align: center;
 }
@@ -120,7 +121,7 @@
   }
 }
 
-@media (--lg-viewport) {
+@media (--lg-viewport), (--xl-viewport) {
   .Gallery-description {
     margin: 32px 40px;
   }

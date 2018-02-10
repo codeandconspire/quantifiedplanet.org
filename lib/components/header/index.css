@@ -7,13 +7,25 @@
   position: relative;
   z-index: 5;
   user-select: none;
+  font-weight: bold;
+  font-size: 9px;
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+@media (--md-viewport), (--lg-viewport), (--xl-viewport) {
+  .Header {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+  }
 }
 
 .Header--light {
   background: #fff;
   color: var(--color-space-blue);
 }
-
 
 .Header--collapse {
   position: fixed;
@@ -23,6 +35,7 @@
   display: flex;
   align-items: stretch;
   justify-content: space-between;
+  align-items: center;
   padding: 14px 20px;
   position: relative;
 }
@@ -32,6 +45,10 @@
     padding: 21px 32px;
   }
 }
+
+/**
+ * Logo
+ */
 
 .Header-home {
   display: flex;
@@ -60,6 +77,10 @@
     margin-left: 9px;
   }
 }
+
+/**
+ * Main Navigation
+ */
 
 .Header-nav {
   display: flex;
@@ -98,12 +119,6 @@
   display: block;
   padding: 1em;
   position: relative;
-  font-weight: bold;
-  font-size: 9px;
-  white-space: nowrap;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  text-decoration: none;
 }
 
 .Header-link.is-active::after {
@@ -117,8 +132,53 @@
 
 @media (--md-viewport), (--lg-viewport), (--xl-viewport) {
   .Header-link {
-    font-size: 11px;
     padding: 1em 2.45em;
-    letter-spacing: 0.06em;
+  }
+}
+
+/**
+ * Data Explorer
+ */
+
+.Header-data {
+  display: none;
+}
+
+@media (--sm-viewport), (--md-viewport), (--lg-viewport), (--xl-viewport) {
+  .Header-data {
+    display: block;
+    font-size: 0;
+    color: transparent;
+  }
+
+  .Header-icon {
+    display: block;
+    background: var(--color-data-blue);
+    width: 40px;
+    height: 40px;
+    padding: 11px;
+    border-radius: 50%;
+    color: #fff;
+  }
+
+  .Header-icon > * {
+    width: 18px;
+    height: 18px;
+    display: block;
+  }
+}
+
+@media (--lg-viewport), (--xl-viewport) {
+  .Header-data {
+    font-size: inherit;
+    color: inherit;
+  }
+
+  .Header-icon {
+    display: inline-block;
+    margin-left: 16px;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
   }
 }
