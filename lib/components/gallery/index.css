@@ -29,7 +29,7 @@
   margin: 0;
   font-size: 1.2rem;
   position: relative;
-  top: -20vh;
+  top: -10vh;
 }
 
 .Gallery-intro {
@@ -42,9 +42,23 @@
   width: 148px;
   height: 148px;
   margin-bottom: 44px;
-  background-color: #ff2949;
+  color: #ff1235; /* #ff2949 */
+  background: currentColor;
   border-radius: 74px;
-  box-shadow: 0 0 100px #ff2949;
+  box-shadow: 0 0 150px currentColor;
+  animation: Gallery-live--pulse 2000ms infinite ease;
+}
+
+@keyframes Gallery-live--pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .Gallery-grid {
