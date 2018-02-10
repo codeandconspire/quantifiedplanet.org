@@ -38,7 +38,6 @@
   line-height: 1.5;
   letter-spacing: 0.025em;
   cursor: default;
-  user-select: none;
   color: var(--color-text);
   background: var(--color-root);
   text-rendering: geometricPrecision;

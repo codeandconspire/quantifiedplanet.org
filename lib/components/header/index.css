@@ -6,6 +6,7 @@
   width: 100%;
   position: relative;
   z-index: 5;
+  user-select: none;
 }
 
 .Header--light {

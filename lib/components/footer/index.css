@@ -51,6 +51,7 @@
   display: block;
   width: 100%;
   height: auto;
+  user-select: none;
 }
 
 .Footer-logo--qp {
@@ -80,6 +81,8 @@
 .Footer-page {
   flex: 1 0 50%;
   margin-top: 40px;
+  text-align: center;
+  user-select: none;
 }
 
 @media (--md-viewport), (--lg-viewport), (--xl-viewport) {
@@ -103,10 +106,11 @@
 }
 
 .Footer-link {
-  display: block;
+  display: inline-block;
   text-align: center;
   margin: -5px;
   padding: 5px;
+  max-width: 240px;
 }
 
 .Footer-link:hover {
@@ -131,6 +135,10 @@
     margin: 8px 16px 8px 0;
   }
 
+  .Footer-page {
+    text-align: left;
+  }
+
   .Footer-link {
     text-align: left;
   }
@@ -139,7 +147,6 @@
 @media (--lg-viewport), (--xl-viewport) {
   .Footer-link {
     font-size: 16px;
-    max-width: 240px;
   }
 
   .Footer-link--primary {
@@ -177,7 +184,6 @@
   margin: 25px 0 0;
   text-align: center;
   font-style: normal;
-  user-select: auto;
 }
 
 .Footer-contact :link:hover {

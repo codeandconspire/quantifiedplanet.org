@@ -4,6 +4,7 @@
 
 .Icon {
   display: inline-block;
+  user-select: none;
 }
 
 .Icon--social {
