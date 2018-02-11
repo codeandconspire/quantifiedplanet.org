@@ -59,14 +59,26 @@
   cursor: default;
 }
 
+.Text h2,
+.Text .Text-h2 {
+  font-size: 2.4rem;
+}
+
 .Text h3,
 .Text .Text-h3 {
-  font-size: 2.4rem;
+  font-size: 2rem;
 }
 
 .Text h4,
 .Text .Text-h4 {
   font-size: 1.6rem;
+}
+
+@media (--sm-viewport), (--lg-viewport), (--xl-viewport) {
+  .Text h2,
+  .Text .Text-h2 {
+    font-size: 3rem;
+  }
 }
 
 @media (--md-viewport), (--lg-viewport), (--xl-viewport) {

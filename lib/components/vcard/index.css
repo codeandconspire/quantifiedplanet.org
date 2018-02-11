@@ -21,6 +21,7 @@
   font-style: normal;
   font-size: 16px;
   background: var(--color-data-blue);
+  width: 100%;
 }
 
 .Vcard-name {
@@ -28,8 +29,8 @@
   font-weight: bold;
 }
 
-@media (--xs-viewport), (--sm-viewport) {
+@media (--md-viewport), (--lg-viewport), (--xs-viewport) {
   .Vcard-item {
-    width: 100%;
+    width: auto;
   }
 }

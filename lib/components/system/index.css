@@ -239,7 +239,7 @@
   font-size: 0.8rem;
 }
 
-@media (--xs-viewport) {
+@media (--no-viewport) {
   .System-drop {
     width: 13px;
     height: 17px;

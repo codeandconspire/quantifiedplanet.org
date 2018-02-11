@@ -56,7 +56,7 @@
   top: -0.05em;
 }
 
-@media (--xs-viewport) {
+@media (--no-viewport), (--xs-viewport) {
   .StormWater-value {
     font-size: 83px;
   }

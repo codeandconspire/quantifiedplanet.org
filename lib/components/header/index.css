@@ -97,7 +97,7 @@
   display: none;
 }
 
-@media (--xs-viewport) {
+@media (--no-viewport) {
   .Header-page {
     display: none;
   }
