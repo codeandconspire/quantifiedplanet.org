@@ -29,6 +29,7 @@
 
 .Story.has-js .Story-intro {
   position: fixed;
+  will-change: transform;
   top: 0;
   left: 0;
 }
@@ -44,6 +45,13 @@
   pointer-events: none;
   transform: scale(0.8) translate(-50%, -50%);
   opacity: 0;
+}
+
+.Story-planet.is-hidden {
+  visibility: hidden;
+}
+
+.Story.has-appeared .Story-planet {
   will-change: transform;
   animation: Story-planet--appear 1000ms 100ms ease-out forwards;
 }
@@ -52,6 +60,7 @@
   to {
     opacity: 1;
     transform: scale(1) translate(-50%, -50%);
+    will-change: transform;
   }
 }
 
@@ -108,29 +117,7 @@
   z-index: 1;
   height: 100%;
   width: 100%;
-  background-image: url("/planet-blueprint.svg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 130% auto;
   will-change: transform;
-}
-
-@media (--sm-viewport), (--md-viewport) {
-  .Story-blueprint {
-    background-size: 68% auto;
-  }
-}
-
-@media (--lg-viewport) {
-  .Story-blueprint {
-    background-size: 50% auto;
-  }
-}
-
-@media (--xl-viewport) {
-  .Story-blueprint {
-    background-size: 42% auto;
-  }
 }
 
 /**
@@ -147,6 +134,7 @@
   background-color: var(--color-data-blue);
   opacity: 0;
   pointer-events: none;
+  will-change: opacity;
 }
 
 .Story-content {
