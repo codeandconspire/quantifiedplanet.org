@@ -61,13 +61,17 @@
   padding: 2px; /* 1 */
 }
 
-.Story-planet.is-hidden {
+.Story-planet.is-loading {
   visibility: hidden;
+}
+
+.Story-planet.is-hidden {
+  display: none;
 }
 
 .Story.has-appeared .Story-planet {
   will-change: transform;
-  animation: Story-planet--appear 1000ms 100ms ease-out forwards;
+  animation: Story-planet--appear 1300ms 0ms cubic-bezier(0.0, 0.0, 0.2, 1) forwards;
 }
 
 @keyframes Story-planet--appear {
@@ -101,28 +105,7 @@
   z-index: 2;
   padding: 0 1.6rem;
   width: 100%;
-  opacity: 0;
-  margin-top: -20px;
-  will-change: opacity;
-  animation: Story-body--appear 1000ms 1000ms ease-out forwards;
-}
-
-@media (--md-viewport) {
-  .Story-body {
-    margin-top: 10px;
-  }
-}
-
-@media (--lg-viewport), (--xl-viewport) {
-  .Story-body {
-    margin-top: 30px;
-  }
-}
-
-@keyframes Story-body--appear {
-  to {
-    opacity: 1;
-  }
+  margin-top: 3.5vh;
 }
 
 .Story-overlay {
