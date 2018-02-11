@@ -22,7 +22,7 @@
   .Menu {
     display: flex;
     flex-wrap: wrap;
-    background-color: var(--color-smoke);
+    background: var(--color-smoke);
     overflow: hidden;
     padding: 0 0.7rem;
   }
@@ -33,13 +33,14 @@
     margin: -1px 0.7rem;
     padding-top: 1px;
     text-align: center;
-    background-color: var(--color-smoke);
+    background: var(--color-smoke);
   }
 
   .Menu-link {
-    padding: 1rem;
-    color: var(--color-silver);
+    padding: 1rem 0rem;
     font-size: 11px;
+    color: var(--color-silver);
+    white-space: nowrap;
   }
 }
 

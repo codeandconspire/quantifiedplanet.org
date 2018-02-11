@@ -53,6 +53,8 @@
 .Header-home {
   display: flex;
   align-items: center;
+  padding: 10px;
+  margin: -10px;
 }
 
 .Header-logo {
@@ -149,6 +151,7 @@
     display: block;
     font-size: 0;
     color: transparent;
+    width: 40px;
   }
 
   .Header-icon {
@@ -172,6 +175,7 @@
   .Header-data {
     font-size: inherit;
     color: inherit;
+    width: auto;
   }
 
   .Header-icon {

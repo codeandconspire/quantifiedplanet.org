@@ -3,6 +3,7 @@
 @import "../base";
 
 .Vcard {
+  --color-link: #fff;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
