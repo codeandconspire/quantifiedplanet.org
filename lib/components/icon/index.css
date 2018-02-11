@@ -10,7 +10,6 @@
 .Icon--social {
   width: 40px;
   height: 40px;
-  padding: 11px;
   position: relative;
 
   color: var(--color-text);
@@ -19,6 +18,13 @@
   transform-origin: 50% 50%;
   transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
   will-change: transform;
+}
+
+.Icon--social .Icon-image {
+  width: 20px;
+  height: 20px;
+  margin: 10px 0 0 10px;
+  position: relative;
 }
 
 .Icon--social:hover {
@@ -31,13 +37,12 @@
   height: 100%;
 }
 
-.Icon--linkedin {
-  padding: 10px 11px 12px 11px;
-  right: -1px;
+.Icon--linkedin .Icon-image {
+  top: -1px;
 }
 
-.Icon--twitter {
-  padding: 11px 10px 11px 12px;
+.Icon--twitter .Icon-image {
+  right: -1px;
 }
 
 .Icon--blue {

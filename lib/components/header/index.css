@@ -159,7 +159,6 @@
     background: var(--color-data-blue);
     width: 40px;
     height: 40px;
-    padding: 11px;
     border-radius: 50%;
     color: #fff;
   }
@@ -167,6 +166,7 @@
   .Header-icon > * {
     width: 18px;
     height: 18px;
+    margin: 11px 0 0 11px;
     display: block;
   }
 }
