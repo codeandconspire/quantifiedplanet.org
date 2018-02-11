@@ -273,7 +273,7 @@
   }
 }
 
-@media (--md-viewport), (--lg-viewport), (--xl-viewport) {
+@media (--md-viewport), (--lg-viewport), (--xl-viewport) and (min-height: 600px) {
   .Text .Text-story1 {
     font-size: 4rem;
     max-width: 49rem;

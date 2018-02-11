@@ -20,11 +20,16 @@
   justify-content: center;
   height: 100vh;
   width: 100%;
-  padding-bottom: 50px;
+  padding-bottom: 10vh;
   position: relative;
-  z-index: -1;
   text-align: center;
   background: var(--color-space-blue);
+}
+
+@media (--md-viewport) {
+  .Story-intro {
+    padding-bottom: 5vh;
+  }
 }
 
 .Story.has-js .Story-intro {
@@ -40,11 +45,20 @@
   left: 50%;
   width: 130%;
   height: auto;
+  margin-top: -15px;
   transform: translate(-50%, -50%);
   transform-origin: top left;
   pointer-events: none;
   transform: scale(0.8) translate(-50%, -50%);
   opacity: 0;
+}
+
+/**
+ * 1. Match outline and video
+ */
+
+.Story-planet--blueprint {
+  padding: 2px; /* 1 */
 }
 
 .Story-planet.is-hidden {
@@ -88,8 +102,21 @@
   padding: 0 1.6rem;
   width: 100%;
   opacity: 0;
+  margin-top: -20px;
   will-change: opacity;
-  animation: Story-body--appear 1000ms 1500ms ease-out forwards;
+  animation: Story-body--appear 1000ms 1000ms ease-out forwards;
+}
+
+@media (--md-viewport) {
+  .Story-body {
+    margin-top: 10px;
+  }
+}
+
+@media (--lg-viewport), (--xl-viewport) {
+  .Story-body {
+    margin-top: 30px;
+  }
 }
 
 @keyframes Story-body--appear {
