@@ -207,6 +207,7 @@
 }
 
 .Story-copy {
+  --color-background: var(--color-space-blue);
   max-width: 39rem;
 }
 
