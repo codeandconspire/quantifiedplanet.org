@@ -3,13 +3,13 @@ module.exports = document
 function document (state, body, stack) {
   return `
     <!doctype html>
-    <html lang="${state.lang || 'en'}" dir="${state.meta.dir || 'ltr'}">
+    <html lang="${state.lang || 'en-US'}" dir="${state.meta.dir || 'ltr'}">
       <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="description" content="${state.meta.description}">
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-        <meta property="theme" name="theme-color" content="${state.meta.color}">
+        <meta property="theme" name="theme-color" content="${state.meta.theme}">
         <meta property="og:title" content="${state.title}">
         <meta property="og:description" content="${state.meta.description}">
         ${state.meta.image ? `
@@ -24,7 +24,7 @@ function document (state, body, stack) {
         <title>${state.title}</title>
         <link rel="manifest" href="/manifest.json">
         <link rel="apple-touch-icon" href="/icon.png">
-        <link rel="mask-icon" href="/icon.svg" color="${state.meta.color}">
+        <link rel="mask-icon" href="/icon.svg" color="${state.meta.theme}">
         <script>document.documentElement.classList.add('has-js')</script>
         ${script(stack)}
         ${stack.styles ? stylesheet(stack) : ''}
