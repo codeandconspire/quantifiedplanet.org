@@ -2,15 +2,20 @@
 
 /**
  * 1. Fill any flex container this is put inside
+ * 2. Center self in container
  */
 
 .BubbleChart {
   flex: 1 0 auto; /* 1 */
+  align-self: center; /* 2${this.element.offsetHeight}px */
   display: flex;
-  align-items: center;
-  flex-direction: column;
   justify-content: center;
   position: relative;
+}
+
+.BubbleChart.is-loading {
+  align-items: center;
+  flex-direction: column;
 }
 
 .BubbleChart-value {
@@ -51,9 +56,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 105px;
-  min-height: 105px;
-  padding: 0 10px;
+  min-width: 90px;
+  min-height: 90px;
   position: absolute;
   color: #fff;
   opacity: 0.95;
@@ -62,51 +66,61 @@
   text-align: center;
 }
 
+.BubbleChart-bubble::before {
+  content: "";
+  float: left;
+  margin-left: -1px;
+  width: 1px;
+  height: 100%;
+  padding-top: 100%;
+}
+
+.BubbleChart-bubble::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 .BubbleChart-bubble:first-child {
-  top: 7.2%;
+  top: 12.2%;
   left: 10%;
   width: 73.8%;
-  height: 73.8%;
   background-image: linear-gradient(-134deg, #f7c0cc 0%, #6c32c6 85%, #bd68d4 93%, #c86dd7 100%);
   box-shadow: 0 3px 9px 9px rgba(0, 34, 59, 0.08);
   animation: rotate-cw 8s -.2s linear infinite;
 }
 
 .BubbleChart-bubble:nth-child(2) {
-  top: 0;
+  top: 5%;
   right: -7%;
   width: 46%;
-  height: 46%;
   background-image: linear-gradient(50deg, #ae237d 0%, #ffcdcd 100%);
   box-shadow: 0 3px 3px 1px rgba(0, 34, 59, 0.08);
   animation: rotate-ccw 10s -.4s linear infinite;
 }
 
 .BubbleChart-bubble:nth-child(3) {
-  top: 0;
-  left: 0;
+  top: 11%;
+  left: -4%;
   z-index: 1;
   width: 36.5%;
-  height: 36.5%;
   background: linear-gradient(to right bottom, #ffa632, #cd0095);
   animation: rotate-cw 8s -1.2s linear infinite;
 }
 
 .BubbleChart-bubble:nth-child(4) {
-  bottom: 19%;
+  bottom: 14%;
   right: 9%;
   width: 22.9%;
-  height: 22.9%;
   background-image: linear-gradient(50deg, #23779c 0%, #e9e4ff 100%);
   box-shadow: 0 3px 3px 1px rgba(0, 34, 59, 0.08);
   animation: rotate-cw 8s -.8s linear infinite;
 }
 
 .BubbleChart-bubble:nth-child(5) {
-  top: -13%;
+  top: -8%;
   left: 28%;
   width: 27.6%;
-  height: 27.6%;
   background-image: linear-gradient(-180deg, #d8ffd6 0%, #559584 97%);
   box-shadow: 0 3px 3px 1px rgba(0, 34, 59, 0.08);
   animation: rotate-ccw 7s -1s linear infinite;

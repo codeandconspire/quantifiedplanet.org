@@ -43,8 +43,13 @@
 }
 
 .Thermometer-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 100%;
   width: 100%;
+  margin: 0;
   position: absolute;
   top: 0;
   left: 0;
@@ -54,10 +59,6 @@
 .Thermometer-text {
   font-size: 12px;
   max-width: 130px;
-  position: absolute;
-  top: 16%;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 .Thermometer-value {
@@ -65,8 +66,5 @@
   line-height: 1.2;
   font-weight: bold;
   letter-spacing: -0.03em;
-  position: absolute;
-  bottom: 50%;
-  transform: translate(-50%, 40%);
-  left: calc(50% + 13px);
+  text-indent: 0.15em;
 }

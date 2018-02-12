@@ -111,8 +111,17 @@
 }
 
 .Gallery-icon {
+  width: 60px;
+  height: 60px;
   display: inline-block;
-  margin: 16px 10px 0;
+  margin: 16px 10px;
+}
+
+@media (--md-viewport), (--lg-viewport), (--xl-viewoprt) {
+  .Gallery-icon {
+    width: 80px;
+    height: 80px;
+  }
 }
 
 .Gallery-graph {
