@@ -51,7 +51,7 @@
   background: #56c02b;
 }
 
-.Goal-desc {
+.Goals-desc {
   display: none;
 }
 
@@ -59,7 +59,7 @@
   .Goals-item {
     overflow: hidden;
     height: 0;
-    padding-bottom: 60%;
+    padding-bottom: 65%;
   }
 
   .Goals-item ::selection {
@@ -67,10 +67,10 @@
   }
 
   .Goals-item--11 {
-    top: calc(60% - 1px);
+    top: calc(65% - 1px);
   }
 
-  .Goal-desc {
+  .Goals-desc {
     display: block;
     padding: 4rem 2.4rem;
     margin: 0;
@@ -79,6 +79,7 @@
     font-size: 16px;
     left: 0;
     max-width: 22rem;
+    z-index: 1;
   }
 
   .Goals-icon {
@@ -127,7 +128,198 @@
     padding-bottom: 50%;
   }
 
-  .Goal-desc {
+  .Goals-desc {
     font-size: 1rem;
+  }
+}
+
+/**
+ * Animations
+ */
+
+.Goals-animation {
+  display: none;
+  user-select: none;
+}
+
+@media (--md-viewport), (--lg-viewport), (--xl-viewport) {
+
+  /**
+   * Animation for Goal 11
+   */
+
+  .Goals-item--11 .Goals-animation {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .Goals-item--11 .Goals-city {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 126px;
+    height: 160px;
+  }
+
+  .Goals-item--11 .Goals-cloud {
+    position: absolute;
+    top: 110px;
+    right: 10px;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .Goals-item--11 .Goals-cloud--2 {
+    top: 155px;
+    right: -16px;
+    width: 54px;
+    height: 54px;
+    background: #ec5d10;
+  }
+
+  .Goals-item--11 .Goals-cloud--3 {
+    top: 317px;
+    right: 66px;
+    width: 45px;
+    height: 45px;
+  }
+
+  .Goals-item--11 .Goals-bus {
+    position: absolute;
+    width: 138px;
+    height: 45px;
+    left: 0;
+    bottom: 0;
+    fill: #ec5d10;
+  }
+
+  .Goals.is-visible .Goals-item--11 .Goals-bus {
+    will-change: transform;
+    animation: Goals-item--11-bus--drive 8s ease-in infinite;
+    transform: translateX(-100%);
+  }
+
+  @keyframes Goals-item--11-bus--drive {
+    to {
+      transform: translateX(500%);
+    }
+  }
+
+  /**
+   * Animation for Goal 13
+   */
+
+  .Goals-item--13 .Goals-animation {
+    display: block;
+    position: absolute;
+    bottom: -14%;
+    right: -33%;
+    width: 115%;
+    height: 200%;
+    max-width: 500px;
+    max-height: 500px;
+  }
+
+  .Goals.is-visible .Goals-item--13 .Goals-globe {
+    transform-origin: 50% 50%;
+    will-change: transform;
+    animation: Goals-item--13-globe--spin 100s linear infinite;
+  }
+
+  @keyframes Goals-item--13-globe--spin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /**
+   * Animation for Goal 15
+   */
+
+  .Goals-item--15 .Goals-animation {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .Goals-item--15 .Goals-cloud {
+    position: absolute;
+    top: 130px;
+    right: 14px;
+    width: 97px;
+    height: 97px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .Goals-item--15 .Goals-cloud--2 {
+    top: 146px;
+    right: -88px;
+    width: 152px;
+    height: 152px;
+    background: rgba(255, 255, 255, 0.4);
+  }
+
+  .Goals-bee {
+    position: absolute;
+    top: 47%;
+    left: 40px;
+    width: 49px;
+    height: 42px;
+    transform: rotate(31deg);
+  }
+
+  .Goals-bird {
+    position: absolute;
+    top: 43%;
+    right: 22%;
+    width: 48px;
+    height: 14px;
+    transform: rotate(-7deg);
+    color: #fff;
+  }
+
+  .Goals-bird--2 {
+    color: #105702;
+    top: 7%;
+    right: 18%;
+    transform: rotate(-3deg);
+  }
+
+  .Goals-bird--3 {
+    color: #105702;
+    width: 38px;
+    height: 15px;
+    top: 53%;
+    right: 38%;
+    transform: rotate(14deg);
+  }
+
+  .Goals-bird--4 {
+    width: 59px;
+    height: 16px;
+    top: 66%;
+    right: 7%;
+    transform: rotate(2deg);
+  }
+}
+
+@media (--md-viewport) {
+  .Goals-item--13 .Goals-animation {
+    max-width: 400px;
+    max-height: 400px;
   }
 }
