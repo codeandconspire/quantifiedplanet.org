@@ -163,10 +163,6 @@
   background-color: var(--color-data-blue);
 }
 
-.Story.has-js .Story-content {
-  background-color: transparent;
-}
-
 /**
  * Steps
  */
