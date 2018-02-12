@@ -15,11 +15,11 @@
 
 .Story-intro {
   box-sizing: content-box;
+  height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100vh;
-  width: 100%;
   padding-bottom: 10vh;
   position: relative;
   text-align: center;
@@ -45,12 +45,18 @@
   left: 50%;
   width: 130%;
   height: auto;
-  margin-top: -15px;
+  margin-top: -8vh;
   transform: translate(-50%, -50%);
   transform-origin: top left;
   pointer-events: none;
   transform: scale(0.8) translate(-50%, -50%);
   opacity: 0;
+}
+
+@media (--sm-viewport), (--md-viewport), (--lg-viewport), (--xl-viewport) {
+  .Story-planet {
+    margin-top: -2vh;
+  }
 }
 
 /**
@@ -105,7 +111,13 @@
   z-index: 2;
   padding: 0 1.6rem;
   width: 100%;
-  margin-top: 3.5vh;
+  margin-top: -3vh;
+}
+
+@media (--sm-viewport), (--md-viewport), (--lg-viewport), (--xl-viewport) {
+  .Story-body {
+    margin-top: 3.5vh;
+  }
 }
 
 .Story-overlay {

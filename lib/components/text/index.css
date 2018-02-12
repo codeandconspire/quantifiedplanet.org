@@ -258,9 +258,10 @@
   letter-spacing: 0;
 }
 
+
 @media (--sm-viewport), (--md-viewport), (--lg-viewport), (--xl-viewport) {
   .Text .Text-story1 {
-    font-size: 3rem;
+    font-size: 2.2rem;
   }
 
   .Text .Text-story2 {
@@ -275,7 +276,7 @@
 
 @media (--md-viewport), (--lg-viewport), (--xl-viewport) and (min-height: 600px) {
   .Text .Text-story1 {
-    font-size: 4rem;
+    font-size: 3.2rem;
     max-width: 49rem;
   }
 
