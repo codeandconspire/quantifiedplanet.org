@@ -11,7 +11,8 @@
   position: absolute;
   left: 0;
   top: 0;
-  z-index: 0;
+  border-radius: 100%;
+  overflow: hidden;
 }
 
 .StormWater-icon {
@@ -95,5 +96,4 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  z-index: -1;
 }
