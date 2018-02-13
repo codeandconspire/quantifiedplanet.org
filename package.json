@@ -6,8 +6,7 @@
   "scripts": {
     "test": "standard",
     "start": "node lib/server.js",
-    "build": "./bin/bin.js build index.js --dir dist && npm run compress",
-    "compress": "browserify -p tinyify ./dist/9e1d9d5545c662ff/bundle.js -o ./dist/9e1d9d5545c662ff/bundle.js && gzip -9 -f -c ./dist/9e1d9d5545c662ff/bundle.js > ./dist/9e1d9d5545c662ff/bundle.js.gz"
+    "build": "./bin/bin.js build index.js --dir dist"
   },
   "bin": {
     "stack": "bin/bin.js"
