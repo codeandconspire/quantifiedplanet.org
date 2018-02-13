@@ -5,7 +5,7 @@
 .Header {
   width: 100%;
   position: relative;
-  z-index: 5;
+  /* z-index: 5; */
   user-select: none;
   font-weight: bold;
   font-size: 9px;
@@ -28,7 +28,7 @@
 }
 
 .Header--collapse {
-  /* position: fixed; */
+  position: fixed;
 }
 
 .Header-container {

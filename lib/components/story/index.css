@@ -43,7 +43,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 130%;
+  width: 120%;
   height: auto;
   margin-top: -8vh;
   transform: translate(-50%, -50%);
@@ -88,9 +88,15 @@
   }
 }
 
-@media (--sm-viewport), (--md-viewport) {
+@media (--md-viewport) {
   .Story-planet {
-    width: 68%;
+    width: 80%;
+  }
+}
+
+@media (--md-viewport) {
+  .Story-planet {
+    width: 70%;
   }
 }
 
@@ -102,7 +108,7 @@
 
 @media (--xl-viewport) {
   .Story-planet {
-    width: 42%;
+    width: 50%;
   }
 }
 
