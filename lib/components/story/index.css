@@ -81,26 +81,10 @@
   animation: Story-planet--appear 1300ms 0ms cubic-bezier(0.0, 0.0, 0.2, 1) forwards;
 }
 
-.Story.has-appeared .Story-planet--blueprint .Story-rotate {
-  will-change: transform;
-  animation: Story-planet--rotate 130s linear infinite;
-  transform-origin: center center;
-}
-
 @keyframes Story-planet--appear {
   to {
     opacity: 1;
     transform: scale(1) translate(-50%, -50%);
-  }
-}
-
-@keyframes Story-planet--rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(1turn);
   }
 }
 
