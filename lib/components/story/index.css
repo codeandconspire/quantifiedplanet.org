@@ -107,7 +107,7 @@
 }
 
 .Story-body {
-  position: absolute;
+  position: relative;
   z-index: 2;
   padding: 0 1.6rem;
   width: 100%;

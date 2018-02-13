@@ -7,7 +7,7 @@
     "test": "standard",
     "start": "node lib/server.js",
     "build": "./bin/bin.js build index.js --dir dist && npm run compress",
-    "compress": "browserify -p tinyify ./dist/386b4d9bb7a00674/bundle.js -o ./dist/386b4d9bb7a00674/bundle.js && gzip -9 -f -c ./dist/386b4d9bb7a00674/bundle.js > ./dist/386b4d9bb7a00674/bundle.js.gz"
+    "compress": "browserify -p tinyify ./dist/9e1d9d5545c662ff/bundle.js -o ./dist/9e1d9d5545c662ff/bundle.js && gzip -9 -f -c ./dist/9e1d9d5545c662ff/bundle.js > ./dist/9e1d9d5545c662ff/bundle.js.gz"
   },
   "bin": {
     "stack": "bin/bin.js"

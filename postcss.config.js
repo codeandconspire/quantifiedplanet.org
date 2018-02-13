@@ -8,7 +8,7 @@ function config (ctx) {
     require('postcss-custom-media')(),
     require('postcss-selector-matches')(),
     require('postcss-url')([{
-      filter: '**/*.woff',
+      filter: '**/*.woff2',
       url: ctx.env === 'development' ? 'rebase' : 'inline'
     }, {
       useHash: true,
