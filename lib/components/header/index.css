@@ -28,7 +28,7 @@
 }
 
 .Header--collapse {
-  position: fixed;
+  /* position: fixed; */
 }
 
 .Header-container {
@@ -123,19 +123,29 @@
   position: relative;
 }
 
-.Header-link.is-active::after {
+.Header-link::after {
   content: "";
   height: 1px;
   position: relative;
   bottom: -6px;
   background: currentColor;
   display: block;
+  opacity: 0;
 }
 
 @media (--md-viewport), (--lg-viewport), (--xl-viewport) {
   .Header-link {
     padding: 1em 2.45em;
   }
+}
+
+.Header-link.is-active::after,
+.Header-link:hover::after {
+  opacity: 1;
+}
+
+.Header-link.is-active {
+  cursor: default;
 }
 
 /**

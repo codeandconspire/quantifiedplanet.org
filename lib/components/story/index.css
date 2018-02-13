@@ -51,6 +51,7 @@
   pointer-events: none;
   transform: scale(0.8) translate(-50%, -50%);
   opacity: 0;
+  overflow: visible;
 }
 
 @media (--sm-viewport), (--md-viewport), (--lg-viewport), (--xl-viewport) {
@@ -80,11 +81,26 @@
   animation: Story-planet--appear 1300ms 0ms cubic-bezier(0.0, 0.0, 0.2, 1) forwards;
 }
 
+.Story.has-appeared .Story-planet--blueprint .Story-rotate {
+  will-change: transform;
+  animation: Story-planet--rotate 130s linear infinite;
+  transform-origin: center center;
+}
+
 @keyframes Story-planet--appear {
   to {
     opacity: 1;
     transform: scale(1) translate(-50%, -50%);
-    will-change: transform;
+  }
+}
+
+@keyframes Story-planet--rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(1turn);
   }
 }
 
@@ -112,6 +128,20 @@
   padding: 0 1.6rem;
   width: 100%;
   margin-top: -3vh;
+}
+
+:root.has-js .Story-body {
+  opacity: 0;
+}
+
+:root.has-js .Story-body.is-visible {
+  animation: Story-body--appear 800ms 1000ms ease-out forwards;
+}
+
+@keyframes Story-body--appear {
+  to {
+    opacity: 1;
+  }
 }
 
 @media (--sm-viewport), (--md-viewport), (--lg-viewport), (--xl-viewport) {
@@ -238,7 +268,7 @@
   }
 
   .Story-block--first {
-    padding-top: 0;
+    padding-top: 0rem;
   }
 
   .Story-block--end {
@@ -253,6 +283,12 @@
   .Story-logo {
     width: 192px;
     height: 193px;
+  }
+}
+
+@media (--lg-viewport), (--xl-viewport) {
+  .Story-block--first {
+    padding-top: 6rem;
   }
 }
 
