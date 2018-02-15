@@ -11,6 +11,7 @@
   width: 40px;
   height: 40px;
   position: relative;
+  vertical-align: bottom;
 
   color: var(--color-text);
   background-color: currentColor;
@@ -21,9 +22,10 @@
 }
 
 .Icon--social .Icon-image {
-  width: 21px;
-  height: 21px;
-  margin: 10px 0 0 10px;
+  width: 18px;
+  height: 18px;
+  margin: 11px 0 0 11px;
+  position: relative;
   position: relative;
 }
 
