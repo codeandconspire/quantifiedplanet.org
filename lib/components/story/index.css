@@ -102,20 +102,20 @@
 
 @media (--lg-viewport) {
   .Story-planet {
-    width: 50%;
+    width: 62%;
   }
 }
 
 @media (--xl-viewport) {
   .Story-planet {
-    width: 50%;
+    width: 53%;
   }
 }
 
 .Story-body {
   position: relative;
   z-index: 2;
-  padding: 0 1.6rem;
+  padding: 0 1.4rem;
   width: 100%;
   margin-top: -3vh;
 }
@@ -136,7 +136,7 @@
 
 @media (--sm-viewport), (--md-viewport), (--lg-viewport), (--xl-viewport) {
   .Story-body {
-    margin-top: 3.5vh;
+    margin-top: 4vh;
   }
 }
 

@@ -68,7 +68,7 @@
   }
 }
 
-@media (--xl-viewport) {
+@media (--xl-viewport) and (min-height: 700px) {
   .StormWater-value {
     font-size: 144px;
   }

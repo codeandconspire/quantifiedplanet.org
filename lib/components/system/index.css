@@ -10,9 +10,11 @@
   width: 100%;
   max-width: 1190px;
   margin: 0 auto;
+  padding: 120px 0;
   font-size: 16px;
   position: relative;
   z-index: 1;
+  pointer-events: none;
 }
 
 .System ::selection {
@@ -30,16 +32,22 @@
   align-items: center;
   margin: 9vh 0 21vh;
   user-select: none;
-  pointer-events: none;
 }
 
 .System-title {
   font-size: 20px;
   margin: 0;
+  pointer-events: all;
 }
 
 .System-title--muted {
   color: var(--color-data-blue-muted);
+}
+
+@media (--md-viewport), (--lg-viewport), (--xl-viewport) {
+  .System {
+    padding-top: 0;
+  }
 }
 
 @media (--md-viewport) {
@@ -191,14 +199,20 @@
   }
 }
 
-@media (--lg-viewport) {
+@media (--lg-viewport), (--xl-viewport) {
   .System-frame {
     max-width: 420px;
     max-height: 420px;
   }
 }
 
-@media (--xl-viewport) {
+@media (--lg-viewport) and (max-height: 900px), (--xl-viewport) and (max-height: 900px) {
+  .System-frame {
+    margin-top: 40px;
+  }
+}
+
+@media (--xl-viewport) and (min-height: 700px) {
   .System-frame {
     max-width: 500px;
     max-height: 500px;
@@ -245,7 +259,6 @@
   position: relative;
   float: left;
   width: calc(100% / 12);
-  pointer-events: none;
 }
 
 .System-cell::after {
