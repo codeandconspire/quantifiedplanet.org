@@ -278,6 +278,22 @@
   font-size: 0.8rem;
 }
 
+.System-number--0::after {
+  content: "0"
+}
+
+.System-number--1::after {
+  content: "1"
+}
+
+.System-drop {
+  opacity: 0;
+}
+
+.System-drop.is-visible {
+  opacity: 1;
+}
+
 @media (--no-viewport) {
   .System-drop {
     width: 13px;

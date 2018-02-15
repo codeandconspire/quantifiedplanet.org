@@ -133,6 +133,17 @@
   }
 }
 
+@media (min-width: 1750px) {
+  .Goals-item {
+    padding-bottom: calc(100vw / 3);
+  }
+
+  .Goals-desc {
+    max-width: 27rem;
+    font-size: 22px;
+  }
+}
+
 /**
  * Animations
  */

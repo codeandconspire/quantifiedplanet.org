@@ -53,6 +53,12 @@
   }
 }
 
+@media (min-width: 1750px) {
+  .View-container {
+    max-width: 1500px;
+  }
+}
+
 .View-switcheroo {
   display: flex;
   flex-direction: column;
