@@ -259,8 +259,19 @@
   letter-spacing: 0;
 }
 
+@media (max-height: 450px) {
+  .Text .Text-story1 {
+    display: none;
+  }
+}
 
-@media (--sm-viewport), (--md-viewport), (--lg-viewport), (--xl-viewport) {
+@media (max-height: 450px) {
+  .Text .Text-story1 {
+    display: none;
+  }
+}
+
+@media (--sm-viewport), (--md-viewport), (--lg-viewport) and (min-height: 600px), (--xl-viewport) and (min-height: 600px) {
   .Text .Text-story1 {
     font-size: 2.4rem;
     max-width: 28rem;
@@ -276,7 +287,7 @@
   }
 }
 
-@media (--md-viewport), (--lg-viewport), (--xl-viewport) and (min-height: 600px) {
+@media (--md-viewport), (--lg-viewport) and (min-height: 600px), (--xl-viewport) and (min-height: 600px) {
   .Text .Text-story1 {
     font-size: 3.7rem;
     max-width: 46rem;
@@ -291,7 +302,7 @@
   }
 }
 
-@media (--lg-viewport), (--xl-viewport) {
+@media (--lg-viewport) and (min-height: 600px), (--xl-viewport) and (min-height: 600px) {
   .Text .Text-story1 {
     font-size: 4rem;
     max-width: 47rem;
