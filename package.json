@@ -59,6 +59,7 @@
     "prismic-javascript": "^1.5.0-beta.1",
     "prismic-richtext": "^0.2.7",
     "serve-static": "^1.13.1",
+    "smoothscroll-polyfill": "^0.4.0",
     "source-map-support": "^0.5.2",
     "standard": "^10.0.3",
     "tinyify": "^2.4.0",
