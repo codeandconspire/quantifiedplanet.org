@@ -39,7 +39,9 @@
 }
 
 .Thermometer-point {
-  fill: #fff;
+  fill: none;
+  stroke: #fff;
+  stroke-linecap: round;
 }
 
 .Thermometer-description {
