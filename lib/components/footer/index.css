@@ -16,45 +16,49 @@
   list-style: none;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   padding: 0;
-  margin: 4rem 0 1rem;
+  margin: 4rem -15px 0;
+  justify-content: center;
 }
 
 .Footer-partner {
-  flex: 0 1 calc(100% / 3);
-  padding: 6px;
+  padding: 6px 15px;
+  margin-bottom: 1rem;
 }
 
-@media (--sm-viewport) {
-  .Footer-partner {
-    flex: 0 1 calc(100% / 4);
-  }
+.Footer-partnerLogo {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  max-height: 33px;
+  max-width: 120px;
+  user-select: none;
 }
 
 @media (--md-viewport), (--lg-viewport), (--xl-viewport) {
   .Footer-partners {
-    margin: 4rem 32px 1rem;
+    margin: 4rem -20px 0;
   }
 
   .Footer-partner {
-    flex: 0 1 calc(100% / 6);
+    padding: 6px 20px;
+  }
+
+  .Footer-partnerLogo {
+    max-height: 50px;
+    max-width: 170px;
   }
 }
 
 @media (--lg-viewport), (--xl-viewport) {
   .Footer-partners {
-    margin: 5.5rem 32px 1rem;
+    margin: 5.5rem -15px 0;
   }
 }
 
 .Footer-logo {
   display: block;
-  width: 100%;
-  height: auto;
-  user-select: none;
-}
-
-.Footer-logo--qp {
   width: 40px;
   height: 72px;
   margin: 70px auto 90px;
@@ -63,7 +67,7 @@
 }
 
 @media (--md-viewport), (--lg-viewport), (--xl-viewport) {
-  .Footer-logo--qp {
+  .Footer-logo {
     width: 48px;
     height: 86px;
     margin: 80px auto 100px;
@@ -87,7 +91,7 @@
 
 @media (--md-viewport), (--lg-viewport), (--xl-viewport) {
   .Footer-nav {
-    margin: 25px 32px 100px;
+    margin: 25px 0 100px;
   }
 
   .Footer-page {
@@ -123,7 +127,7 @@
 }
 
 .Footer-link--partner {
-  opacity: 0.4;
+  opacity: 0.3;
 }
 
 .Footer-link--partner:hover {
@@ -193,8 +197,4 @@
 
 .Footer-contact :link:hover {
   color: #fff;
-}
-
-.Footer-partner {
-  padding: 0;
 }

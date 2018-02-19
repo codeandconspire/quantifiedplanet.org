@@ -13,6 +13,10 @@
   background-color: var(--color-background);
 }
 
+.Story-introWrap {
+  will-change: opacity;
+}
+
 .Story-intro {
   box-sizing: content-box;
   height: 100vh;
