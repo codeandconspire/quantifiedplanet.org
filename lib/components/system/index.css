@@ -328,18 +328,3 @@
 .System-col:last-child {
   margin-bottom: 0;
 }
-
-.System-machine--numbers.System-machine--cursor1 {
-  cursor: help;
-  pointer-events: auto;
-}
-
-.System-machine--numbers.System-machine--cursor2 {
-  cursor: cell;
-  pointer-events: auto;
-}
-
-.System-frame--vizmode .System-machine--numbers.System-machine--cursor1,
-.System-frame--vizmode .System-machine--numbers.System-machine--cursor2 {
-  pointer-events: none;
-}
