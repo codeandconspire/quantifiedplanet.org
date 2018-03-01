@@ -43,25 +43,29 @@
 .LineChart-label {
   justify-content: flex-start !important; /* 1 */
   font-size: 10px;
-  color: rgba(255, 255, 255, 0.7);
-  fill: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.6);
+  fill: rgba(255, 255, 255, 0.6);
   position: relative;
   top: 4px;
 }
 
 .LineChart-grid {
-  stroke: rgba(255, 255, 255, 0.15);
+  stroke: rgba(255, 255, 255, 0.1);
   stroke-width: 1px;
   stroke-dasharray: 0;
 }
 
 .LineChart-line {
-  stroke-width: 4px;
+  stroke-width: 3px;
 }
 
 .LineChart-area {
   fill-opacity: 1;
 }
+
+/**
+ * Humidity
+ */
 
 .LineChart--humidity .LineChart-stroke--start {
   stop-color: #45CD90;
@@ -72,11 +76,41 @@
 }
 
 .LineChart--humidity .LineChart-background--start {
-  stop-color: #010119;
+  stop-color: #010113;
   stop-opacity: 0.6;
 }
 
 .LineChart--humidity .LineChart-background--end {
-  stop-color: #010119;
+  stop-color: #010113;
   stop-opacity: 0;
+}
+
+.LineChart--humidity .LineChart-end {
+  stroke: #5ABDE4;
+}
+
+/**
+ * Wind
+ */
+
+.LineChart--wind .LineChart-stroke--start {
+  stop-color: #54339B;
+}
+
+.LineChart--wind .LineChart-stroke--end {
+  stop-color: #333F9B;
+}
+
+.LineChart--wind .LineChart-background--start {
+  stop-color: #010113;
+  stop-opacity: 0.6;
+}
+
+.LineChart--wind .LineChart-background--end {
+  stop-color: #010113;
+  stop-opacity: 0;
+}
+
+.LineChart--wind .LineChart-end {
+  stroke: #333F9B;
 }
