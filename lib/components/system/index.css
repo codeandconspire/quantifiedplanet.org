@@ -245,6 +245,8 @@
 }
 
 .System-cells {
+  display: flex;
+  flex-wrap: wrap;
   padding: 2%;
   overflow: hidden;
 }
@@ -256,9 +258,29 @@
 }
 
 .System-cell {
-  position: relative;
-  float: left;
+  flex: 0 0 calc(100% / 12);
   width: calc(100% / 12);
+  position: relative;
+}
+
+.System-cell:nth-child(3n) {
+  order: var(--rand1);
+}
+
+.System-cell:nth-child(3n+1) {
+  order: var(--rand2);
+}
+
+.System-cell:nth-child(3n+2) {
+  order: var(--rand3);
+}
+
+.System-cell:nth-child(3n+3) {
+  order: var(--rand4);
+}
+
+.System-cell:nth-child(3n+4) {
+  order: var(--rand5);
 }
 
 .System-cell::after {
