@@ -29,7 +29,7 @@
   --color-text-light: #fff;
   --color-muted: #a8a8b0;
   --color-divider: #d8d8d8;
-  --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
   height: 100%;
   width: 100%;
