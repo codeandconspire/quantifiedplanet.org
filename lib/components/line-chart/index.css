@@ -94,11 +94,11 @@
  */
 
 .LineChart--wind .LineChart-stroke--start {
-  stop-color: #54339B;
+  stop-color: #5856AE;
 }
 
 .LineChart--wind .LineChart-stroke--end {
-  stop-color: #333F9B;
+  stop-color: #3491D6;
 }
 
 .LineChart--wind .LineChart-background--start {
@@ -112,5 +112,5 @@
 }
 
 .LineChart--wind .LineChart-end {
-  stroke: #333F9B;
+  stroke: #3491D6;
 }
