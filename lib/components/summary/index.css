@@ -1,7 +1,7 @@
 /* @define Summary */
 
 .Summary {
-  padding: 20px 0;
+  padding: 29px 0;
   z-index: 1;
   position: relative;
 }
@@ -17,23 +17,22 @@
 
 .Summary-knob {
   position: absolute;
-  top: -20px;
+  top: -29px;
   left: 0;
-  width: 46px;
-  height: 46px;
+  width: 64px;
+  height: 64px;
   border: 6px solid #fff;
   border-radius: 50%;
   background: var(--color-data-blue);
   margin-left: -2px;
   will-change: transform;
   transform-origin: right;
-  transform: translateX(var(--scroll));
 }
 
 @media (--md-viewport), (--lg-viewport), (--xl-viewport) {
   .Summary {
     margin: 3rem 2rem 4rem;
-    padding: 32px 0;
+    padding: 43px 0;
   }
 
   .Summary-bar {
@@ -41,13 +40,16 @@
   }
 
   .Summary-knob {
-    top: -32px;
-    width: 70px;
-    height: 70px;
+    top: -43px;
+    width: 92px;
+    height: 92px;
   }
 }
 
 @media (--lg-viewport), (--xl-viewport) {
+  .Summary {
+    padding: 48px 0;
+  }
   .Summary-bar {
     height: 10px;
     margin-bottom: 150px;
@@ -55,8 +57,9 @@
 
   .Summary-knob {
     border-width: 10px;
-    width: 74px;
-    height: 74px;
+    top: -48px;
+    width: 106px;
+    height: 106px;
   }
 }
 

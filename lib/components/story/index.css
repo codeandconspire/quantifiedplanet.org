@@ -134,7 +134,7 @@
 
 @media (--xl-viewport) {
   .Story-planet {
-    width: 51%;
+    width: 44%;
   }
 }
 
@@ -175,27 +175,29 @@
 .Story-button {
   display: inline-block;
   padding: 14px 28px;
-  margin: 1rem 0 -1rem;
-  border: 1px solid #fff;
-  font-size: 12px;
-  letter-spacing: 1.2px;
+  margin: 0.6rem 0 -1rem;
+  font-size: 9px;
+  letter-spacing: 0.05em;
   font-weight: bold;
   border-radius: 40px;
   color: #fff;
-  background-color: transparent;
+  background: var(--color-data-blue);
   text-transform: uppercase;
-  transition: color 100ms cubic-bezier(0.23, 1, 0.32, 1), background-color 300ms cubic-bezier(0.23, 1, 0.32, 1);
   user-select: none;
+  will-change: transform;
+  transition: transform 250ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .Story-button:hover {
-  color: var(--color-space-blue);
-  background-color: #fff;
+  transform: scale(1.1);
+  background: var(--color-data-blue);
 }
 
 @media (--md-viewport), (--lg-viewport), (--xl-viewport) {
   .Story-button {
     padding: 18px 32px;
+    font-size: 11px;
+    letter-spacing: 0.06em;
   }
 }
 
@@ -209,7 +211,7 @@
 .Story-socialIcon {
   display: block;
   float: right;
-  margin-right: 16px;
+  margin-right: 28px;
 }
 
 .Story-lab {

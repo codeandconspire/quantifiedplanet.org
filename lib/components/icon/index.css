@@ -33,6 +33,11 @@
   transform: scale(1.1);
 }
 
+.Icon--social:active {
+  transform: scale(0.95);
+  transition: transform 100ms ease-out;
+}
+
 .Icon-image {
   display: block;
   width: 100%;
@@ -49,6 +54,21 @@
 
 .Icon--blue {
   background-color: var(--color-data-blue);
+}
+
+.Icon--white {
+  background-color: transparent;
+  color: #fff;
+  width: 18px;
+  height: 18px;
+}
+
+.Icon--white .Icon-image {
+  margin: 0;
+}
+
+.Icon--white:hover {
+  transform: scale(1.25);
 }
 
 .Icon--gray {

@@ -4,7 +4,6 @@
 @import "./index.css";
 @import "./utils.css";
 
-
 @custom-media --no-viewport (max-width: 374px);
 @custom-media --xs-viewport (min-width: 375px) and (max-width: 479px);
 @custom-media --sm-viewport (min-width: 480px) and (max-width: 767px);
@@ -20,7 +19,7 @@
   --color-smoke: #f6f6f7;
   --color-silver: #8e8e96;
   --color-space-blue: #010119;
-  --color-night-sky: #0F1027;
+  --color-night-sky: #121329;
   --color-data-blue: #2f00de;
   --color-data-blue-muted: #6a86e8;
   --color-data-blue-highlight: #400cff;
@@ -30,7 +29,7 @@
   --color-muted: #a8a8b0;
   --color-divider: #d8d8d8;
   --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-
+  --font-family-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
   height: 100%;
   width: 100%;
   overflow-x: hidden;

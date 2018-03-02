@@ -31,6 +31,7 @@
 .StormWater-description {
   text-align: center;
   font-size: 10px;
+  margin-bottom: 2%;
 }
 
 @media (--lg-viewport), (--xl-viewport) {
@@ -52,7 +53,7 @@
   font-size: 93px;
   font-weight: bold;
   letter-spacing: -0.02em;
-  line-height: 1.25;
+  line-height: 1.15;
   position: relative;
   top: -0.05em;
 }
@@ -77,11 +78,13 @@
 .StormWater-evaluation {
   display: inline-block;
   padding: 1em 2em;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   font-size: 8px;
   font-weight: bold;
   border-radius: 2em;
   text-transform: uppercase;
+  z-index: 1;
+  position: relative;
 }
 
 @media (--lg-viewport), (--xl-viewport) {
@@ -95,5 +98,5 @@
   height: auto;
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -4px;
 }

@@ -169,7 +169,7 @@
   border: 6px solid #fff;
   position: relative;
   overflow: hidden;
-  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  /* -webkit-mask-image: -webkit-radial-gradient(white, black); */
 }
 
 .System-frame::before {
@@ -181,7 +181,7 @@
   height: 100%;
   background: var(--color-data-blue-highlight);
   opacity: 0;
-  background-image: radial-gradient(rgba(43, 67, 255, 1) 0%, rgba(43, 67, 255, 0) 60%);
+  background-image: radial-gradient(rgba(73, 87, 255, 1) 0%, rgba(43, 67, 255, 0) 60%);
   background-position: 150px -250px;
   background-repeat: no-repeat;
 }
@@ -222,9 +222,9 @@
 
 .System-frame--vizmode {
   border-radius: 100%;
+  will-change: transform;
   box-shadow: 8px 16px 32px 0 rgba(0, 0, 0, 0.15);
-  transition: 1120ms cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition-property: border-radius, box-shadow;
+  transition: border-radius 1120ms cubic-bezier(0.645, 0.045, 0.355, 1), box-shadow 500ms 500ms ease-out;
 }
 
 .System-frame--vizmode::before {
@@ -296,8 +296,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: monospace;
-  font-size: 0.8rem;
+  font-family: var(--font-family-mono);
+  font-size: 13px;
 }
 
 .System-number--0::after {

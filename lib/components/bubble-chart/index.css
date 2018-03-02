@@ -61,6 +61,7 @@
   line-height: 1.2;
   border-radius: 50%;
   text-align: center;
+  visibility: hidden;
 }
 
 .BubbleChart-body {
