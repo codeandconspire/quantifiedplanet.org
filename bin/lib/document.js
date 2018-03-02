@@ -7,6 +7,7 @@ function document (state, body, stack) {
       <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>${state.title}</title>
         <meta name="description" content="${state.meta.description}">
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
         <meta property="theme" name="theme-color" content="${state.meta.theme}">
@@ -21,7 +22,8 @@ function document (state, body, stack) {
         <meta property="og:site_name" content="${state.meta.site_name}">
         ${state.meta.twitter_name ? `<meta name="twitter:site" content="@${state.meta.twitter_name}">` : ''}
         ${state.meta.facebook_id ? `<meta property="fb:app_id" content="${state.meta.facebook_id}">` : ''}
-        <title>${state.title}</title>
+        <link rel="dns-prefetch" href="//res.cloudinary.com">
+        <link rel="dns-prefetch" href="//quantifiedplanet.cdn.prismic.io">
         <link rel="manifest" href="/manifest.json">
         <link rel="apple-touch-icon" href="/icon.png">
         <link rel="mask-icon" href="/icon.svg" color="${state.meta.theme}">
