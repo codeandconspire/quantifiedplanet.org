@@ -2,3 +2,10 @@
 
 @import "../base";
 @import "../text";
+
+.Error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10em 0;
+}

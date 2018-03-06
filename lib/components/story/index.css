@@ -63,8 +63,6 @@
   transform: translate(-50%, -50%);
   transform-origin: top left;
   pointer-events: none;
-  transform: scale(0.8) translate(-50%, -50%);
-  opacity: 0;
   overflow: visible;
 }
 
@@ -94,20 +92,21 @@
   padding: 2px; /* 1 */
 }
 
-.Story-planet.is-loading {
+.Story-planet.is-hidden {
   visibility: hidden;
 }
 
-.Story-planet.is-hidden {
-  display: none;
-}
-
-.Story.has-appeared .Story-planet {
+.Story-planet.is-appearing {
   will-change: transform;
   animation: Story-planet--appear 1300ms 0ms cubic-bezier(0.0, 0.0, 0.2, 1) forwards;
 }
 
 @keyframes Story-planet--appear {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translate(-50%, -50%);
+  }
+
   to {
     opacity: 1;
     transform: scale(1) translate(-50%, -50%);

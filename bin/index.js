@@ -109,14 +109,27 @@ Stack.prototype.build = function (dir, done) {
   assert(typeof dir === 'string', 'stack: build dir should be a string')
   assert(!done || typeof done === 'function', 'stack: done sohuld be a function')
 
+  var prebuild = 1
   var self = this
   var hash = ''
+
+  if (self.styles) {
+    prebuild += 1
+    self.styles.once('update', function (buff) {
+      prebuild -= 1
+      if (prebuild === 0) build()
+    })
+    self.styles.bundle()
+  }
 
   this.main.once('update', function (buff) {
     if (process.env.NODE_ENV !== 'development') {
       hash = self.main.hash.toString('hex').substr(0, 16)
     }
-    writeFile(path.join(hash, 'bundle.js'), buff, build)
+    writeFile(path.join(hash, 'bundle.js'), buff, function () {
+      prebuild -= 1
+      if (prebuild === 0) build()
+    })
   })
   self.main.bundle()
 
@@ -124,20 +137,12 @@ Stack.prototype.build = function (dir, done) {
     var routes = Object.keys(getAllRoutes(self.app.router.router))
     var queue = routes.length
 
-    if (self.styles) {
-      queue += 1
-      self.styles.once('update', function (buff) {
-        writeFile(path.join(hash, 'bundle.css'), buff, next)
-      })
-      self.styles.bundle(path.resolve(dir, path.join(hash, 'bundle.css')))
-    }
-
     if (self.sw) {
       queue += 1
       self.sw.once('update', function (buff) {
         writeFile('service-worker.js', buff, next)
       })
-      self.sw.bundle('service-worker.js')
+      self.sw.bundle()
     }
 
     for (var i = 0, len = routes.length, route; i < len; i++) {

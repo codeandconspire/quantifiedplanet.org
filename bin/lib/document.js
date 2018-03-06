@@ -1,7 +1,7 @@
 module.exports = document
 
 function document (state, body, stack) {
-  return `
+  return minify`
     <!doctype html>
     <html lang="${state.lang || 'en-US'}" dir="${state.meta.dir || 'ltr'}">
       <head>
@@ -55,15 +55,7 @@ function stylesheet (stack) {
     return '<link rel="stylesheet" href="/bundle.css">'
   }
 
-  var hex = stack.main.hash.toString('hex').slice(0, 16)
-  var link = `/${hex}/bundle.css`
-  return `
-    <style>
-      :root { visibility: hidden; animation: appear-${hex} 0s 4s forwards; }
-      @keyframes appear-${hex} { to { visibility: visible; } }
-    </style>
-    <link rel="stylesheet" href="${link}">
-  `
+  return `<style>${stack.styles.buffer.toString('utf8')}</style>`
 }
 
 function polyfill (stack) {
@@ -77,6 +69,14 @@ function polyfill (stack) {
     ]
   }
   return `<script src="https://cdn.polyfill.io/v2/polyfill.min.js${fills ? `?features=default,${fills.join(',')}` : ''}"></script>`
+}
+
+// simple minification removing all new line feeds and leading spaces
+// (arr, arr) -> str
+function minify (strings, ...parts) {
+  return strings.reduce((output, string, index) => {
+    return output + string + (parts[index] || '').replace(/\n\s+/g, '')
+  }, '').replace(/\n\s+/g, '')
 }
 
 // clean up borked JSON
