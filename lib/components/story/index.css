@@ -322,6 +322,7 @@
 
 .Story-block--outro {
   padding: 8rem 0 0;
+  z-index: 1;
 }
 
 .Story-logo {
@@ -412,7 +413,7 @@
 }
 
 .Story-block--dark .Story-link {
-  opacity: 0.3;
+  opacity: 0.5;
   transition: opacity 90ms ease-out;
 }
 

@@ -8,7 +8,7 @@
   position: relative;
   overflow: hidden;
   background: var(--color-space-blue);
-  font-size: 14px;
+  font-size: 16px;
   color: rgba(255, 255, 255, 0.5);
 }
 
@@ -149,10 +149,6 @@
 }
 
 @media (--lg-viewport), (--xl-viewport) {
-  .Footer-link {
-    font-size: 16px;
-  }
-
   .Footer-link--primary {
     font-size: 20px;
     font-weight: normal;
