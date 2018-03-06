@@ -262,11 +262,6 @@
   background-color: var(--color-data-blue);
 }
 
-.Story-content > * {
-  position: relative;
-  z-index: 1;
-}
-
 /**
  * Steps
  */
@@ -302,6 +297,8 @@
 .Story-block {
   overflow: hidden;
   padding: 9rem 0;
+  position: relative;
+  z-index: 1;
 }
 
 .Story-block:not(.Story-block--dark) ::selection {
@@ -324,7 +321,7 @@
 
 .Story-block--outro {
   padding: 8rem 0 0;
-  z-index: 1;
+  z-index: 5;
 }
 
 .Story-logo {

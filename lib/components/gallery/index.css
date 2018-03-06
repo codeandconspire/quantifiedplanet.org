@@ -13,14 +13,10 @@
   --Gallery-accent-color: var(--color-data-blue);
 }
 
-/**
- * 1. Hide issue where the fixed position page intro would flash during render
- */
-
 .Gallery {
   background: var(--Gallery-background-color);
   position: relative;
-  z-index: 1; /* 1 */
+  z-index: 4; /* 1 */
 }
 
 .Gallery-prequel {
