@@ -55,15 +55,7 @@ function stylesheet (stack) {
     return '<link rel="stylesheet" href="/bundle.css">'
   }
 
-  var hex = stack.main.hash.toString('hex').slice(0, 16)
-  var link = `/${hex}/bundle.css`
-  return `
-    <style>
-      :root { visibility: hidden; animation: appear-${hex} 0s 4s forwards; }
-      @keyframes appear-${hex} { to { visibility: visible; } }
-    </style>
-    <link rel="stylesheet" href="${link}">
-  `
+  return `<style>${stack.styles.buffer.toString('utf8')}</style>`
 }
 
 function polyfill (stack) {
