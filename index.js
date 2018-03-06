@@ -7,6 +7,7 @@ const Stack = require('./bin')
 const PRISMIC_ENDPOINT = 'https://quantifiedplanet.cdn.prismic.io/api/v2'
 
 const stack = new Stack(path.resolve(__dirname, 'lib/index.js'), {
+  sw: path.resolve(__dirname, 'lib/service-worker.js'),
   css: path.resolve(__dirname, 'lib/index.css')
 })
 

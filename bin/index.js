@@ -114,7 +114,7 @@ Stack.prototype.build = function (dir, done) {
 
   this.main.once('update', function (buff) {
     if (process.env.NODE_ENV !== 'development') {
-      hash = self.main.hash.toString('hex').substr(0, 16)
+      process.env.BUILD_HASH = hash = self.main.hash.toString('hex').substr(0, 16)
     }
     writeFile(path.join(hash, 'bundle.js'), buff, build)
   })
