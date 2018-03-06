@@ -300,8 +300,6 @@
  */
 
 .Story-block {
-  position: relative;
-  z-index: 3;
   overflow: hidden;
   padding: 9rem 0;
 }
