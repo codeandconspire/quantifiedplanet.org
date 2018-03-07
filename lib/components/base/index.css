@@ -112,6 +112,18 @@ button {
   cursor: default;
 }
 
+pre {
+  font-family: var(--font-family-mono);
+  font-size: 12px;
+  max-width: 100%;
+  overflow: auto;
+  background: #fff;
+  border-radius: 2px;
+  padding: 8px;
+  color: black;
+  text-align: left;
+}
+
 /**
  * Print styles
  */
