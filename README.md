@@ -4,7 +4,7 @@
 
 [![Website](https://img.shields.io/website-up-down-green-red/http/shields.io.svg?label=quantifiedplanet.org&style=flat-square)](https://www.quantifiedplanet.org) [![GitHub tag](https://img.shields.io/github/tag/codeandconspire/quantifiedplanet.org.svg?style=flat-square)](https://github.com/codeandconspire/quantifiedplanet.org/releases) [![style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](https://standardjs.com)
 
-![Screenshot](https://www.quantifiedplanet.org/share.png)
+![Screenshot](lib/assets/screenshot.png)
 
 </div>
 
