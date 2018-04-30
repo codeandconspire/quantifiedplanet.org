@@ -63,6 +63,10 @@
   fill-opacity: 1;
 }
 
+.LineChart-label:not(:empty)::after {
+  content: "%"
+}
+
 /**
  * Humidity
  */
@@ -113,4 +117,66 @@
 
 .LineChart--wind .LineChart-end {
   stroke: #3491D6;
+}
+
+.LineChart--wind .LineChart-label:not(:empty)::after {
+  content: "m/s";
+  margin-left: 0.3em;
+}
+
+/**
+ * Pressure
+ */
+
+.LineChart--pressure .LineChart-stroke--start {
+  stop-color: #42b0e9;
+}
+
+.LineChart--pressure .LineChart-stroke--end {
+  stop-color: #ccdbfb;
+}
+
+.LineChart--pressure .LineChart-background--start {
+  stop-color: #010113;
+  stop-opacity: 0.6;
+}
+
+.LineChart--pressure .LineChart-background--end {
+  stop-color: #010113;
+  stop-opacity: 0;
+}
+
+.LineChart--pressure .LineChart-end {
+  stroke: #ccdbfb;
+}
+
+.LineChart--pressure .LineChart-label:not(:empty)::after {
+  content: "hPa";
+  margin-left: 0.3em;
+}
+
+/**
+ * UV
+ */
+
+.LineChart--uv .LineChart-stroke--start {
+  stop-color: #ff2c4c;
+}
+
+.LineChart--uv .LineChart-stroke--end {
+  stop-color: #ff6a30;
+}
+
+.LineChart--uv .LineChart-background--start {
+  stop-color: #010113;
+  stop-opacity: 0.6;
+}
+
+.LineChart--uv .LineChart-background--end {
+  stop-color: #010113;
+  stop-opacity: 0;
+}
+
+.LineChart--uv .LineChart-end {
+  stroke: #ff6a30;
 }
