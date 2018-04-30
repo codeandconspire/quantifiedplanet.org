@@ -115,11 +115,11 @@ button {
 pre {
   font-family: var(--font-family-mono);
   font-size: 12px;
-  max-width: 100%;
+  max-width: 90vw;
   overflow: auto;
   background: #fff;
   border-radius: 2px;
-  padding: 8px;
+  padding: 8px 8px 25px;
   color: black;
   text-align: left;
 }
