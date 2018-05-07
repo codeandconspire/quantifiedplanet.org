@@ -338,15 +338,23 @@
 
 .Gallery-periods {
   list-style: none;
+  user-select: none;
 }
 
 .Gallery-period {
   display: inline-block;
-  margin-left: 1ch;
+  margin-left: 2ch;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .Gallery-choice {
   display: inline-block;
   padding-bottom: 0.5em;
-  border-bottom: 1px solid currentColor;
+  border-bottom: 1px solid transparent;
+  outline: 0;
+}
+
+.Gallery-choice.is-selected {
+  color: #fff;
+  border-color: currentColor;
 }
