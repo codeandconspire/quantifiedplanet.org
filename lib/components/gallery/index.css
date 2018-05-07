@@ -219,7 +219,7 @@
 .Gallery-text {
   margin: 0;
   font-size: 13px;
-  max-width: calc(100% - 100px);
+  max-width: 100%;
 }
 
 @media (--sm-viewport), (--md-viewport), (--lg-viewport), (--xl-viewport) {
@@ -242,6 +242,13 @@
 
   .Gallery-text {
     font-size: 14px;
+  }
+}
+
+@media (--md-viewport), (--lg-viewport), (--xl-viewport) {
+  .Gallery-text {
+    font-size: 14px;
+    max-width: calc(100% - 100px);
   }
 }
 
@@ -339,6 +346,7 @@
 .Gallery-periods {
   list-style: none;
   user-select: none;
+  white-space: nowrap;
 }
 
 .Gallery-period {
