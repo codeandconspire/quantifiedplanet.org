@@ -317,3 +317,27 @@
     font-size: 2.4rem;
   }
 }
+
+/**
+ * Embeds
+ * 1. Assume a ratio of 16:9 on all video sources
+ */
+
+.Text [data-oembed]::before {
+  content: none;
+}
+
+.Text [data-oembed] {
+  width: 100%;
+  height: 0;
+  padding: calc(720 / 1280 * 100%) 0 0 0; /* 1 */
+  position: relative;
+}
+
+.Text [data-oembed] iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
