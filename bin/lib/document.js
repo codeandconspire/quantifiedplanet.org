@@ -45,9 +45,8 @@ function script (stack) {
     return `<script src="/bundle.js" defer></script>`
   }
   var hex = stack.main.hash.toString('hex').slice(0, 16)
-  var base64 = `sha512-${stack.main.hash.toString('base64')}`
   var src = `/${hex}/bundle.js`
-  return `<script src="${src}" defer integrity="${base64}"></script>`
+  return `<script src="${src}" defer></script>`
 }
 
 function stylesheet (stack) {
