@@ -2,25 +2,13 @@ module.exports = config
 
 function config (ctx) {
   const plugins = [
-    require('postcss-import')(),
-    require('postcss-custom-properties')(),
     require('postcss-color-function')(),
     require('postcss-custom-media')(),
-    require('postcss-selector-matches')(),
-    require('postcss-url')([{
-      filter: '**/*.woff',
-      url: ctx.env === 'development' ? 'rebase' : 'inline'
-    }, {
-      useHash: true,
-      url: ctx.env === 'development' ? 'rebase' : 'copy'
-    }])
+    require('postcss-selector-matches')()
   ]
 
   if (ctx.env !== 'development') {
-    plugins.push(
-      require('autoprefixer')(),
-      require('cssnano')({ preset: 'default' })
-    )
+    plugins.push(require('postcss-custom-properties')())
   }
 
   return {

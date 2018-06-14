@@ -1,40 +1,24 @@
-const path = require('path')
-const Prismic = require('prismic-javascript')
-const { asText } = require('prismic-richtext')
-const { friendlyUrl } = require('./lib/components/base')
-const Stack = require('./bin')
+const choo = require('choo')
+const { ROUTES } = require('./components/base')
 
-const PRISMIC_ENDPOINT = 'https://quantifiedplanet.cdn.prismic.io/api/v2'
+const app = choo()
 
-const stack = new Stack(path.resolve(__dirname, 'lib/index.js'), {
-  sw: path.resolve(__dirname, 'lib/service-worker.js'),
-  css: path.resolve(__dirname, 'lib/index.css')
-})
+if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
+  app.use(require('choo-devtools')())
+  app.use(require('choo-service-worker/clear')())
+}
 
-stack.resolve('/:page', function (callback) {
-  Prismic.api(PRISMIC_ENDPOINT).then(function (api) {
-    api.query(
-      Prismic.Predicates.at('document.type', 'page')
-    ).then(function (response) {
-      callback(null, response.results.map(doc => `/${doc.uid}`))
-    }).catch(callback)
-  })
-})
+app.use(require('choo-service-worker')('/service-worker.js'))
 
-stack.resolve('/:page/:section', function (callback) {
-  Prismic.api(PRISMIC_ENDPOINT).then(function (api) {
-    api.query(
-      Prismic.Predicates.at('document.type', 'page')
-    ).then(function (response) {
-      callback(null, response.results.reduce(function (routes, doc) {
-        const headings = doc.data.body.filter(slice => slice.slice_type === 'heading')
-        return routes.concat(headings.map(slice => {
-          const text = asText(slice.primary.heading).trim()
-          return `/${doc.uid}/${friendlyUrl(text)}`
-        }))
-      }, []))
-    }).catch(callback)
-  })
-})
+app.route(ROUTES.page, require('./views/page').create('page'))
+app.route(ROUTES.section, require('./views/page').create('section'))
+app.route(ROUTES.homepage, require('./views/home').create('homepage'))
+app.route(ROUTES.explorer, require('./views/explorer').create('explorer'))
+app.use(require('./stores/api'))
+app.use(require('./stores/core'))
+app.use(require('./stores/pages'))
+app.use(require('./stores/error'))
+app.use(require('./stores/tracking'))
+app.use(require('./stores/meta')('https://www.quantifiedplanet.org'))
 
-module.exports = stack
+module.exports = app.mount('body')
