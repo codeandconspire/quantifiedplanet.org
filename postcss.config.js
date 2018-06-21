@@ -8,7 +8,7 @@ function config (ctx) {
   ]
 
   if (ctx.env !== 'development') {
-    plugins.push(require('postcss-custom-properties')())
+    plugins.push(require('postcss-custom-properties')({warnings: false}))
   }
 
   return {

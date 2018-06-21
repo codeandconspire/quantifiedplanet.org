@@ -16,16 +16,6 @@ The application requires [Node.js](https://nodejs.org) version 7 or later. Start
 $ npm install
 ```
 
-### Environment variables
-
-The application (both server and front end) depend on a set of environment variables. Define them in a .env file:
-
-```
-NODE_ENV=development
-PORT=8080
-WEBSITE_URL=https://www.quantifiedplanet.org
-```
-
 ### Start the server
 
 During development use the `start` script which loads the variables in the `.env` file, before starting the server. The server watches for file changes and restarts when needed.

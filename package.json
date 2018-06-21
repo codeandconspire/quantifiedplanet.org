@@ -10,12 +10,22 @@
   "documentify": {
     "transform": [
       [
-        "./document.js",
+        "./lib/document.js",
         {
           "order": "end"
         }
       ]
     ]
+  },
+  "now": {
+    "alias": "next.quantifiedplanet.org",
+    "env": {
+      "NODE_ENV": "production",
+      "PRISMIC_QUANTIFIEDPLANET_SECRET": "@prismic-quantifiedplanet-secret",
+      "CLOUDFLARE_QUANTIFIEDPLANET_ZONE": "@cloudflare-quantifiedplanet-zone",
+      "CLOUDFLARE_CODEANDCONSPIRE_EMAIL": "@cloudflare-codeandconspire-email",
+      "CLOUDFLARE_CODEANDCONSPIRE_KEY": "@cloudflare-codeandconspire-key"
+    }
   },
   "repository": {
     "type": "git",
@@ -31,15 +41,18 @@
     "standard": "^10.0.3"
   },
   "dependencies": {
+    "cccpurge": "^1.2.2",
     "chartist": "^0.11.0",
     "choo": "^6.12.1",
     "choo-devtools": "^2.3.3",
     "choo-service-worker": "^2.4.0",
     "cssnano": "^3.10.0",
     "dedent": "^0.7.0",
-    "dotenv": "^4.0.0",
+    "dotenv-extended": "^2.0.2",
     "hstream": "^1.2.0",
-    "jalla": "^0.2.1",
+    "jalla": "^0.3.5",
+    "koa-body": "^4.0.3",
+    "koa-compose": "^4.1.0",
     "koa-route": "^3.2.0",
     "nanobus": "^4.3.2",
     "nanoraf": "^3.0.1",
