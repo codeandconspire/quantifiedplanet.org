@@ -100,7 +100,7 @@ module.exports = class Gallery extends Component {
         <div class="Gallery-content">
           <div class="Gallery-header">
             ${icons[props.icon]({className: 'Gallery-icon'})}
-            ${props.control}
+            ${props.control.render()}
           </div>
           ${this.initialized ? this[props.set].render() : props.component.loading()}
           <div class="Gallery-description">
