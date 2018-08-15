@@ -1,6 +1,6 @@
 {
   "name": "quantifiedplanet.org",
-  "version": "2.2.5",
+  "version": "2.3.0",
   "description": "Website for Quantified Planet",
   "main": "index.js",
   "scripts": {
