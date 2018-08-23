@@ -48,7 +48,6 @@
     "choo-service-worker": "^2.4.0",
     "cssnano": "^3.10.0",
     "dedent": "^0.7.0",
-    "dotenv-extended": "^2.0.2",
     "hstream": "^1.2.0",
     "jalla": "^0.3.5",
     "koa-body": "^4.0.3",

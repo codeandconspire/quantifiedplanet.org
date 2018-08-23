@@ -1,9 +1,3 @@
-if (!process.env.NOW) {
-  require('dotenv-extended').load({
-    errorOnMissing: process.env.NODE_ENV !== 'production'
-  })
-}
-
 const jalla = require('jalla')
 const dedent = require('dedent')
 const body = require('koa-body')
@@ -31,7 +25,7 @@ app.use(function (ctx, next) {
   if (ctx.cookies.get(Prismic.previewCookie)) {
     ctx.set('Cache-Control', 'max-age=0')
   } else if (process.env.NODE_ENV !== 'development') {
-    ctx.set('Cache-Control', `s-maxage=${60 * 60 * 24 * 7}, max-age=${60 * 10}`)
+    ctx.set('Cache-Control', `s-maxage=${60 * 60 * 24 * 7}, max-age=${60}`)
   }
   return next()
 })
