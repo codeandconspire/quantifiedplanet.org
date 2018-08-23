@@ -17,9 +17,10 @@ module.exports = class Page extends View {
     super(id, 'page')
     this.emit = emit
     this.state = state
+    this.onload = null
     this.machine = new Nanostate('uninitialized', {
       uninitialized: { initialized: 'idle', fetch: 'loading' },
-      idle: { scroll: 'scrolling', disable: 'disabled' },
+      idle: { scroll: 'scrolling', disable: 'disabled', unload: 'uninitialized' },
       loading: { initialized: 'idle' },
       disabled: { enable: 'idle' },
       scrolling: { done: 'idle' }
@@ -51,7 +52,9 @@ module.exports = class Page extends View {
     const state = this.state
     const doc = state.pages.find(page => page.uid === state.params.page)
     if (doc && this.machine.state === 'uninitialized') {
-      this.init(doc, state.params.section)
+      window.requestAnimationFrame(() => {
+        this.init(doc, state.params.section)
+      })
     }
   }
 
@@ -59,7 +62,11 @@ module.exports = class Page extends View {
     if (this.machine.state === 'loading') {
       const state = this.state
       const doc = state.pages.find(page => page.uid === state.params.page)
-      if (doc) this.init(doc, state.params.section)
+      if (doc) {
+        window.requestAnimationFrame(() => {
+          this.init(doc, state.params.section)
+        })
+      }
     }
     if (this.section !== this.state.params.section) {
       this.section = this.state.params.section
@@ -88,31 +95,24 @@ module.exports = class Page extends View {
       window.scrollTo(0, 0)
     }
 
-    const headers = doc.data.body
-      .filter(slice => slice.slice_type === 'heading')
-      .map(slice => {
-        const id = friendlyUrl(asText(slice.primary.heading))
-        const el = document.getElementById(id)
-        if (!el) return null
-        return { top: el.offsetTop, height: el.offsetHeight, id: id }
-      })
-      .filter(Boolean)
-
+    let headers = measure()
     if (!headers.length) return
 
     let timeout
-    this.onscroll = nanoraf(event => {
+    let vh = document.documentElement.clientHeight
+    const onscroll = nanoraf(event => {
       if (this.machine.state === 'scrolling') {
         window.clearTimeout(timeout)
         timeout = window.setTimeout(() => this.machine.emit('done'), 200)
         return
+      } else {
+        onresize()
       }
 
-      const viewport = document.documentElement.clientHeight
       const first = headers[0]
       const last = headers[headers.length - 1]
       const scrollY = window.scrollY
-      const center = scrollY + (viewport / 2)
+      const center = scrollY + (vh / 2)
 
       if (center < first.top || scrollY > last.top) {
         if (this.section) {
@@ -125,7 +125,7 @@ module.exports = class Page extends View {
         for (let i = 0, len = headers.length, header; i < len; i += 1) {
           header = headers[i]
           if (header.id === this.section) continue
-          if ((scrollY + viewport) < header.top) break
+          if ((scrollY + vh) < header.top) break
           if ((header.top + header.height) < scrollY) continue
           if ((header.top + header.height) > center && header.top < center) {
             this.machine.emit('disable')
@@ -139,11 +139,30 @@ module.exports = class Page extends View {
       }
     })
 
-    window.addEventListener('scroll', this.onscroll, {passive: true})
-  }
+    const onresize = nanoraf(function () {
+      headers = measure()
+      vh = document.documentElement.clientHeight
+    })
 
-  unload () {
-    window.removeEventListener('scroll', this.onscroll)
+    function measure () {
+      return doc.data.body
+        .filter(slice => slice.slice_type === 'heading')
+        .map(slice => {
+          const id = friendlyUrl(asText(slice.primary.heading))
+          const el = document.getElementById(id)
+          if (!el) return null
+          return { top: el.offsetTop, height: el.offsetHeight, id: id }
+        })
+        .filter(Boolean)
+    }
+
+    window.addEventListener('scroll', onscroll, {passive: true})
+    window.addEventListener('resize', onresize)
+    this.unload = () => {
+      window.removeEventListener('scroll', onscroll)
+      window.removeEventListener('resize', onresize)
+      this.machine.emit('unload')
+    }
   }
 
   createElement (state, emit) {
