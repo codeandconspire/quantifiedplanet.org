@@ -14,9 +14,10 @@ const CHOICES = [{
 }]
 
 module.exports = class Period extends Component {
-  constructor (id) {
+  constructor (id, state, emit, onclick) {
     super(id)
     this.selected = 2
+    this.onclick = onclick || Function.prototype
   }
 
   static id (id) {
@@ -45,7 +46,7 @@ module.exports = class Period extends Component {
     function onclick (offset, id) {
       return function () {
         self.selected = id
-        callback(offset)
+        self.onclick(offset)
         self.rerender()
       }
     }
