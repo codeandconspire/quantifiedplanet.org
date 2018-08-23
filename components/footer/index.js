@@ -59,7 +59,7 @@ module.exports = class Footer extends Component {
           </ul>
         </nav>
         <address class="Footer-contact">
-          ${asElement(props.contact)}
+          ${props.contact ? asElement(props.contact) : null}
         </address>
         <svg class="Footer-logo Footer-logo--qp" width="31" height="54" viewBox="0 0 31 54" role="presentation">
           <path fill="#fff" d="M15.8 36.2v-5.4l3.8 3.7a9.6 9.6 0 0 1-3.8 1.7zM4.1 27c0-4.5 3.2-8.3 7.5-9.2v18.4A9.5 9.5 0 0 1 4.1 27zm19.2 0c0 1.5-.4 3-1 4.3l-6.5-6.4v-7c4.3.9 7.5 4.6 7.5 9.1zm4.1 15.2l3-3-5.1-5a13 13 0 0 0 2.1-7.2c0-6.7-5-12.3-11.6-13.3V0h-4.2v13.7C5 14.7 0 20.3 0 27c0 6.8 5 12.4 11.6 13.4V54h4.2V40.4c2.5-.4 4.8-1.4 6.7-3l4.9 4.8z"/>
