@@ -21,6 +21,19 @@ app.use(route.get('/robots.txt', function (ctx, next) {
   `
 }))
 
+app.use(route.post('/prismic-hook', compose([body(), async function (ctx) {
+  var secret = ctx.request.body && ctx.request.body.secret
+  ctx.assert(secret === process.env.PRISMIC_QUANTIFIEDPLANET_SECRET, 403, 'Secret mismatch')
+  return new Promise(function (resolve, reject) {
+    purge(function (err, response) {
+      if (err) return reject(err)
+      ctx.type = 'application/json'
+      ctx.body = {}
+      resolve()
+    })
+  })
+}])))
+
 app.use(route.get('/prismic-preview', async function (ctx) {
   var token = ctx.query.token
   var api = await Prismic.api(PRISMIC_ENDPOINT, {req: ctx.req})
@@ -31,17 +44,6 @@ app.use(route.get('/prismic-preview', async function (ctx) {
   })
   ctx.redirect(url)
 }))
-
-app.use(route.post('/prismic-hook', compose([body(), async function (ctx) {
-  var secret = ctx.request.body && ctx.request.body.secret
-  ctx.assert(secret === process.env.PRISMIC_QUANTIFIEDPLANET_SECRET, 403, 'Secret mismatch')
-  return new Promise(function (resolve, reject) {
-    purge(function (err, response) {
-      if (err) return reject(err)
-      resolve()
-    })
-  })
-}])))
 
 app.use(route.get('/geoip', function (ctx, next) {
   ctx.set('Cache-Control', 'max-age=0')
@@ -61,7 +63,7 @@ app.use(function (ctx, next) {
 })
 
 if (process.env.NOW && process.env.NODE_ENV === 'production') {
-  purge(function (err) {
+  purge(['/service-worker.js'], function (err) {
     if (err) throw err
     start()
   })
