@@ -35,11 +35,7 @@ function api (state, emitter) {
 
   emitter.on('location:fetch', function () {
     state.data.isLoading = true
-    window.fetch('https://freegeoip.net/json/').catch(function () {
-      return window.fetch('//api.ipify.org?format=json')
-        .then(body => body.json())
-        .then(resp => window.fetch(`//freegeoip.net/json/${resp.ip}`))
-    }).then(function (response) {
+    window.fetch('/geoip').then(function (response) {
       return response.json().then(data => {
         state.data.isLoading = false
         state.data.location = data

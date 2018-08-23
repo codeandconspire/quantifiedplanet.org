@@ -59,7 +59,7 @@ module.exports = class Gallery extends Component {
       if (data.error) {
         city = 'Stockholm'
       } else {
-        const { longitude, latitude } = data.location
+        const [ latitude, longitude ] = data.location.ll
         const location = [longitude, latitude]
 
         const closest = CITIES.map(key => {

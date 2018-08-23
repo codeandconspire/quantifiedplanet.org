@@ -2,6 +2,7 @@ const jalla = require('jalla')
 const dedent = require('dedent')
 const body = require('koa-body')
 const route = require('koa-route')
+const geoip = require('geoip-lite')
 const compose = require('koa-compose')
 const Prismic = require('prismic-javascript')
 const purge = require('./lib/purge')
@@ -19,16 +20,6 @@ app.use(route.get('/robots.txt', function (ctx, next) {
     Disallow: /
   `
 }))
-
-app.use(function (ctx, next) {
-  if (!ctx.accepts('html')) return next()
-  if (ctx.cookies.get(Prismic.previewCookie)) {
-    ctx.set('Cache-Control', 'max-age=0')
-  } else if (process.env.NODE_ENV !== 'development') {
-    ctx.set('Cache-Control', `s-maxage=${60 * 60 * 24 * 7}, max-age=${60}`)
-  }
-  return next()
-})
 
 app.use(route.get('/prismic-preview', async function (ctx) {
   var token = ctx.query.token
@@ -51,6 +42,23 @@ app.use(route.post('/prismic-hook', compose([body(), async function (ctx) {
     })
   })
 }])))
+
+app.use(route.get('/geoip', function (ctx, next) {
+  ctx.set('Cache-Control', 'max-age=0')
+  ctx.type = 'application/json'
+  let ip = ctx.headers['cf-connecting-ip'] || ctx.ip
+  ctx.body = geoip.lookup(ip.replace('::1', '193.105.134.113')) || {}
+}))
+
+app.use(function (ctx, next) {
+  if (!ctx.accepts('html')) return next()
+  if (ctx.cookies.get(Prismic.previewCookie)) {
+    ctx.set('Cache-Control', 'max-age=0')
+  } else if (process.env.NODE_ENV !== 'development') {
+    ctx.set('Cache-Control', `s-maxage=${60 * 60 * 24 * 7}, max-age=${60}`)
+  }
+  return next()
+})
 
 if (process.env.NOW && process.env.NODE_ENV === 'production') {
   purge(function (err) {
