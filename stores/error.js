@@ -1,7 +1,8 @@
 module.exports = error
 
 function error (state, emitter) {
-  state.error = state.error || null
+  if (state.prefetch || typeof window !== 'undefined') state.error = null
+  else state.error = state.error || null
 
   emitter.on('error', function (err) {
     state.error = {
