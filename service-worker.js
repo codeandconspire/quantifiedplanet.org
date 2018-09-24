@@ -1,18 +1,18 @@
 /* eslint-env serviceworker */
 
 const TRACKING_REGEX = /https?:\/\/((www|ssl)\.)?google-analytics\.com/
-const BUILD_VERSION = process.env.npm_package_version
 const DATA_ENDPOINT = 'https://foobar.quantifiedplanet.org/api'
 const PRISMIC_ENDPOINT = 'https://quantifiedplanet.cdn.prismic.io/api/v2'
 const IS_DEVELOPMENT = process.env.NODE_ENV === 'development'
+const CACHE_KEY = getCacheKey()
 const FILES = [
   '/'
-].filter(Boolean)
+].concat(process.env.ASSET_LIST).filter(Boolean)
 
 self.addEventListener('install', function oninstall (event) {
   event.waitUntil(
     caches
-      .open(BUILD_VERSION)
+      .open(CACHE_KEY)
       .then(cache => cache.addAll(FILES))
       .then(() => self.skipWaiting())
   )
@@ -28,7 +28,7 @@ self.addEventListener('fetch', function onfetch (event) {
   const isHTML = req.headers.get('accept').includes('text/html')
 
   event.respondWith(
-    caches.open(BUILD_VERSION).then(cache => {
+    caches.open(CACHE_KEY).then(cache => {
       return cache.match(req).then(cached => {
         const isLocal = self.location.origin === url.origin
         const isAPI = url.href.indexOf(DATA_ENDPOINT) === 0
@@ -65,4 +65,14 @@ function clear () {
   return caches.keys().then(keys => {
     return Promise.all(keys.map(key => caches.delete(key)))
   })
+}
+
+// get application cache key
+// () -> str
+function getCacheKey () {
+  if (process.env.NOW_URL) {
+    return process.env.NOW_URL.match(/\w+(?=\.now\.sh)/)[0]
+  } else {
+    return process.env.npm_package_version
+  }
 }
