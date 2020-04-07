@@ -23,7 +23,7 @@ app.use(route.get('/robots.txt', function (ctx, next) {
 
 app.use(route.post('/prismic-hook', compose([body(), async function (ctx) {
   var secret = ctx.request.body && ctx.request.body.secret
-  ctx.assert(secret === process.env.PRISMIC_QUANTIFIEDPLANET_SECRET, 403, 'Secret mismatch')
+  ctx.assert(secret === process.env.PRISMIC_SECRET, 403, 'Secret mismatch')
   return new Promise(function (resolve, reject) {
     purge(function (err, response) {
       if (err) return reject(err)
@@ -62,7 +62,7 @@ app.use(function (ctx, next) {
   return next()
 })
 
-if (process.env.NOW && process.env.NODE_ENV === 'production') {
+if (process.env.HEROKU && process.env.NODE_ENV === 'production') {
   purge(['/service-worker.js'], function (err) {
     if (err) throw err
     start()

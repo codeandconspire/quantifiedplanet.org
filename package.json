@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "standard",
-    "start": "node server.js",
-    "deploy": "npx now -T codeandconspire && npx now alias -T codeandconspire"
+    "start": "node server.js"
   },
   "documentify": {
     "transform": [
@@ -17,16 +16,6 @@
         }
       ]
     ]
-  },
-  "now": {
-    "alias": "www.quantifiedplanet.org",
-    "env": {
-      "NODE_ENV": "production",
-      "PRISMIC_QUANTIFIEDPLANET_SECRET": "@prismic-quantifiedplanet-secret",
-      "CLOUDFLARE_QUANTIFIEDPLANET_ZONE": "@cloudflare-quantifiedplanet-zone",
-      "CLOUDFLARE_CODEANDCONSPIRE_EMAIL": "@cloudflare-codeandconspire-email",
-      "CLOUDFLARE_CODEANDCONSPIRE_KEY": "@cloudflare-codeandconspire-key"
-    }
   },
   "repository": {
     "type": "git",
@@ -42,31 +31,31 @@
     "standard": "^10.0.3"
   },
   "dependencies": {
-    "cccpurge": "^1.2.2",
-    "chartist": "^0.11.0",
-    "choo": "^6.12.1",
+    "cccpurge": "^1.4.0",
+    "chartist": "^0.11.4",
+    "choo": "^6.13.3",
     "choo-devtools": "^2.3.3",
     "choo-service-worker": "^2.4.0",
     "cssnano": "^3.10.0",
     "dedent": "^0.7.0",
-    "geoip-lite": "^1.3.2",
+    "geoip-lite": "^1.4.1",
     "hstream": "^1.2.0",
     "jalla": "^0.7.4",
-    "koa-body": "^4.0.3",
+    "koa-body": "^4.1.1",
     "koa-compose": "^4.1.0",
     "koa-route": "^3.2.0",
-    "nanobus": "^4.3.2",
-    "nanoraf": "^3.0.1",
+    "nanobus": "^4.4.0",
+    "nanoraf": "^3.1.0",
     "nanostate": "^1.1.0",
     "normalize.css": "^7.0.0",
-    "postcss-color-function": "^4.0.1",
+    "postcss-color-function": "^4.1.0",
     "postcss-custom-media": "^6.0.0",
     "postcss-custom-properties": "^6.2.0",
     "postcss-load-config": "^1.2.0",
     "postcss-selector-matches": "^3.0.1",
     "prismic-element": "^1.0.0",
-    "prismic-javascript": "^1.5.0-beta.1",
+    "prismic-javascript": "^1.5.1",
     "prismic-richtext": "^0.2.7",
-    "smoothscroll-polyfill": "^0.4.0"
+    "smoothscroll-polyfill": "^0.4.4"
   }
 }
