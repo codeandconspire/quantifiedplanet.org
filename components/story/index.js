@@ -21,7 +21,7 @@ module.exports = class Story extends Component {
     this.emit = emit
     this.state = state
     this.video = new Video()
-    this.sections = [ System, Summary, Goals, Gallery ].map((Section, index) => {
+    this.sections = [ System, Summary, Goals ].map((Section, index) => {
       const emitter = nanobus()
       const section = {
         inview: false,

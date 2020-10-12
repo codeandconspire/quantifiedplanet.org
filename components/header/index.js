@@ -70,10 +70,6 @@ module.exports = class Header extends Component {
               </a>
             </li>
           </ul>
-          <a class="Header-data" href="${resolveRoute(ROUTES.explorer)}">
-            <span>Planet Explorer</span>
-            <div class="Header-icon">${icons.chart()}</div>
-          </a>
         </nav>
       </header>
     `
