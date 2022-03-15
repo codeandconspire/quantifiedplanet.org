@@ -64,7 +64,8 @@ app.use(function (ctx, next) {
 
 if (process.env.HEROKU && process.env.NODE_ENV === 'production') {
   purge(['/service-worker.js'], function (err) {
-    if (err) throw err
+    //if (err) throw err
+    if (err) console.log(err)
     start()
   })
 } else {
