@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/codeandconspire/quantifiedplanet.org#readme",
   "devDependencies": {
-    "standard": "^10.0.3"
+    "standard": "^17.0.0"
   },
   "dependencies": {
     "cccpurge": "^1.4.0",
