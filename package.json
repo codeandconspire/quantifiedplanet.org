@@ -7,6 +7,9 @@
     "test": "standard",
     "start": "node server.js"
   },
+  "engines": {
+    "node": "16.x"
+  },
   "documentify": {
     "transform": [
       [
